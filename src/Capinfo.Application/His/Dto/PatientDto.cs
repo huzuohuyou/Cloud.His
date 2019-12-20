@@ -10,7 +10,7 @@ namespace Capinfo.His
     public class PatientDto : AuditedEntityDto<int>
     {
         /// <summary>
-        /// 主键
+        /// 主键aaa
         /// </summary>
         //public string ID { get; set; }
         /// <summary>
