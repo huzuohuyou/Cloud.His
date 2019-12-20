@@ -8,15 +8,15 @@ using System.Text;
 
 namespace Capinfo.EntityFrameworkCore.His
 {
-    public class PatientRepository : CapinfoRepositoryBase<Patient, int>, IPatientRepository
+    public class PatientRepository : IPatientRepository//CapinfoRepositoryBase<Patient, int>, IPatientRepository
     {
-        public readonly IRepository<Patient> _personRepository;
-        protected PatientRepository(IDbContextProvider<CapinfoDbContext> dbContextProvider) : base(dbContextProvider)
-        {
-        }
+        //public readonly IRepository<Patient> _personRepository;
+        //protected PatientRepository(IDbContextProvider<CapinfoDbContext> dbContextProvider) : base(dbContextProvider)
+        //{
+        //}
         public List<Patient> GetAllPatient()
         {
-            return _personRepository.GetAllList();
+            return null;// _personRepository.GetAllList();
         }
 
     }

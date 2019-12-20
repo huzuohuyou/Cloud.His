@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using Abp.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Capinfo.EntityFrameworkCore.His
+namespace Capinfo.His
 {
-    public class Patient
+    [AutoMapFrom(typeof(Patient))]
+    public class CreateUpdatePatientDto : AuditedEntityDto<int>
     {
         /// <summary>
         /// 主键

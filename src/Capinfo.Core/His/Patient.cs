@@ -1,11 +1,12 @@
 ﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Capinfo.His
 {
-    public class Patient:IEntity
+    public class Patient: Entity//AuditedAggregateRoot<int> ,IEntity
     {
         /// <summary>
         /// 主键
