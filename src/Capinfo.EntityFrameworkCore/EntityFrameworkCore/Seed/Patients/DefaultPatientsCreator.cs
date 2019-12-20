@@ -1,6 +1,8 @@
 ﻿using Capinfo.His;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Capinfo.EntityFrameworkCore.Seed.Patients
@@ -40,13 +42,13 @@ namespace Capinfo.EntityFrameworkCore.Seed.Patients
        
         private void AddGoodsIfNotExists(Patient item)
         {
-            //if (_context.Patients.Find(item) ==null)
-            //{
-            //    return;
-            //}
+            if (_context.Patient.IgnoreQueryFilters().Any(l => l.PTNO == item.PTNO))
+            {
+                return;
+            }
 
-            //_context.Patients.Add(item);
-            //_context.SaveChanges();
+            _context.Patient.Add(item);
+            _context.SaveChanges();
         }
     }
 }

@@ -6,12 +6,9 @@ using System.Text;
 
 namespace Capinfo.His
 {
-    public class Patient: Entity//AuditedAggregateRoot<int> ,IEntity
+    public class Patient: Entity
     {
-        /// <summary>
-        /// 主键
-        /// </summary>
-        //public string ID { get; set; }
+        
         /// <summary>
         /// //患者编号
         /// </summary>
@@ -130,11 +127,7 @@ namespace Capinfo.His
         public DateTime? LastModificationTime{ get; set; }
 
         public long? LastModifierUserId{ get; set; }
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public bool IsTransient()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

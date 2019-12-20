@@ -6276,3 +6276,162 @@ INFO  2019-12-20 13:17:52,082 [4    ] ft.AspNetCore.Routing.EndpointMiddleware -
 INFO  2019-12-20 13:17:52,090 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAllPatient", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[Capinfo.His.PatientDto] GetAllPatient() on controller Capinfo.His.PatientAppService (Capinfo.Application).
 INFO  2019-12-20 13:17:52,314 [4    ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.His.PatientAppService.GetAllPatient (Capinfo.Application) - Validation state: Valid
 DEBUG 2019-12-20 13:18:21,477 [12   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:37:56,835 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-12-20 13:37:56,969 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2019-12-20 13:37:56,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.Web.Host.Startup.CapinfoWebHostModule, Capinfo.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,992 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoWebCoreModule, Capinfo.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,992 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoApplicationModule, Capinfo.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,992 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoCoreModule, Capinfo.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,993 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,993 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,993 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,994 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,994 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.EntityFrameworkCore.CapinfoEntityFrameworkModule, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,994 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,994 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,995 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,995 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,995 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,996 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:56,997 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2019-12-20 13:37:57,070 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:37:57,070 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:37:57,070 [1    ] o.Configuration.LanguageManagementConfig - Converted Capinfo (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:37:57,070 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:37:57,387 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Capinfo.EntityFrameworkCore.CapinfoDbContext, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:37:58,216 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-12-20 13:37:58,291 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-12-20 13:37:58,342 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-12-20 13:37:58,359 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Capinfo
+DEBUG 2019-12-20 13:37:58,391 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-12-20 13:37:58,597 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-12-20 13:37:58,744 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-12-20 13:37:58,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 10 classes define auto mapping attributes
+DEBUG 2019-12-20 13:37:58,790 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-12-20 13:37:58,796 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.CreateUserDto
+DEBUG 2019-12-20 13:37:58,796 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.UserDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Roles.Dto.PermissionDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.TenantDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.CreateUpdatePatientDto
+DEBUG 2019-12-20 13:37:58,797 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.PatientDto
+DEBUG 2019-12-20 13:38:00,881 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:41:47,955 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-12-20 13:41:48,109 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2019-12-20 13:41:48,142 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.Web.Host.Startup.CapinfoWebHostModule, Capinfo.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoWebCoreModule, Capinfo.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoApplicationModule, Capinfo.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoCoreModule, Capinfo.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.EntityFrameworkCore.CapinfoEntityFrameworkModule, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,147 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:48,149 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2019-12-20 13:41:48,220 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:41:48,220 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:41:48,220 [1    ] o.Configuration.LanguageManagementConfig - Converted Capinfo (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:41:48,220 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:41:48,563 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Capinfo.EntityFrameworkCore.CapinfoDbContext, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:41:49,614 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-12-20 13:41:49,698 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-12-20 13:41:49,736 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-12-20 13:41:49,753 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Capinfo
+DEBUG 2019-12-20 13:41:49,802 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-12-20 13:41:50,025 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-12-20 13:41:50,164 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-12-20 13:41:50,209 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 10 classes define auto mapping attributes
+DEBUG 2019-12-20 13:41:50,209 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-12-20 13:41:50,214 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.CreateUserDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.UserDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Roles.Dto.PermissionDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.TenantDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.CreateUpdatePatientDto
+DEBUG 2019-12-20 13:41:50,215 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.PatientDto
+DEBUG 2019-12-20 13:41:52,077 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:21,518 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-12-20 13:44:21,657 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2019-12-20 13:44:21,678 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.Web.Host.Startup.CapinfoWebHostModule, Capinfo.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,679 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoWebCoreModule, Capinfo.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,680 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoApplicationModule, Capinfo.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,680 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoCoreModule, Capinfo.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,680 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,680 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,680 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,681 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,681 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.EntityFrameworkCore.CapinfoEntityFrameworkModule, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,681 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,681 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,681 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,682 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,682 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,682 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:21,684 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2019-12-20 13:44:21,753 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:44:21,753 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:44:21,753 [1    ] o.Configuration.LanguageManagementConfig - Converted Capinfo (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:44:21,753 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-12-20 13:44:22,071 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Capinfo.EntityFrameworkCore.CapinfoDbContext, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-12-20 13:44:22,951 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-12-20 13:44:23,027 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-12-20 13:44:23,076 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-12-20 13:44:23,095 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Capinfo
+DEBUG 2019-12-20 13:44:23,131 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-12-20 13:44:23,381 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-12-20 13:44:23,528 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-12-20 13:44:23,576 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 10 classes define auto mapping attributes
+DEBUG 2019-12-20 13:44:23,577 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-12-20 13:44:23,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.CreateUserDto
+DEBUG 2019-12-20 13:44:23,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.UserDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Roles.Dto.PermissionDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.TenantDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.CreateUpdatePatientDto
+DEBUG 2019-12-20 13:44:23,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.PatientDto
+DEBUG 2019-12-20 13:44:25,462 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,521 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,611 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,618 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,621 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,623 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,627 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,685 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,803 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:25,862 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-12-20 13:44:26,138 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\吴海龙\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2019-12-20 13:44:26,213 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-12-20 13:44:26,339 [12   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host)'
+DEBUG 2019-12-20 13:44:29,230 [5    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-12-20 13:44:30,086 [12   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Capinfo.Web.Host.Controllers.HomeController (Capinfo.Web.Host).
+INFO  2019-12-20 13:44:31,120 [12   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host) - Validation state: Valid
+INFO  2019-12-20 13:44:31,127 [12   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.4803ms.
+INFO  2019-12-20 13:44:31,222 [10   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-12-20 13:44:31,229 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host) in 1137.7613000000001ms
+INFO  2019-12-20 13:44:31,232 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host)'
+INFO  2019-12-20 13:44:31,246 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 5036.2414ms 302 
+INFO  2019-12-20 13:44:31,250 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-12-20 13:44:31,398 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 148.0744ms 200 text/html;charset=utf-8
+INFO  2019-12-20 13:44:31,520 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-12-20 13:44:31,696 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 176.0223ms 200 application/json;charset=utf-8
+DEBUG 2019-12-20 13:44:34,900 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:39,978 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:44,985 [5    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-12-20 13:44:50,029 [12   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-12-20 13:44:54,026 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Patient/GetAllPatient  
+INFO  2019-12-20 13:44:54,030 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.His.PatientAppService.GetAllPatient (Capinfo.Application)'
+INFO  2019-12-20 13:44:54,039 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAllPatient", controller = "Patient"}. Executing controller action with signature System.Collections.Generic.List`1[Capinfo.His.PatientDto] GetAllPatient() on controller Capinfo.His.PatientAppService (Capinfo.Application).
+INFO  2019-12-20 13:44:54,276 [5    ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.His.PatientAppService.GetAllPatient (Capinfo.Application) - Validation state: Valid
+DEBUG 2019-12-20 13:44:56,455 [11   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null

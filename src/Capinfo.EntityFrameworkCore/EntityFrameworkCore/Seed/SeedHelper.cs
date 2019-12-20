@@ -7,6 +7,7 @@ using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using Capinfo.EntityFrameworkCore.Seed.Host;
 using Capinfo.EntityFrameworkCore.Seed.Tenants;
+using Capinfo.EntityFrameworkCore.Seed.Patients;
 
 namespace Capinfo.EntityFrameworkCore.Seed
 {
@@ -23,7 +24,7 @@ namespace Capinfo.EntityFrameworkCore.Seed
 
             // Host seed
             new InitialHostDbBuilder(context).Create();
-
+            new DefaultPatientsCreator(context).Create();
             // Default tenant seed (in host database).
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
