@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Repositories;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,17 @@ namespace Capinfo.His
     //实现接口中的方法
     public List<PatientDto> GetAllPatient()
         {
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>());
+            var mapper = config.CreateMapper();
+            
+
             List<PatientDto> resultSet = new List<PatientDto>();
             List<Patient> people = _personRepository.GetAll().ToList();//.GetAllPatient();
             foreach (Patient item in people)
             {
-                resultSet.Add(new PatientDto());
+                var dto = mapper.Map<PatientDto>(item);
+                resultSet.Add(dto);
             }
             return resultSet;
         }

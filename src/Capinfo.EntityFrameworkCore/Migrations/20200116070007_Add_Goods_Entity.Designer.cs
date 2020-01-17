@@ -4,14 +4,16 @@ using Capinfo.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Capinfo.Migrations
 {
     [DbContext(typeof(CapinfoDbContext))]
-    partial class CapinfoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200116070007_Add_Goods_Entity")]
+    partial class Add_Goods_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1417,14 +1419,14 @@ namespace Capinfo.Migrations
                     b.ToTable("Patient");
                 });
 
-            modelBuilder.Entity("Capinfo.His.Questions", b =>
+            modelBuilder.Entity("Capinfo.His.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Answer")
+                    b.Property<string>("ANSWER")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
@@ -1433,8 +1435,11 @@ namespace Capinfo.Migrations
                     b.Property<long>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DATE")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("DEPT")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("DeleterUserId")
                         .HasColumnType("bigint");
@@ -1442,16 +1447,13 @@ namespace Capinfo.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Dept")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Kind")
+                    b.Property<int>("KIND")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -1460,30 +1462,30 @@ namespace Capinfo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("PHONE")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ptno")
+                    b.Property<string>("PTNO")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Question")
+                    b.Property<string>("QUESTION")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Reason")
+                    b.Property<string>("REASON")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
+                    b.Property<string>("ROLE")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TYPE")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("User")
+                    b.Property<string>("USER")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Question");
                 });
 
             modelBuilder.Entity("Capinfo.MultiTenancy.Tenant", b =>
