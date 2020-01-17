@@ -16,8 +16,18 @@ namespace Capinfo.His
          {
             _personRepository = repository;
          }
-    //实现接口中的方法
-    public List<QuestionDto> GetAllQuestion()
+
+        public bool AddRecord(QuestionDto dto)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto,Questions >());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Questions>(dto);
+            var ok = _personRepository.Insert(po) != null;
+            return ok;
+        }
+
+        //实现接口中的方法
+        public List<QuestionDto> GetAllQuestion()
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
             var mapper = config.CreateMapper();

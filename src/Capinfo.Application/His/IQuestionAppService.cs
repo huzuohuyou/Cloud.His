@@ -8,5 +8,7 @@ namespace Capinfo.His
     public interface IQuestionAppService : IApplicationService
     {
         List<QuestionDto> GetAllQuestion();
+
+        bool AddRecord(QuestionDto dto);
     }
 }
