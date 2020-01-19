@@ -10,5 +10,9 @@ namespace Capinfo.His
         List<QuestionDto> GetAllQuestion();
 
         bool AddRecord(QuestionDto dto);
+
+        QuestionDto GetQuestion(int id);
+
+        bool UpdateRecord(QuestionDto dto);
     }
 }

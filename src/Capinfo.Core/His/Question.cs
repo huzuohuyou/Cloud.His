@@ -8,7 +8,6 @@ namespace Capinfo.His
         public enum ROLES { Doctor, Nurse };
         public enum KINDS { In, Out};
         public enum TYPES { Advisory, Unlock, Authority, OnSite };
-  
         public DateTime Date { get; set; }
     
         public string Phone { get; set; }

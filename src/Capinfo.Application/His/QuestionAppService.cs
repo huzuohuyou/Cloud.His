@@ -1,9 +1,9 @@
 ﻿using Abp.Domain.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Capinfo.His
 {
@@ -13,13 +13,13 @@ namespace Capinfo.His
         public readonly IRepository<Questions> _personRepository;
 
         public QuestionAppService(IRepository<Questions> repository)
-         {
+        {
             _personRepository = repository;
-         }
+        }
 
         public bool AddRecord(QuestionDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto,Questions >());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
             var mapper = config.CreateMapper();
             var po = mapper.Map<Questions>(dto);
             var ok = _personRepository.Insert(po) != null;
@@ -42,5 +42,26 @@ namespace Capinfo.His
             return resultSet;
         }
 
+        [HttpGet]
+        public QuestionDto GetQuestion(int id)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
+            var mapper = config.CreateMapper();
+
+            var po = _personRepository.Get(id);
+            var dto = mapper.Map<QuestionDto>(po);
+            return dto;
+        }
+
+        [HttpPost]
+        public bool UpdateRecord(QuestionDto dto)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Questions>(dto);
+            var ok = _personRepository.Update(po);
+
+            return ok != null;
+        }
     }
 }
