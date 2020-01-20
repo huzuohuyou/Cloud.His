@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using AutoMapper;
+using Capinfo.His.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Capinfo.His
         {
             _personRepository = repository;
         }
-
+        [HttpPost]
         public bool AddRecord(QuestionDto dto)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
@@ -51,6 +52,28 @@ namespace Capinfo.His
             var po = _personRepository.Get(id);
             var dto = mapper.Map<QuestionDto>(po);
             return dto;
+        }
+        [HttpPost]
+        public List<QuestionDto> SearchQuestion(QuestionFilterDto questionFilter)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
+            var mapper = config.CreateMapper();
+
+            List<QuestionDto> resultSet = new List<QuestionDto>();
+            List<Questions> questions = _personRepository
+                .GetAll().ToList().Where(
+                r => r
+                .GetType()
+                .GetProperty(questionFilter.Select)
+                .GetValue(r)
+                .ToString()
+                .Contains(questionFilter.Value)).ToList();//.GetAllPatient();
+            foreach (Questions item in questions)
+            {
+                var dto = mapper.Map<QuestionDto>(item);
+                resultSet.Add(dto);
+            }
+            return resultSet;
         }
 
         [HttpPost]

@@ -5,9 +5,9 @@ namespace Capinfo.His
 {
     public class Questions : Entity
     {
-        public enum ROLES { Doctor, Nurse };
-        public enum KINDS { In, Out};
-        public enum TYPES { Advisory, Unlock, Authority, OnSite };
+        public enum ROLES { Doctor = 1, Nurse = 2 };
+        public enum KINDS { In = 1, Out = 2 };
+        public enum TYPES { Advisory = 1, Unlock = 2, Authority = 3, OnSite = 4 };
         public DateTime Date { get; set; }
     
         public string Phone { get; set; }

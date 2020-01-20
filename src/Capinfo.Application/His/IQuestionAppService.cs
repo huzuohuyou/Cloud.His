@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Capinfo.His.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,7 @@ namespace Capinfo.His
         QuestionDto GetQuestion(int id);
 
         bool UpdateRecord(QuestionDto dto);
+
+        List<QuestionDto> SearchQuestion(QuestionFilterDto dto);
     }
 }
