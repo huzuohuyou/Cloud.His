@@ -53,6 +53,22 @@ namespace Capinfo.His
             var dto = mapper.Map<QuestionDto>(po);
             return dto;
         }
+
+        public List<QuestionDto> GetThisWeekQuestion()
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
+            var mapper = config.CreateMapper();
+
+            List<QuestionDto> resultSet = new List<QuestionDto>();
+            List<Questions> people = _personRepository.GetAll().ToList().Where(r => r.Date.DayOfWeek == DateTime.Now.DayOfWeek).ToList();//.OrderBy(r=>r.Date).ToList();//.GetAllPatient();
+            foreach (Questions item in people)
+            {
+                var dto = mapper.Map<QuestionDto>(item);
+                resultSet.Add(dto);
+            }
+            return resultSet;
+        }
+
         [HttpPost]
         public List<QuestionDto> SearchQuestion(QuestionFilterDto questionFilter)
         {

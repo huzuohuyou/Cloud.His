@@ -27,6 +27,33 @@ namespace Capinfo.His
 
         public TYPES Type { get; set; }
 
+        public string TypeName
+        {
+            get
+            {
+                if (Type.Equals(TYPES.Advisory))
+                {
+                    return "咨询";
+                }
+                else if (Type.Equals(TYPES.Authority))
+                {
+                    return "权限";
+                }
+                else if (Type.Equals(TYPES.OnSite))
+                {
+                    return "现场";
+                }
+                else if (Type.Equals(TYPES.Unlock))
+                {
+                    return "解锁";
+                }
+                else
+                {
+                    return "其他";
+                }
+            }
+        }
+
         public string Question { get; set; }
 
         public string Reason { get; set; }
@@ -49,5 +76,13 @@ namespace Capinfo.His
         public DateTime? LastModificationTime { get; set; }
 
         public long? LastModifierUserId { get; set; }
+
+        public string Content
+        {
+            get
+            {
+                return $@"{Date.ToString("yyyy-MM-dd")} 科室：{Dept} 电话：{Phone} 用户：{User} 问题：{Question} 原因：{Reason} 方案：{Answer}";
+            }
+        }
     }
 }

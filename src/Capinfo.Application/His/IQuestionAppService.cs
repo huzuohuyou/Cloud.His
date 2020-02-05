@@ -10,6 +10,8 @@ namespace Capinfo.His
     {
         List<QuestionDto> GetAllQuestion();
 
+        List<QuestionDto> GetThisWeekQuestion();
+
         bool AddRecord(QuestionDto dto);
 
         QuestionDto GetQuestion(int id);
