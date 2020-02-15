@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
+WORKDIR /src
+COPY ["src/Capinfo.Web.Host/Capinfo.Web.Host.csproj", "src/Capinfo.Web.Host/"]
+COPY ["src/Capinfo.Web.Core/Capinfo.Web.Core.csproj", "src/Capinfo.Web.Core/"]
+COPY ["src/Capinfo.EntityFrameworkCore/Capinfo.EntityFrameworkCore.csproj", "src/Capinfo.EntityFrameworkCore/"]
+COPY ["src/Capinfo.Core/Capinfo.Core.csproj", "src/Capinfo.Core/"]
+COPY ["src/Capinfo.Application/Capinfo.Application.csproj", "src/Capinfo.Application/"]
+RUN dotnet restore "src/Capinfo.Web.Host/Capinfo.Web.Host.csproj"
+COPY . .
+WORKDIR "/src/src/Capinfo.Web.Host"
+RUN dotnet build "Capinfo.Web.Host.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Capinfo.Web.Host.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Capinfo.Web.Host.dll"]

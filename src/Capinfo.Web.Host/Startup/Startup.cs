@@ -18,6 +18,7 @@ using Abp.Dependency;
 using Abp.Json;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Capinfo.Web.Host.Startup
 {
@@ -34,6 +35,7 @@ namespace Capinfo.Web.Host.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             //MVC
             services.AddControllersWithViews(
                 options =>
