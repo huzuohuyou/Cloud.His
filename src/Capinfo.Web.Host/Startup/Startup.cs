@@ -75,11 +75,7 @@ namespace Capinfo.Web.Host.Startup
                         .AllowCredentials()
                 )
             );
-            services.AddCors(options =>
-      options.AddPolicy("any",
-          builder => builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials()
-       )
-   );
+
 
 
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI

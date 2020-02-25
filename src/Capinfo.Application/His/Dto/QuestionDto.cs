@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using Capinfo.His.Dto;
 using System;
 
 namespace Capinfo.His
@@ -60,6 +61,7 @@ namespace Capinfo.His
 
         public string Answer { get; set; }
 
+        public string[] UploadList { get; set; }
 
 
         public DateTime CreationTime { get; set; }
