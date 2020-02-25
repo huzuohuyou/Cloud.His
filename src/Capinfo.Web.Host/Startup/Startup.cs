@@ -70,10 +70,17 @@ namespace Capinfo.Web.Host.Startup
                                 .ToArray()
                         )
                         .AllowAnyHeader()
+                        //.AllowAnyOrigin()// 允许任何地址
                         .AllowAnyMethod()
                         .AllowCredentials()
                 )
             );
+            services.AddCors(options =>
+      options.AddPolicy("any",
+          builder => builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials()
+       )
+   );
+
 
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             services.AddSwaggerGen(options =>
@@ -91,6 +98,9 @@ namespace Capinfo.Web.Host.Startup
                 });
             });
 
+            //Elsa
+            services.AddElsa();
+
             // Configure Abp and Dependency Injection
             return services.AddAbp<CapinfoWebHostModule>(
                 // Configure Log4Net logging
@@ -103,7 +113,6 @@ namespace Capinfo.Web.Host.Startup
         public void Configure(IApplicationBuilder app,  ILoggerFactory loggerFactory)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
-
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
             app.UseStaticFiles();
