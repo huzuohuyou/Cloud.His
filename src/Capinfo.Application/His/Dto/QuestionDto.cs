@@ -62,7 +62,21 @@ namespace Capinfo.His
         public string Answer { get; set; }
 
         public string[] UploadList { get; set; }
+        public string Images
+        {
+            get
+            {
+                if (UploadList != null)
+                {
+                    return string.Join("|", UploadList);
+                }
+                return string.Empty;
+            }
+        }
 
+    
+
+        public string[] ImageArray { get; set; }
 
         public DateTime CreationTime { get; set; }
 

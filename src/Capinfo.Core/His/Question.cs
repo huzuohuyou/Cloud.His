@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Capinfo.His
 {
@@ -29,8 +30,25 @@ namespace Capinfo.His
         public string Reason { get; set; }
  
         public string Answer { get; set; }
-       
 
+        public string Images { get; set; }
+        public string[] ImageArray
+        {
+            get
+            {
+                var list = new List<string>();
+                if (Images!=null)
+                {
+                    foreach (var item in Images.Split('|'))
+                    {
+                        list.Add($@"http://localhost:21021/{item}");
+                    }
+                    
+                    return list.ToArray();
+                }
+                return new string[] { };
+            }
+        }
 
         public  DateTime CreationTime { get; set; }
 
