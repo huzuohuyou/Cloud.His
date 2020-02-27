@@ -5,7 +5,6 @@ using Capinfo.His.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +33,8 @@ namespace Capinfo.His
         }
 
         //实现接口中的方法
-        public List<QuestionDto> GetAllQuestion()
+        [HttpGet]
+        public PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
             var mapper = config.CreateMapper();
@@ -46,7 +46,11 @@ namespace Capinfo.His
                 var dto = mapper.Map<QuestionDto>(item);
                 resultSet.Add(dto);
             }
-            return resultSet;
+            return new PageDto<QuestionDto>
+            {
+                totalCount = resultSet.Count,
+                items = resultSet.ToArray()
+            };
         }
 
         [HttpGet]

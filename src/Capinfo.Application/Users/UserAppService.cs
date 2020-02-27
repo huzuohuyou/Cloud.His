@@ -132,7 +132,6 @@ namespace Capinfo.Users
             var roleIds = user.Roles.Select(x => x.RoleId).ToArray();
 
             var roles = _roleManager.Roles.Where(r => roleIds.Contains(r.Id)).Select(r => r.NormalizedName);
-
             var userDto = base.MapToEntityDto(user);
             userDto.RoleNames = roles.ToArray();
 

@@ -94,8 +94,6 @@ namespace Capinfo.Web.Host.Startup
                 });
             });
 
-            //Elsa
-            services.AddElsa();
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<CapinfoWebHostModule>(

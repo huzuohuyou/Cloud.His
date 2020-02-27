@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
-using Capinfo.Controllers;
+﻿using Capinfo.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
+using System;
+using System.IO;
 
 namespace Capinfo.Web.Host.Controllers
 {

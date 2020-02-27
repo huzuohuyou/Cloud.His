@@ -15,6 +15,9 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Controllers\XlsxController.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Remove="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
   <ItemGroup>
@@ -38,8 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.Castle.Log4Net" Version="5.0.0" />
-    <PackageReference Include="Elsa" Version="1.2.2.28" />
-    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
