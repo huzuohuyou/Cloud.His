@@ -27,6 +27,9 @@ Viewer.setDefaults({
     "fullscreen": true, //播放时是否全屏
     "keyboard": true, //是否支持键盘
     "url": "data-source",
+    "zIndexInline": 9999,
+
+
     ready: function (e) {
       console.log(e.type,'组件以初始化');
     },
@@ -49,7 +52,7 @@ Viewer.setDefaults({
       console.log(e.type,'视图结束');
       // 索引为 1 的图片旋转20度
       // if(e.detail.index === 1){
-      //     this.Viewer.rotate(20);
+      //     this.view.rotate(20);
       // }
     },
     zoom: function (e) {

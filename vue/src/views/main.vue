@@ -60,8 +60,8 @@
         </div>
         <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
             <div class="single-page">
-                <keep-alive :include="cachePage">
-                    <router-view></router-view>
+                <keep-alive :include="cachePage" >
+                    <router-view ></router-view>
                 </keep-alive>                
             </div>
             <copyfooter :copyright="L('CopyRight')"></copyfooter>
