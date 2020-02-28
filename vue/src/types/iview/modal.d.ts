@@ -62,7 +62,7 @@ export interface Modal {
   /**
    * 对话框宽度，单位 px。
    * 对话框的宽度是响应式的，当屏幕尺寸小于 768px 时，宽度会变为自动auto,
-   * @default 	520
+   * @default 	580
    */
   width?: number | string;
   /**

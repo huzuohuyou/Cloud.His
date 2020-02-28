@@ -40,7 +40,8 @@ namespace Capinfo.His
             var mapper = config.CreateMapper();
 
             List<QuestionDto> resultSet = new List<QuestionDto>();
-            List<Questions> people = _personRepository.GetAll().ToList();//.GetAllPatient();
+            List<Questions>  all = _personRepository.GetAll().ToList();
+            List<Questions> people = all.Skip(SkipCount).Take(MaxResultCount).ToList();
             foreach (Questions item in people)
             {
                 var dto = mapper.Map<QuestionDto>(item);
@@ -48,7 +49,7 @@ namespace Capinfo.His
             }
             return new PageDto<QuestionDto>
             {
-                totalCount = resultSet.Count,
+                totalCount = all.Count,
                 items = resultSet.ToArray()
             };
         }
@@ -153,7 +154,7 @@ namespace Capinfo.His
             return resultSet;
         }
 
-        [HttpPost]
+        [HttpPut]
         public bool UpdateRecord(QuestionDto dto)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());

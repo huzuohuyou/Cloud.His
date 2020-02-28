@@ -53,10 +53,22 @@ export const appRouters: Array<Router> = [{
     children: [
         { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
         { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-        { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue')},
-        { path: 'AddRecord', permission: 'Pages.Roles', meta: { title: '运维记录' }, name: 'AddRecord', component: () => import('../views/setting/role/record.vue')  }
+        { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue')}
     ]
-}]
+},
+{
+    path: '/setting',
+    name: '运维服务',
+    permission: '',
+    meta: { title: '运维服务' },
+    icon: '&#xe68a;',
+    component: main,
+    children: [
+
+        { path: 'question', permission: 'Pages.Tenants', meta: { title: '运维记录' }, name: 'question', component: () => import('../views/setting/questions/record.vue')  }
+    ]
+}
+]
 export const routers = [
     loginRouter,
     locking,
