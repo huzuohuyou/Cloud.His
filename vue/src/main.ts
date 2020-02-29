@@ -8,6 +8,8 @@ import Ajax from './lib/ajax';
 import Util from './lib/util';
 import SignalRAspNetCoreHelper from './lib/SignalRAspNetCoreHelper';
 Vue.use(iView);
+import layer from 'vue-layer';
+Vue.prototype.$layer = layer(Vue);
 
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'

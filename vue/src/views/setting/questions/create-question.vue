@@ -111,8 +111,6 @@
         }
         getImagesFormSon(data) {
             this.question.uploadList = data
-            console.log('--------')
-            console.log(this.question.uploadList)
         }
         tenantRule = {
             // name: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('TenantName')), trigger: 'blur' }],

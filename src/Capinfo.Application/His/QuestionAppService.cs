@@ -1,26 +1,32 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Application.Services.Dto;
+using Abp.Domain.Repositories;
+using Abp.Runtime.Session;
 using Abp.UI;
 using AutoMapper;
 using Capinfo.His.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using static Capinfo.His.Questions;
 
 namespace Capinfo.His
 {
     public class QuestionAppService : IQuestionAppService
     {
+        public IAbpSession AbpSession { get; set; }
         //通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
         public readonly IRepository<Questions> _personRepository;
 
         public QuestionAppService(IRepository<Questions> repository)
         {
             _personRepository = repository;
+            AbpSession = NullAbpSession.Instance;
         }
         [HttpPost]
         public bool AddRecord(QuestionDto dto)
@@ -32,6 +38,46 @@ namespace Capinfo.His
             return ok;
         }
 
+        [HttpGet]
+        public string Export()
+        {
+            try
+            {
+                var question = GetThisWeekQuestion();
+                //var service = new QuestionAppService(new );
+                string sWebRootFolder = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot"; //_hostingEnvironment.WebRootPath;
+                string sFileName = "工作周报_吴海龙.xlsx";
+                FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
+                //file.Delete();
+                using (ExcelPackage package = new ExcelPackage(file))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    //添加值
+                    worksheet.Cells["B2"].Value = "姓名";//姓名
+                    worksheet.Cells["F2"].Value = "日期";//日期
+                    worksheet.Cells["F4"].Value = question.Unlock;//解锁
+                    worksheet.Cells["F5"].Value = question.Authority;//权限
+                    worksheet.Cells["F6"].Value = question.OnSite;//现场
+                    worksheet.Cells["F7"].Value = question.Advisory;//咨询
+                    worksheet.Cells["F8"].Value = question.Dev;//开发
+                    worksheet.Cells["F9"].Value = question.Query;//查询
+                    package.Save();
+                }
+                var userId = AbpSession.UserId?.ToString();
+                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{userId}.xlsx";
+                var fi = new FileInfo(str);
+                fi.Delete();
+                file.CopyTo(str);
+                return $@"http://localhost:21021/"+fi.Name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
         //实现接口中的方法
         [HttpGet]
         public PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount)
@@ -40,7 +86,10 @@ namespace Capinfo.His
             var mapper = config.CreateMapper();
 
             List<QuestionDto> resultSet = new List<QuestionDto>();
-            List<Questions>  all = _personRepository.GetAll().ToList();
+            List<Questions>  all = _personRepository
+                .GetAllList(r=>r.Question.Contains(Keyword??"")
+            || r.Reason.Contains(Keyword ?? "")
+            || r.Answer.Contains(Keyword ?? "") ).ToList();
             List<Questions> people = all.Skip(SkipCount).Take(MaxResultCount).ToList();
             foreach (Questions item in people)
             {
@@ -65,50 +114,46 @@ namespace Capinfo.His
             return dto;
         }
 
-        public List<QuestionDto> GetThisWeekQuestion()
+     
+        [HttpDelete]
+        public async Task DeleteAsync(EntityDto<int> input)
         {
+            var po = await _personRepository.GetAsync(input.Id);
+            await _personRepository.DeleteAsync(po);
+        }
+        public WeekRecordDto GetThisWeekQuestion()
+        {
+            var result = new WeekRecordDto();
+            var currentUserId = AbpSession.UserId;
+            result.Name = currentUserId.ToString();
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
             var mapper = config.CreateMapper();
 
-            List<QuestionDto> resultSet = new List<QuestionDto>();
-            List<Questions> people = _personRepository.GetAll().ToList().Where(r => r.Date.DayOfWeek == DateTime.Now.DayOfWeek).ToList();//.OrderBy(r=>r.Date).ToList();//.GetAllPatient();
+            List<Questions> people = _personRepository.GetAll().ToList()
+                .Where(r => r.Date.DayOfWeek == DateTime.Now.DayOfWeek).ToList();
             foreach (Questions item in people)
             {
                 var dto = mapper.Map<QuestionDto>(item);
-                resultSet.Add(dto);
+                if (item.Type.Equals(TYPES.Advisory))
+                {
+                    result.Advisory += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                }
+                else if(item.Type.Equals(TYPES.Authority))
+                {
+                    result.Authority += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                }
+                else if (item.Type.Equals(TYPES.OnSite))
+                {
+                    result.OnSite += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                }
+                else if (item.Type.Equals(TYPES.Unlock))
+                {
+                    result.Unlock += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                }
             }
-            return resultSet;
+            return result;
         }
 
-        private IHostingEnvironment _hostingEnvironment;
-        //public IActionResult Export()
-
-        //{
-        //    string sWebRootFolder = _hostingEnvironment.WebRootPath;
-        //    string sFileName = "工作周报_吴海龙.xlsx";
-        //    FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
-        //    file.Delete();
-        //    using (ExcelPackage package = new ExcelPackage(file))
-        //    {
-        //        // 添加worksheet
-        //        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("部落");
-        //        //添加头
-        //        worksheet.Cells[1, 1].Value = "ID";
-        //        worksheet.Cells[1, 2].Value = "Name";
-        //        worksheet.Cells[1, 3].Value = "Url";
-        //        //添加值
-        //        worksheet.Cells["A2"].Value = 1000;
-        //        worksheet.Cells["B2"].Value = "For丨丶";
-        //        worksheet.Cells["C2"].Value = "网页链接";
-        //        worksheet.Cells["A3"].Value = 1001;
-        //        worksheet.Cells["B3"].Value = "For丨丶Tomorrow";
-        //        worksheet.Cells["C3"].Value = "网页链接";
-        //        worksheet.Cells["C3"].Style.Font.Bold = true;
-        //        package.Save();
-        //    }
-        //    return File(sFileName, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", sFileName);
-
-        //}
 
         [HttpPost]
         public async Task<IActionResult> FileUpload(List<IFormFile> files)

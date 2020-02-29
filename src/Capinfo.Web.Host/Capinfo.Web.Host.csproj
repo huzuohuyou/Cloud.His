@@ -15,9 +15,6 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Controllers\XlsxController.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
   <ItemGroup>

@@ -44,12 +44,17 @@ class QuestionModule extends ListModule<QuestionState,any,Question​>{
             await Ajax.put('/api/services/app/Question/UpdateRecord',payload.data);
         },
         async delete(context:ActionContext<QuestionState,any>,payload:any){
-            await Ajax.delete('/api/services/app/Tenant/Delete?Id='+payload.data.id);
+            await Ajax.delete('/api/services/app/Question/Delete?Id='+payload.data.id);
         },
         async get(context:ActionContext<QuestionState,any>,payload:any){
             let reponse=await Ajax.get('/api/services/app/Tenant/Get?Id='+payload.id);
             return reponse.data.result as Question​;
-        }
+        },
+        async download(context:ActionContext<QuestionState,any>,payload:any){
+            let reponse=await Ajax.get('/api/services/app/Question/Export',payload.data);
+            // console.log(reponse.data.result);
+            return reponse.data.result ;
+        },
     };
     mutations={
         setCurrentPage(state:QuestionState,page:number){

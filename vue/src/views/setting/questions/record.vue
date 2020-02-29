@@ -1,157 +1,219 @@
 <template>
-    <div>
-        <Card dis-hover>
-            <div class="page-body">
-                <Form ref="queryForm" :label-width="90" label-position="left" inline>
-                    <Row :gutter="16">
-                        <Col span="8">
-                            <FormItem :label="L('Keyword')+':'" style="width:100%">
-                                <Input v-model="pagerequest.keyword" :placeholder="L('RoleName')+'/'+L('DisplayName')+'/'+L('Description')"></Input>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</Button>
-                        <Button icon="ios-search" type="primary" size="large" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
-                    </Row>
-                </Form>
-                <div class="margin-top-10">
-                    <Table :loading="loading" :columns="columns" :no-data-text="L('NoDatas')" border :data="list">
-                    </Table>
-                    <Page  show-sizer class-name="fengpage" :total="totalCount" class="margin-top-10" @on-change="pageChange" @on-page-size-change="pagesizeChange" :page-size="pageSize" :current="currentPage"></Page>
-                </div>
-            </div>
-        </Card>
-        <create-role v-model="createModalShow"  @save-success="getpage"></create-role>
-        <edit-role v-model="editModalShow"  @save-success="getpage"></edit-role>
-    </div>
+  <div>
+    <Card dis-hover>
+      <div class="page-body">
+        <Form ref="queryForm" :label-width="90" label-position="left" inline>
+          <Row :gutter="16">
+            <Col span="8">
+              <FormItem :label="L('搜索关键词')+':'" style="width:100%">
+                <Input
+                  v-model="pagerequest.keyword"
+                  :placeholder="L('问题')+' / '+L('原因')+' / '+L('解决方案')"
+                ></Input>
+              </FormItem>
+            </Col>
+            <Col span="12">
+              <Button @click="create" icon="ios-bug-outline" type="primary">{{L('Add')}}</Button>
+              <Button
+                icon="ios-search"
+                type="primary"
+                @click="getpage"
+                class="toolbar-btn"
+              >{{L('Find')}}</Button>
+              <Button
+                @click="saveInfo"
+                class="toolbar-btn"
+                icon="ios-code-download"
+                type="success"
+              >本周记录</Button>
+              <Button @click="saveInfo" class="toolbar-btn" icon="md-download" type="warning">全部记录</Button>
+            </Col>
+          </Row>
+        </Form>
+        <div class="margin-top-0">
+          <Table
+            :loading="loading"
+            :columns="columns"
+            :no-data-text="L('NoDatas')"
+            border
+            :data="list"
+          ></Table>
+          <Page
+            show-sizer
+            class-name="fengpage"
+            :total="totalCount"
+            class="margin-top-10"
+            @on-change="pageChange"
+            @on-page-size-change="pagesizeChange"
+            :page-size="pageSize"
+            :current="currentPage"
+          ></Page>
+        </div>
+      </div>
+    </Card>
+    <week-record :href="downloadUrl" v-model="downloadWeekShow"></week-record>
+    <create2-role v-model="createModalShow" @save-success="getpage"></create2-role>
+    <edit-role v-model="editModalShow" @save-success="getpage"></edit-role>
+  </div>
 </template>
 <script lang="ts">
-    import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
-    import Util from '@/lib/util'
-    import AbpBase from '@/lib/abpbase'
-    import PageRequest from '@/store/entities/page-request'
-    import CreateRole from './create-question.vue'
-    import EditRole from './edit-question.vue'
-   
-    class PageRoleRequest extends PageRequest{
-        keyword:string='';
-    }
-    
-    @Component({
-        components:{CreateRole,EditRole}
-    })
-    export default class Roles extends AbpBase{
-        edit(){
-            this.editModalShow=true;
-        }
+import { Component, Vue, Inject, Prop, Watch } from "vue-property-decorator";
+import Util from "@/lib/util";
+import AbpBase from "@/lib/abpbase";
+import PageRequest from "@/store/entities/page-request";
+import Create2Role from "./create-question.vue";
+import EditRole from "./edit-question.vue";
+import WeekRecord from "./download-question.vue";
+import layer from "vue-layer";
+class PageRoleRequest extends PageRequest {
+  keyword: string = "";
+}
 
-        pagerequest:PageRoleRequest=new PageRoleRequest();
+@Component({
+  components: { Create2Role, EditRole, WeekRecord }
+})
+export default class Roles extends AbpBase {
+ 
+  downloadUrl = "";
+  edit() {
+    this.editModalShow = true;
+  }
 
-        createModalShow:boolean=false;
-        editModalShow:boolean=false;
-        get list(){
-            return this.$store.state.question.list;
-        };
-        get loading(){
-            return this.$store.state.question.loading;
-        }
-        create(){
-            this.createModalShow=true;
-        }
-        pageChange(page:number){
-            this.$store.commit('question/setCurrentPage',page);
-            this.getpage();
-        }
-        pagesizeChange(pagesize:number){
-            this.$store.commit('question/setPageSize',pagesize);
-            this.getpage();
-        }
-        async getpage(){
-            
-            this.pagerequest.maxResultCount=this.pageSize;
-            this.pagerequest.skipCount=(this.currentPage-1)*this.pageSize;
-            
-            await this.$store.dispatch({
-                type:'question/getAllRecord',
-                data:this.pagerequest
-            })
-        }
-        get pageSize(){
-            return this.$store.state.question.pageSize;
-        }
-        get totalCount(){
-            return this.$store.state.question.totalCount;
-        }
-        get currentPage(){
-            return this.$store.state.question.currentPage;
-        }
-        columns=[{
-            title:this.L('问题'),
-            key:'question'
-        },{
-            title:this.L('原因'),
-            key:'reason'
-        },{
-            title:this.L('解决方案'),
-            key:'answer'
-        },{
-            title:this.L('日期'),
-            render:(h:any,params:any)=>{
-                return h('span',params.row.isStatic?this.L('Yes'):this.L('No'))
-            }
-        },{
-            title:this.L('Actions'),
-            key:'Actions',
-            width:150,
-            render:(h:any,params:any)=>{
-                return h('div',[
-                    h('Button',{
-                        props:{
-                            type:'primary',
-                            size:'small'
-                        },
-                        style:{
-                            marginRight:'5px'
-                        },
-                        on:{
-                            click:()=>{
-                                this.$store.commit('question/edit',params.row);
-                                this.edit();
-                            }
-                        }
-                    },this.L('Edit')),
-                    h('Button',{
-                        props:{
-                            type:'error',
-                            size:'small'
-                        },
-                        on:{
-                            click:async ()=>{
-                                this.$Modal.confirm({
-                                        title:this.L('Tips'),
-                                        content:this.L('DeleteRolesConfirm'),
-                                        okText:this.L('Yes'),
-                                        cancelText:this.L('No'),
-                                        onOk:async()=>{
-                                            await this.$store.dispatch({
-                                                type:'question/delete',
-                                                data:params.row
-                                            })
-                                            await this.getpage();
-                                        }
-                                })
-                            }
-                        }
-                    },this.L('Delete'))
-                ])
-            }
-        }]
-        async created(){
-            this.getpage();
-            await this.$store.dispatch({
-                type:'question/getAllPermissions'
-            })
-        }
+  saveInfo() {
+    console.log(this.downloadWeekShow);
+    const ret = this.$store
+      .dispatch({
+        type: "question/download",
+        data: this.pagerequest
+      })
+      .then(function(response) {
+        console.log(response);
+        return Promise.resolve(response);
+      })
+      .then(value => {
+        this.downloadUrl = value;
+        console.log(value);
+      });
+    this.downloadWeekShow = true;
+  }
+
+  pagerequest: PageRoleRequest = new PageRoleRequest();
+ downloadWeekShow: boolean = false;
+  createModalShow: boolean = false;
+  editModalShow: boolean = false;
+  get list() {
+    return this.$store.state.question.list;
+  }
+  get loading() {
+    return this.$store.state.question.loading;
+  }
+  create() {
+    this.createModalShow = true;
+  }
+  pageChange(page: number) {
+    this.$store.commit("question/setCurrentPage", page);
+    this.getpage();
+  }
+  pagesizeChange(pagesize: number) {
+    this.$store.commit("question/setPageSize", pagesize);
+    this.getpage();
+  }
+  async getpage() {
+    this.pagerequest.maxResultCount = this.pageSize;
+    this.pagerequest.skipCount = (this.currentPage - 1) * this.pageSize;
+
+    await this.$store.dispatch({
+      type: "question/getAllRecord",
+      data: this.pagerequest
+    });
+  }
+  get pageSize() {
+    return this.$store.state.question.pageSize;
+  }
+  get totalCount() {
+    return this.$store.state.question.totalCount;
+  }
+  get currentPage() {
+    return this.$store.state.question.currentPage;
+  }
+  columns = [
+    {
+      title: this.L("问题"),
+      key: "question"
+    },
+    {
+      title: this.L("原因"),
+      key: "reason"
+    },
+    {
+      title: this.L("解决方案"),
+      key: "answer"
+    },
+    {
+      title: this.L("日期"),
+      key: "date"
+    },
+    {
+      title: this.L("Actions"),
+      key: "Actions",
+      width: 150,
+      render: (h: any, params: any) => {
+        return h("div", [
+          h(
+            "Button",
+            {
+              props: {
+                type: "primary",
+                size: "small"
+              },
+              style: {
+                marginRight: "5px"
+              },
+              on: {
+                click: () => {
+                  this.$store.commit("question/edit", params.row);
+                  this.edit();
+                }
+              }
+            },
+            this.L("Edit")
+          ),
+          h(
+            "Button",
+            {
+              props: {
+                type: "error",
+                size: "small"
+              },
+              on: {
+                click: async () => {
+                  this.$Modal.confirm({
+                    title: this.L("Tips"),
+                    content: this.L("删除此条运维记录吗？"),
+                    okText: this.L("Yes"),
+                    cancelText: this.L("No"),
+                    onOk: async () => {
+                      await this.$store.dispatch({
+                        type: "question/delete",
+                        data: params.row
+                      });
+                      await this.getpage();
+                    }
+                  });
+                }
+              }
+            },
+            this.L("Delete")
+          )
+        ]);
+      }
     }
+  ];
+  async created() {
+    this.getpage();
+    await this.$store.dispatch({
+      type: "question/getAllPermissions"
+    });
+  }
+}
 </script>
