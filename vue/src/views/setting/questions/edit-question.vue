@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal :title="L('EditTenant')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
+    <Modal title="编辑运维记录" :value="value" @on-ok="save" @on-visible-change="visibleChange">
       <Form ref="questionForm" label-position="top" :rules="tenantRule" :model="question">
         <FormItem>
           <Row>
@@ -39,19 +39,30 @@
             </i-col>
             <Col span="3" style="text-align: center">门诊住院</Col>
             <i-col span="9">
-              <Input v-model="question.kind"></Input>
+              <RadioGroup v-model="question.kind">
+                <Radio :label="1">门诊</Radio>
+                <Radio :label="2">住院</Radio>
+              </RadioGroup>
             </i-col>
           </Row>
         </FormItem>
-        <FormItem prop="databaseConnectionString">
+        <FormItem prop="databaseConnectionString" required>
           <Row>
             <Col span="3" style="text-align: center">用户身份</Col>
             <i-col span="9">
-              <Input v-model="question.role"></Input>
+              <RadioGroup v-model="question.role">
+                <Radio :label="1">医生</Radio>
+                <Radio :label="2">护士</Radio>
+              </RadioGroup>
             </i-col>
             <Col span="3" style="text-align: center">服务类别</Col>
             <i-col span="9">
-              <Input v-model="question.type"></Input>
+              <RadioGroup v-model="question.type">
+                <Radio :label="1" checked>咨询</Radio>
+                <Radio :label="2">解锁</Radio>
+                <Radio :label="3">权限</Radio>
+                <Radio :label="4">现场</Radio>
+              </RadioGroup>
             </i-col>
           </Row>
         </FormItem>

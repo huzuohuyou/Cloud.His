@@ -6,9 +6,9 @@ export default class Question extends Entity<number>{
     dept:string;
     user:string;
     ptno:string;   
-    kind:number;   
-    role:number;   
-    type:number;   
+    kind:number=1;   
+    role:number=1;   
+    type:number=1;   
     question:string;   
     reason:string;   
     answer:string;   

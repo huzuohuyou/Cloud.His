@@ -10,7 +10,7 @@ namespace Capinfo.His
     {
         PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount);
 
-        WeekRecordDto GetThisWeekQuestion();
+        WeekRecordDto GetThisWeekQuestion(bool week);
 
         bool AddRecord(QuestionDto dto);
 

@@ -1,8 +1,10 @@
-﻿using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.UI;
 using AutoMapper;
+using Capinfo.Authorization.Users;
 using Capinfo.His.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,14 +21,16 @@ namespace Capinfo.His
 {
     public class QuestionAppService : IQuestionAppService
     {
-        public IAbpSession AbpSession { get; set; }
-        //通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
+        private readonly UserManager _userManager;
+        //public IAbpSession AbpSession { get; set; }
+        ////通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
         public readonly IRepository<Questions> _personRepository;
 
-        public QuestionAppService(IRepository<Questions> repository)
+        public QuestionAppService(IRepository<Questions> repository, UserManager userManager)
         {
+            _userManager = userManager;
             _personRepository = repository;
-            AbpSession = NullAbpSession.Instance;
+            //AbpSession = NullAbpSession.Instance;
         }
         [HttpPost]
         public bool AddRecord(QuestionDto dto)
@@ -34,41 +38,43 @@ namespace Capinfo.His
             var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
             var mapper = config.CreateMapper();
             var po = mapper.Map<Questions>(dto);
+
+            po.CreatorUserId = _userManager.UserId.Value;
+            po.CreationTime = DateTime.Now;
+
             var ok = _personRepository.Insert(po) != null;
             return ok;
         }
 
         [HttpGet]
-        public string Export()
+        public string Export(bool week)
         {
             try
             {
-                var question = GetThisWeekQuestion();
-                //var service = new QuestionAppService(new );
+                var u = _userManager.GetUserById(_userManager.UserId.Value);
+                var question = GetThisWeekQuestion(week);
                 string sWebRootFolder = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot"; //_hostingEnvironment.WebRootPath;
                 string sFileName = "工作周报_吴海龙.xlsx";
                 FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
-                //file.Delete();
                 using (ExcelPackage package = new ExcelPackage(file))
                 {
                     var worksheet = package.Workbook.Worksheets[0];
                     //添加值
-                    worksheet.Cells["B2"].Value = "姓名";//姓名
-                    worksheet.Cells["F2"].Value = "日期";//日期
-                    worksheet.Cells["F4"].Value = question.Unlock;//解锁
-                    worksheet.Cells["F5"].Value = question.Authority;//权限
-                    worksheet.Cells["F6"].Value = question.OnSite;//现场
-                    worksheet.Cells["F7"].Value = question.Advisory;//咨询
-                    worksheet.Cells["F8"].Value = question.Dev;//开发
-                    worksheet.Cells["F9"].Value = question.Query;//查询
+                    worksheet.Cells["B2"].Value = u.Name;//姓名
+                    worksheet.Cells["F2"].Value = week?question.Date:"全部";//日期
+                    worksheet.Cells["F4"].Value = question.Unlock?.Trim();//解锁
+                    worksheet.Cells["F5"].Value = question.Authority?.Trim();//权限
+                    worksheet.Cells["F6"].Value = question.OnSite?.Trim();//现场
+                    worksheet.Cells["F7"].Value = question.Advisory?.Trim();//咨询
+                    worksheet.Cells["F8"].Value = question.Dev?.Trim();//开发
+                    worksheet.Cells["F9"].Value = question.Query?.Trim();//查询
                     package.Save();
                 }
-                var userId = AbpSession.UserId?.ToString();
-                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{userId}.xlsx";
+                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}.xlsx";
                 var fi = new FileInfo(str);
                 fi.Delete();
                 file.CopyTo(str);
-                return $@"http://localhost:21021/"+fi.Name;
+                return $@"http://localhost:21021/" + fi.Name;
             }
             catch (Exception ex)
             {
@@ -86,10 +92,11 @@ namespace Capinfo.His
             var mapper = config.CreateMapper();
 
             List<QuestionDto> resultSet = new List<QuestionDto>();
-            List<Questions>  all = _personRepository
-                .GetAllList(r=>r.Question.Contains(Keyword??"")
+            List<Questions> all = _personRepository
+                .GetAllList(r => r.Question.Contains(Keyword ?? "")
             || r.Reason.Contains(Keyword ?? "")
-            || r.Answer.Contains(Keyword ?? "") ).ToList();
+            || r.Answer.Contains(Keyword ?? ""))
+                .OrderByDescending(r=>r.Date).ToList();
             List<Questions> people = all.Skip(SkipCount).Take(MaxResultCount).ToList();
             foreach (Questions item in people)
             {
@@ -114,41 +121,63 @@ namespace Capinfo.His
             return dto;
         }
 
-     
+
         [HttpDelete]
         public async Task DeleteAsync(EntityDto<int> input)
         {
             var po = await _personRepository.GetAsync(input.Id);
             await _personRepository.DeleteAsync(po);
         }
-        public WeekRecordDto GetThisWeekQuestion()
+        public WeekRecordDto GetThisWeekQuestion(bool week)
         {
             var result = new WeekRecordDto();
-            var currentUserId = AbpSession.UserId;
-            result.Name = currentUserId.ToString();
+            var u = _userManager.GetUserById(_userManager.UserId.Value);
+            result.Name = u.Name;
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
             var mapper = config.CreateMapper();
 
-            List<Questions> people = _personRepository.GetAll().ToList()
-                .Where(r => r.Date.DayOfWeek == DateTime.Now.DayOfWeek).ToList();
+            List<Questions> people = new List<Questions>();
+            var begin =new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,23,59,59).AddDays(-(int)DateTime.Now.DayOfWeek==0?-7: -(int)DateTime.Now.DayOfWeek);
+            var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59).AddDays(6 - (int)DateTime.Now.DayOfWeek == 0 ? -7 : -(int)DateTime.Now.DayOfWeek);
+            result.Date = $@"{begin.AddDays(1).ToString("yyyy-MM-dd")} - {end.ToString("yyyy-MM-dd")}";
+            if (week)
+            {
+                people = _personRepository
+                .GetAllList(r =>
+                r.CreatorUserId == u.Id
+                && r.Date > begin
+                && r.Date < end)
+                .ToList();
+            }
+            else
+            {
+                people = _personRepository
+                .GetAllList(r => r.CreatorUserId == u.Id)
+                .OrderByDescending(r => r.Date).ToList();
+            }
+
             foreach (Questions item in people)
             {
                 var dto = mapper.Map<QuestionDto>(item);
                 if (item.Type.Equals(TYPES.Advisory))
                 {
-                    result.Advisory += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                    result.Advisory += $@"
+{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
-                else if(item.Type.Equals(TYPES.Authority))
+                else if (item.Type.Equals(TYPES.Authority))
                 {
-                    result.Authority += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                    result.Authority += $@"
+{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
                 else if (item.Type.Equals(TYPES.OnSite))
                 {
-                    result.OnSite += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                    result.OnSite += $@"
+{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
                 else if (item.Type.Equals(TYPES.Unlock))
                 {
-                    result.Unlock += $@"{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+                    result.Unlock += $@"
+{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
             }
             return result;

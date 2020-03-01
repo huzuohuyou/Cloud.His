@@ -51,7 +51,9 @@ class QuestionModule extends ListModule<QuestionState,any,Question​>{
             return reponse.data.result as Question​;
         },
         async download(context:ActionContext<QuestionState,any>,payload:any){
-            let reponse=await Ajax.get('/api/services/app/Question/Export',payload.data);
+            console.log('week:');
+            console.log(payload.data);
+            let reponse=await Ajax.get('/api/services/app/Question/Export?week='+payload.data);
             // console.log(reponse.data.result);
             return reponse.data.result ;
         },

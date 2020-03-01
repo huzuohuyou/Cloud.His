@@ -16,6 +16,8 @@ import MyUpload from "@/components/common/MyUpload.vue";
 export default class CreateQuestion extends AbpBase {
   @Prop()
   href: string = "";
+  @Prop({ type: Boolean, default: true })
+  week: boolean = true;
   name: "edit-question";
   images: ["1.jpg", "2.jpg"];
   @Prop({ type: Boolean, default: false }) value: boolean;

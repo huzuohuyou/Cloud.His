@@ -11,6 +11,7 @@ using Abp.Domain.Uow;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using Capinfo.Authorization.Roles;
+using Abp.Threading;
 
 namespace Capinfo.Authorization.Users
 {
@@ -54,5 +55,47 @@ namespace Capinfo.Authorization.Users
                 settingManager)
         {
         }
+
+        private static Dictionary<long?, User> dict;//保存用户信息，减少请求次数
+
+        /// <summary>
+        /// 保存登录用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        public void SaveUserToCache(User user)
+        {
+            if (dict == null) dict = new Dictionary<long?, User>();
+            if (!dict.ContainsKey(user.Id))
+            {
+                dict.Add(user.Id, user);
+            }
+        }
+
+        /// <summary>
+        /// 获取当前登录用户信息
+        /// </summary>
+        /// <returns></returns>
+        public User GetUser()
+        {
+            var userId = AbpSession.UserId;
+            if (dict != null && dict.ContainsKey(userId))
+                return dict[userId];
+
+            var user = AsyncHelper.RunSync(() => GetUserByIdAsync(userId.Value));
+            SaveUserToCache(user);
+
+            return user;
+        }
+
+        /// <summary>
+        /// 获取登录用户标识
+        /// </summary>
+        public long? UserId { get { return AbpSession.UserId; } }
+
+        /// <summary>
+        /// 获取登录用户名
+        /// </summary>
+        /// <returns></returns>
+        public string UserName { get { return GetUser()?.UserName; } }
     }
 }

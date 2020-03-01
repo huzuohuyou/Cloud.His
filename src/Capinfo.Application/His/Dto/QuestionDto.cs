@@ -12,7 +12,18 @@ namespace Capinfo.His
         public enum KINDS { In=1, Out=2 };
         public enum TYPES { Advisory=1, Unlock=2, Authority=3, OnSite=4 };
 
-        public DateTime Date { get; set; }
+        private DateTime? _date;
+        public DateTime Date
+        {
+            get
+            {
+                return _date ?? DateTime.Now;
+            }
+            set
+            {
+                _date = value;
+            }
+        }
 
         public string Phone { get; set; }
 

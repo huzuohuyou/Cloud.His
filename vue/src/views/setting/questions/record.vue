@@ -21,12 +21,17 @@
                 class="toolbar-btn"
               >{{L('Find')}}</Button>
               <Button
-                @click="saveInfo"
+                @click="downloadWeek"
                 class="toolbar-btn"
                 icon="ios-code-download"
                 type="success"
               >本周记录</Button>
-              <Button @click="saveInfo" class="toolbar-btn" icon="md-download" type="warning">全部记录</Button>
+              <Button
+                @click="downloadAll"
+                class="toolbar-btn"
+                icon="md-download"
+                type="warning"
+              >全部记录</Button>
             </Col>
           </Row>
         </Form>
@@ -73,18 +78,37 @@ class PageRoleRequest extends PageRequest {
   components: { Create2Role, EditRole, WeekRecord }
 })
 export default class Roles extends AbpBase {
- 
   downloadUrl = "";
+  week = true;
   edit() {
     this.editModalShow = true;
   }
 
-  saveInfo() {
+  downloadWeek() {
+    this.week = true;
     console.log(this.downloadWeekShow);
     const ret = this.$store
       .dispatch({
         type: "question/download",
-        data: this.pagerequest
+        data: this.week
+      })
+      .then(function(response) {
+        console.log(response);
+        return Promise.resolve(response);
+      })
+      .then(value => {
+        this.downloadUrl = value;
+        console.log(value);
+      });
+    this.downloadWeekShow = true;
+  }
+  downloadAll() {
+    this.week = false;
+    console.log(this.downloadWeekShow);
+    const ret = this.$store
+      .dispatch({
+        type: "question/download",
+        data: this.week
       })
       .then(function(response) {
         console.log(response);
@@ -98,7 +122,7 @@ export default class Roles extends AbpBase {
   }
 
   pagerequest: PageRoleRequest = new PageRoleRequest();
- downloadWeekShow: boolean = false;
+  downloadWeekShow: boolean = false;
   createModalShow: boolean = false;
   editModalShow: boolean = false;
   get list() {
