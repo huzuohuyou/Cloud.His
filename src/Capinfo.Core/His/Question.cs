@@ -41,7 +41,7 @@ namespace Capinfo.His
                 {
                     foreach (var item in Images.Split('|'))
                     {
-                        list.Add($@"http://localhost:21021/{item}");
+                        list.Add($@"http://192.168.5.169:8081/{item}");
                     }
                     
                     return list.ToArray();

@@ -2,6 +2,7 @@
 using Abp.AutoMapper;
 using Capinfo.His.Dto;
 using System;
+using System.Linq;
 
 namespace Capinfo.His
 {
@@ -77,9 +78,13 @@ namespace Capinfo.His
         {
             get
             {
+                var result = string.Empty;
                 if (UploadList != null)
                 {
-                    return string.Join("|", UploadList);
+                    UploadList.ToList().ForEach(r=> {
+                        result += $@"http://192.168.5.169:8081/"+r;
+                    });
+                    return result;// string.Join("|", UploadList);
                 }
                 return string.Empty;
             }

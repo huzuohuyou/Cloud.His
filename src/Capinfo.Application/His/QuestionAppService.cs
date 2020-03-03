@@ -70,11 +70,11 @@ namespace Capinfo.His
                     worksheet.Cells["F9"].Value = question.Query?.Trim();//查询
                     package.Save();
                 }
-                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}.xlsx";
+                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\bin\Debug\netcoreapp3.0\publish\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}.xlsx";
                 var fi = new FileInfo(str);
                 fi.Delete();
                 file.CopyTo(str);
-                return $@"http://localhost:21021/" + fi.Name;
+                return $@"http://192.168.5.169:21021/" + fi.Name;
             }
             catch (Exception ex)
             {
@@ -138,7 +138,7 @@ namespace Capinfo.His
 
             List<Questions> people = new List<Questions>();
             var begin =new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,23,59,59).AddDays(-(int)DateTime.Now.DayOfWeek==0?-7: -(int)DateTime.Now.DayOfWeek);
-            var end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59).AddDays(6 - (int)DateTime.Now.DayOfWeek == 0 ? -7 : -(int)DateTime.Now.DayOfWeek);
+            var end = begin.AddDays(7); //new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59).AddDays(6 - (int)DateTime.Now.DayOfWeek == 0 ? -7 : -(int)DateTime.Now.DayOfWeek);
             result.Date = $@"{begin.AddDays(1).ToString("yyyy-MM-dd")} - {end.ToString("yyyy-MM-dd")}";
             if (week)
             {
@@ -231,9 +231,11 @@ namespace Capinfo.His
         [HttpPut]
         public bool UpdateRecord(QuestionDto dto)
         {
+            var item = GetQuestion(dto.Id);
             var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
             var mapper = config.CreateMapper();
             var po = mapper.Map<Questions>(dto);
+            po.Images = item.Images;
             var ok = _personRepository.Update(po);
 
             return ok != null;
@@ -259,7 +261,7 @@ namespace Capinfo.His
                 string absoluteFileDir = fileSaveRootDir + "/" + fileSaveDir;
 
                 //文件保存的路径(应用的工作目录+文件夹相对路径);
-                string fileSavePath = Environment.CurrentDirectory + "/wwwroot/" + absoluteFileDir;
+                string fileSavePath = $@"D:\wwwroot\";// Environment.CurrentDirectory + "/wwwroot/" + absoluteFileDir;
                 if (!Directory.Exists(fileSavePath))
                 {
                     Directory.CreateDirectory(fileSavePath);
