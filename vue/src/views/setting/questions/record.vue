@@ -2,24 +2,31 @@
   <div>
     <Card dis-hover>
       <div class="page-body">
-        <Form ref="queryForm" :label-width="90" label-position="left" inline>
+        <Form ref="queryForm" :label-width=0 label-position="left" inline>
           <Row :gutter="16">
             <Col span="8">
-              <FormItem :label="L('搜索关键词')+':'" style="width:100%">
-                <Input
+              <FormItem  style="width:100%" >
+                <Input @enter="getpage"  placeholder="问题|原因|解决方案"   v-model="pagerequest.keyword">
+                  <Select v-model="pagerequest.userid" slot="prepend" style="width: 80px">
+                    <Option value="0">全部</Option>
+                    <Option value="1">我的</Option>
+                  </Select>
+                  <Button slot="append"  @click="getpage" icon="ios-search"></Button>
+                </Input>
+                <!-- <Input
                   v-model="pagerequest.keyword"
                   :placeholder="L('问题')+' / '+L('原因')+' / '+L('解决方案')"
-                ></Input>
+                ></Input> -->
               </FormItem>
             </Col>
             <Col span="12">
               <Button @click="create" icon="ios-bug-outline" type="primary">{{L('Add')}}</Button>
-              <Button
+              <!-- <Button
                 icon="ios-search"
                 type="primary"
                 @click="getpage"
                 class="toolbar-btn"
-              >{{L('Find')}}</Button>
+              >{{L('Find')}}</Button> -->
               <Button
                 @click="downloadWeek"
                 class="toolbar-btn"
@@ -72,12 +79,14 @@ import WeekRecord from "./download-question.vue";
 import layer from "vue-layer";
 class PageRoleRequest extends PageRequest {
   keyword: string = "";
+  userid:string="0";
 }
 
 @Component({
   components: { Create2Role, EditRole, WeekRecord }
 })
 export default class Roles extends AbpBase {
+  
   downloadUrl = "";
   week = true;
   edit() {

@@ -15,14 +15,14 @@
         <Upload ref="upload" :show-upload-list="false" :default-file-list="defaultList" :on-success="handleSuccess"
             :format="['jpg','jpeg','png']" :max-size="2048" :on-format-error="handleFormatError"
             :on-exceeded-size="handleMaxSize" :before-upload="handleBeforeUpload" multiple type="drag"
-            action="http://192.168.5.169:21021/api/services/app/Question/UploadFile"
+            action="http://capinfo.devops.com:21021/api/services/app/Question/UploadFile"
             style="display: inline-block;width:58px;">
             <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="ios-camera" size="20"></Icon>
             </div>
         </Upload>
         <Modal title="View Image" v-model="visible">
-            <img :src="'http://192.168.5.169:21021//' + imgName " v-if="visible" style="width: 100%" />
+            <img :src="'http://capinfo.devops.com:21021//' + imgName " v-if="visible" style="width: 100%" />
         </Modal>
     </div>
 </template>
@@ -59,7 +59,7 @@
                 this.imgName = res.result.fileUrl;
                 console.log("++++++++++");
                 // console.log(this.uploadList.name);
-                file.url = "http://192.168.5.169:8081/" + res.result.fileUrl;
+                file.url = "http://capinfo.devops.com:8081/" + res.result.fileUrl;
                 file.name = res.result.fileName;
                 this.imgNames.push(res.result.fileUrl);
                 this.$emit("func", this.imgNames);

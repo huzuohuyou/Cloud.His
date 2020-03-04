@@ -8,7 +8,7 @@ namespace Capinfo.His
 {
     public interface IQuestionAppService : IApplicationService
     {
-        PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount);
+        PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount, string userId);
 
         WeekRecordDto GetThisWeekQuestion(bool week);
 

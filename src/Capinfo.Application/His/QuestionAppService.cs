@@ -74,7 +74,7 @@ namespace Capinfo.His
                 var fi = new FileInfo(str);
                 fi.Delete();
                 file.CopyTo(str);
-                return $@"http://192.168.5.169:21021/" + fi.Name;
+                return $@"http://capinfo.devops.com:21021/" + fi.Name;
             }
             catch (Exception ex)
             {
@@ -86,16 +86,20 @@ namespace Capinfo.His
 
         //实现接口中的方法
         [HttpGet]
-        public PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount)
+        public PageDto<QuestionDto> GetAllQuestion(string Keyword, int SkipCount, int MaxResultCount,string userId="0")
         {
+            userId = userId == "0" ? "" : _userManager.UserId.Value.ToString();
+
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Questions, QuestionDto>());
             var mapper = config.CreateMapper();
 
             List<QuestionDto> resultSet = new List<QuestionDto>();
             List<Questions> all = _personRepository
-                .GetAllList(r => r.Question.Contains(Keyword ?? "")
+                .GetAllList(r => 
+               ( r.Question.Contains(Keyword ?? "")
             || r.Reason.Contains(Keyword ?? "")
             || r.Answer.Contains(Keyword ?? ""))
+            && r.CreatorUserId.ToString().Contains(userId))
                 .OrderByDescending(r=>r.Date).ToList();
             List<Questions> people = all.Skip(SkipCount).Take(MaxResultCount).ToList();
             foreach (Questions item in people)

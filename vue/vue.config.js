@@ -1,5 +1,8 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
+    devServer: {
+        disableHostCheck: true
+      },
     configureWebpack: config => {
       if (process.env.NODE_ENV === 'production') {
         return {

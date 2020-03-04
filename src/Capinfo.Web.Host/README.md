@@ -1,0 +1,8 @@
+#### 修改本机hosts
+
+- C:\Windows\System32\drivers\etc
+- 192.168.199.241 capinfo.devops.com
+
+#### 创建图片服务网站
+- http://capinfo.devops.com：8081
+- D://wwwroot/

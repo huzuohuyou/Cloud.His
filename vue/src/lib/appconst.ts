@@ -9,7 +9,7 @@ const AppConsts= {
     authorization:{
         encrptedAuthTokenName: 'enc_auth_token'
     },
-    appBaseUrl: "http://192.168.5.169:8080",
+    appBaseUrl: "http://capinfo.devops.com:8080",
     remoteServiceBaseUrl:url
 }
 export default AppConsts

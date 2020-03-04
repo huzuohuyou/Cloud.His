@@ -21,6 +21,7 @@ class QuestionModule extends ListModule<QuestionState,any,Question​>{
     }
     actions={
         async getAllRecord(context:ActionContext<QuestionState,any>,payload:any){
+            console.log(payload.data)
             context.state.loading=true;
             let reponse=await Ajax.get('/api/services/app/question/GetAllQuestion',{params:payload.data});
             context.state.loading=false;
