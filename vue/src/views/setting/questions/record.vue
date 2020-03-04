@@ -6,13 +6,14 @@
           <Row :gutter="16">
             <Col span="8">
               <FormItem  style="width:100%" >
-                <Input @enter="getpage"  placeholder="问题|原因|解决方案"   v-model="pagerequest.keyword">
+                <Input  @keyup.enter.native="getpage()"   placeholder="问题|原因|解决方案"   v-model="pagerequest.keyword">
                   <Select v-model="pagerequest.userid" slot="prepend" style="width: 80px">
                     <Option value="0">全部</Option>
                     <Option value="1">我的</Option>
                   </Select>
-                  <Button slot="append"  @click="getpage" icon="ios-search"></Button>
+                  <Button type="success" slot="append"  @click="getpage" icon="ios-search"></Button>
                 </Input>
+                <!-- <Input v-model="pagerequest.keyword" @keyup.enter.native="getpage()" on-search="getpage()"  search enter-button="Search" placeholder="Enter something..." /> -->
                 <!-- <Input
                   v-model="pagerequest.keyword"
                   :placeholder="L('问题')+' / '+L('原因')+' / '+L('解决方案')"
@@ -159,6 +160,10 @@ export default class Roles extends AbpBase {
       type: "question/getAllRecord",
       data: this.pagerequest
     });
+  }
+  haha(){
+alert('hha');
+
   }
   get pageSize() {
     return this.$store.state.question.pageSize;
