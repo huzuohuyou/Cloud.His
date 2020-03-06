@@ -1,33 +1,25 @@
-# my-project
+# vueclient
 
 > An electron-vue project
 
 #### Build Setup
 
-# 安装 electron
-cnpm install electron --save-dev
-
-# 安装 electron
-cnpm install electron-packager --save-dev
 ``` bash
 # install dependencies
-cnpm install
+npm install
 
 # serve with hot reload at localhost:9080
-cnpm run dev
+npm run dev
 
 # build electron application for production
-cnpm run build
+npm run build
 
 # run unit & end-to-end tests
-cnpm test
-
-# 程序打包
-cnpm run package
+npm test
 
 
 # lint all JS/Vue component files in `src/`
-cnpm run lint
+npm run lint
 
 ```
 

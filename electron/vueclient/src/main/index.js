@@ -11,31 +11,22 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
-// const winURL = process.env.NODE_ENV === 'development'
-// ? `http://localhost:8080`
-// : `file://${__dirname}/index.html`
+const winURL = `http://localhost:8080`
+// process.env.NODE_ENV === 'development'
+//   ? `http://localhost:9080`
+//   : `file://${__dirname}/index.html`
 
-const electron = require('electron')
-const Menu = electron.Menu
-const path = require('path')
-const renderProcessApi = path.join(__dirname, './inject.js')
 function createWindow () {
-  Menu.setApplicationMenu(null)
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
-    width: 1000,
-    minWidth: 1024,
-    minHeight: 768,
-    webPreferences: {
-      preload: renderProcessApi
-    }
+    width: 1000
   })
 
-  mainWindow.loadURL('http://localhost:8080')
+  mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
     mainWindow = null
