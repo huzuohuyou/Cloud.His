@@ -4,6 +4,11 @@
 
 #### Build Setup
 
+# 安装 electron
+cnpm install electron --save-dev
+
+# 安装 electron
+cnpm install electron-packager --save-dev
 ``` bash
 # install dependencies
 cnpm install

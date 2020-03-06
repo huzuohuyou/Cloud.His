@@ -19,7 +19,7 @@ const electron = require('electron')
 const Menu = electron.Menu
 const path = require('path')
 const renderProcessApi = path.join(__dirname, './inject.js')
-function createWindow() {
+function createWindow () {
   Menu.setApplicationMenu(null)
   /**
    * Initial window options

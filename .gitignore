@@ -5,6 +5,7 @@
 .vs/
 obj/
 bin/
+OutApp/
 aspnet-core/src/Capinfo.Web.Host/App_Data/Logs/
 aspnet-core/src/Capinfo.Web.Mvc/App_Data/Logs/
 aspnet-core/src/Capinfo.Migrator/Logs/Logs.txt
