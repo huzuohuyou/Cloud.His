@@ -67,6 +67,7 @@
     <week-record :href="downloadUrl" v-model="downloadWeekShow"></week-record>
     <create2-role v-model="createModalShow" @save-success="getpage"></create2-role>
     <edit-role v-model="editModalShow" @save-success="getpage"></edit-role>
+    <view-role v-model="viewModalShow" @save-success="getpage"></view-role>
   </div>
 </template>
 <script lang="ts">
@@ -75,6 +76,7 @@ import Util from "@/lib/util";
 import AbpBase from "@/lib/abpbase";
 import PageRequest from "@/store/entities/page-request";
 import Create2Role from "./create-question.vue";
+import ViewRole from "./view-question.vue";
 import EditRole from "./edit-question.vue";
 import WeekRecord from "./download-question.vue";
 import layer from "vue-layer";
@@ -84,7 +86,7 @@ class PageRoleRequest extends PageRequest {
 }
 
 @Component({
-  components: { Create2Role, EditRole, WeekRecord }
+  components: { Create2Role, EditRole, WeekRecord,ViewRole }
 })
 export default class Roles extends AbpBase {
   
@@ -93,7 +95,9 @@ export default class Roles extends AbpBase {
   edit() {
     this.editModalShow = true;
   }
-
+  view() {
+    this.viewModalShow = true;
+  }
   downloadWeek() {
     this.week = true;
     console.log(this.downloadWeekShow);
@@ -135,6 +139,7 @@ export default class Roles extends AbpBase {
   downloadWeekShow: boolean = false;
   createModalShow: boolean = false;
   editModalShow: boolean = false;
+  viewModalShow: Boolean = false;
   get list() {
     return this.$store.state.question.list;
   }
@@ -194,9 +199,28 @@ alert('hha');
     {
       title: this.L("Actions"),
       key: "Actions",
-      width: 150,
+      width: 200,
       render: (h: any, params: any) => {
         return h("div", [
+        // h(
+        //     "Button",
+        //     {
+        //       props: {
+        //         type: "default",
+        //         size: "small"
+        //       },
+        //       style: {
+        //         marginRight: "5px"
+        //       },
+        //       on: {
+        //         click: () => {
+        //           this.$store.commit("question/view", params.row);
+        //           this.view();
+        //         }
+        //       }
+        //     },
+        //     this.L("查看")
+        //   ),
           h(
             "Button",
             {

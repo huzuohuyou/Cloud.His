@@ -82,9 +82,9 @@ namespace Capinfo.His
                 if (UploadList != null)
                 {
                     UploadList.ToList().ForEach(r=> {
-                        result += $@"http://capinfo.devops.com:8081/" +r;
+                        result += $@"|http://capinfo.devops.com:8081/" +r;
                     });
-                    return result;// string.Join("|", UploadList);
+                    return result.Trim('|');// string.Join("|", UploadList);
                 }
                 return string.Empty;
             }
