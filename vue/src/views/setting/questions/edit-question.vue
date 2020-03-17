@@ -75,6 +75,12 @@
         <FormItem label="解决方案">
           <Input v-model="question.answer" type="email" :maxlength="256"></Input>
         </FormItem>
+        <FormItem hidden='true' label="">
+          <Input v-model="question.images" type="email" :maxlength="256"></Input>
+        </FormItem>
+        <FormItem hidden='true'  label="截图">
+          <MyUpload :defaultList="question.imagesForIview" ></MyUpload>
+        </FormItem>
         <!-- 格式化代码会导致控件失效！！！ -->
         <FormItem
           label="截图"
@@ -126,6 +132,9 @@ export default class EditTenant extends AbpBase {
         this.$emit("input", false);
       }
     });
+  }
+  getDefaultList1(){
+    console.log(this.$refs.questionForm)
   }
   cancel() {
     (this.$refs.questionForm as any).resetFields();

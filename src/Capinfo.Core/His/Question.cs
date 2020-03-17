@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Capinfo.His
 {
+    public class ImageDto
+    {
+        public string name { get; set; }
+        public string url { get; set; }
+    }
     public class Questions : Entity
     {
         public enum ROLES { Doctor = 1, Nurse = 2 };
@@ -41,7 +46,10 @@ namespace Capinfo.His
                 {
                     foreach (var item in Images.Split('|'))
                     {
-                        list.Add($@"{item}");
+                        if (!item.Equals(string.Empty))
+                        {
+                            list.Add($@"{item}");
+                        }
                     }
                     
                     return list.ToArray();
@@ -50,6 +58,7 @@ namespace Capinfo.His
             }
         }
 
+        
         public  DateTime CreationTime { get; set; }
 
         public long CreatorUserId{ get; set; }

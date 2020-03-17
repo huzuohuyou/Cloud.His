@@ -235,11 +235,11 @@ namespace Capinfo.His
         [HttpPut]
         public bool UpdateRecord(QuestionDto dto)
         {
-            var item = GetQuestion(dto.Id);
+            //var item = GetQuestion(dto.Id);
             var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
             var mapper = config.CreateMapper();
             var po = mapper.Map<Questions>(dto);
-            po.Images = item.Images;
+            //po.Images = item.Images;
             var ok = _personRepository.Update(po);
 
             return ok != null;

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div >{{defaultList}}</div>
         <div class="demo-upload-list" v-for="item in uploadList">
             <template v-if="item.status === 'finished'">
                 <img :src="item.url" />
@@ -33,13 +34,22 @@
             images: {
                 type: String,
                 default: "hello world"
-            }
+            },
+            defaultList: {
+                type: Array,
+                default() {
+                    return []
+                }
+            },
         },
         data() {
             return {
-                defaultList: [
-
-                ],
+                // defaultList: [
+                    // {
+                    //         'name': 'a42bdcc1178e62b4694c830f028db5c0',
+                    //         'url': 'http://capinfo.devops.com:8081///59d3d1d3-7996-4b8f-b5a7-af7aba689237.jpg'
+                    //     },
+                // ],
                 imgName: "",
                 visible: false,
                 uploadList: [],
@@ -89,8 +99,16 @@
                 return check;
             }
         },
+        beforeCreate() {
+            // this.uploadList=this.defaultList;
+        },
+        created() {
+            // console.log('created')
+            // console.log(this.defaultList1)
+        },
         mounted() {
             this.uploadList = this.$refs.upload.fileList;
+
         }
     };
 </script>

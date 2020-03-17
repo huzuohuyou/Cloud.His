@@ -2,6 +2,7 @@
 using Abp.AutoMapper;
 using Capinfo.His.Dto;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Capinfo.His
@@ -74,6 +75,7 @@ namespace Capinfo.His
         public string Answer { get; set; }
 
         public string[] UploadList { get; set; }
+        private string _images { get; set; }
         public string Images
         {
             get
@@ -81,18 +83,53 @@ namespace Capinfo.His
                 var result = string.Empty;
                 if (UploadList != null)
                 {
-                    UploadList.ToList().ForEach(r=> {
-                        result += $@"|http://capinfo.devops.com:8081/" +r;
+                    UploadList.ToList().ForEach(r =>
+                    {
+                        result += $@"|http://capinfo.devops.com:8081/" + r;
                     });
                     return result.Trim('|');// string.Join("|", UploadList);
                 }
-                return string.Empty;
+                else
+                {
+                    return _images;
+                }
+            }
+            set
+            {
+                _images = value;
             }
         }
 
-    
+
 
         public string[] ImageArray { get; set; }
+
+        public ImageDto[] ImagesForIview
+        {
+            get
+            {
+                var list = new List<ImageDto>();
+                if (ImageArray != null)
+                {
+                    foreach (var item in ImageArray)
+                    {
+                        if (!item.Equals(string.Empty))
+                        {
+                            list.Add(new ImageDto
+                            {
+                                name = item,
+                                url = item
+                            });
+                        }
+
+                    }
+
+                    return list.ToArray();
+                }
+                return new ImageDto[] { };
+            }
+        }
+
 
         public DateTime CreationTime { get; set; }
 
