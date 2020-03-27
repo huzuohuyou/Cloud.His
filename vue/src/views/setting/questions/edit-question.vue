@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <Modal title="编辑运维记录" :value="value" @on-ok="save" @on-visible-change="visibleChange">
       <Form ref="questionForm" label-position="top" :rules="tenantRule" :model="question">
         <FormItem>

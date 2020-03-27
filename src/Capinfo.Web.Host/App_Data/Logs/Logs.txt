@@ -6190,3 +6190,78 @@ DEBUG 2020-03-17 16:05:17,627 [44   ] HttpRequestEntityChangeSetReasonProvider -
 DEBUG 2020-03-17 16:05:22,642 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
 DEBUG 2020-03-17 16:05:27,661 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
 DEBUG 2020-03-17 16:05:32,671 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:05:37,691 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:05:42,709 [44   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:05:47,723 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:05:52,741 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:05:57,756 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:02,768 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:07,788 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:12,801 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:17,820 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:22,838 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:27,856 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:32,860 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:37,877 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:42,893 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:47,907 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:52,924 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:06:57,941 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:02,962 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:07,984 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:13,000 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:18,019 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:23,035 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:28,051 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:33,068 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:38,084 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:43,100 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:48,120 [47   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:53,138 [47   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:07:58,146 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:03,162 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:08,173 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:13,191 [47   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:18,205 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:23,226 [47   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:28,244 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:33,250 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:38,267 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:43,284 [42   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:48,300 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:53,318 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:08:58,330 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:09:03,351 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:09:08,368 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-03-17 16:09:09,044 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/Question/Export?week=true  
+INFO  2020-03-17 16:09:09,047 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-03-17 16:09:09,052 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.4543ms 204 
+INFO  2020-03-17 16:09:09,064 [42   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/Question/Export?week=true  
+INFO  2020-03-17 16:09:09,067 [42   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-03-17 16:09:09,071 [42   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-03-17 16:09:09,074 [42   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.His.QuestionAppService.Export (Capinfo.Application)'
+INFO  2020-03-17 16:09:09,087 [42   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Export", controller = "Question"}. Executing controller action with signature System.String Export(Boolean) on controller Capinfo.His.QuestionAppService (Capinfo.Application).
+INFO  2020-03-17 16:09:09,124 [42   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.His.QuestionAppService.Export (Capinfo.Application) - Validation state: Valid
+INFO  2020-03-17 16:09:14,328 [42   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.His.QuestionAppService.Export (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 5201.6874ms.
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:5
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1062
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1063
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1064
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1065
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1066
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1067
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1068
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1069
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1070
+DEBUG 2020-03-17 16:09:14,329 [42   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.His.Questions, Id:1071
+DEBUG 2020-03-17 16:09:14,334 [40   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-03-17 16:09:14,346 [40   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-03-17 16:09:14,349 [40   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.His.QuestionAppService.Export (Capinfo.Application) in 5260.169400000001ms
+INFO  2020-03-17 16:09:14,351 [40   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.His.QuestionAppService.Export (Capinfo.Application)'
+INFO  2020-03-17 16:09:14,354 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 5291.0321ms 200 application/json; charset=utf-8
+INFO  2020-03-17 16:09:17,027 [42   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/2020-03-17_吴海龙.xlsx  
+INFO  2020-03-17 16:09:17,047 [42   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 16.6111ms 404 
+DEBUG 2020-03-17 16:09:19,352 [46   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:09:24,368 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:09:29,382 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-03-17 16:09:34,394 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
