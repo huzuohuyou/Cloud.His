@@ -78,9 +78,6 @@ export const appRouters: Array<Router> = [{
     children: [
 
         { path: 'outpatient-regist', permission: 'Pages.Tenants', meta: { title: '挂号系统' }, name: 'outpatient-regist', component: () => import('../views/outpatient-department/registration/outpatient-regist.vue')  },
-        { path: 'regist-rollback', permission: 'Pages.Tenants', meta: { title: '退号系统' }, name: 'regist-rollback', component: () => import('../views/outpatient-department/registration/regist-rollback.vue')  },
-        { path: 'outpatient-charge', permission: 'Pages.Tenants', meta: { title: '收费系统' }, name: 'outpatient-charge', component: () => import('../views/outpatient-department/charge/outpatient-charge.vue')  },
-        { path: 'charge-rollback', permission: 'Pages.Tenants', meta: { title: '退费系统' }, name: 'charge-rollback', component: () => import('../views/outpatient-department/charge/charge-rollback.vue')  },
         { path: 'outpatient-care', permission: 'Pages.Tenants', meta: { title: '门诊护理' }, name: 'outpatient-care', component: () => import('../views/outpatient-department/nurse-workstation/outpatient-care.vue')  },
         { path: 'outpatient-prescription', permission: 'Pages.Tenants', meta: { title: '门诊医生站' }, name: 'outpatient-prescription', component: () => import('../views/outpatient-department/doctor-workstation/outpatient-prescription.vue')  }
     ]
@@ -95,10 +92,10 @@ export const appRouters: Array<Router> = [{
     children: [
 
         { path: 'patient-registt', permission: 'Pages.Tenants', meta: { title: '住院处' }, name: 'patient-regist', component: () => import('../views/inpatient-department/inpatient-registration/patient-regist.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
+        { path: 'expense-clearing1', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing1', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing2', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing2', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing3', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing3', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing4', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing4', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
     ]
 },
 {
@@ -111,10 +108,10 @@ export const appRouters: Array<Router> = [{
     children: [
 
         { path: 'patient-registt', permission: 'Pages.Tenants', meta: { title: '住院处' }, name: 'patient-regist', component: () => import('../views/inpatient-department/inpatient-registration/patient-regist.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
+        { path: 'expense-clearing5', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing5', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing6', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing6', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing7', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing7', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing8', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing8', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
     ]
 },
 {
@@ -127,10 +124,10 @@ export const appRouters: Array<Router> = [{
     children: [
 
         { path: 'patient-registt', permission: 'Pages.Tenants', meta: { title: '住院处' }, name: 'patient-regist', component: () => import('../views/inpatient-department/inpatient-registration/patient-regist.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
-        { path: 'expense-clearing', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
+        { path: 'expense-clearing9', permission: 'Pages.Tenants', meta: { title: '出院结算' }, name: 'expense-clearing9', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing10', permission: 'Pages.Tenants', meta: { title: '住院护士站' }, name: 'expense-clearing10', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing11', permission: 'Pages.Tenants', meta: { title: '医生工作站' }, name: 'expense-clearing11', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  },
+        { path: 'expense-clearing12', permission: 'Pages.Tenants', meta: { title: '住院服务中心' }, name: 'expense-clearing12', component: () => import('../views/inpatient-department/leave-hospital/expense-clearing.vue')  }
     ]
 }
 ]

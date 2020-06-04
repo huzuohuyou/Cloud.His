@@ -1,12 +1,15 @@
 <template>
     <div>
-        <Tabs :animated="false">
-            <TabPane label="标签一"><registion></registion></TabPane>
-            <TabPane label="标签二">标签二的内容</TabPane>
-            <TabPane label="标签三">标签三的内容</TabPane>
-        </Tabs>
+      <Tabs :animated="false">
+        <TabPane label="挂号">
+          <registion></registion>
+        </TabPane>
+        <TabPane label="退号">标签二的内容</TabPane>
+        <TabPane label="收费">标签三的内容</TabPane>
+        <TabPane label="退费">标签三的内容</TabPane>
+      </Tabs>
     </div>
-</template>
+    </template>
 <script lang="ts">
     import { Component, Vue, Inject, Prop, Watch } from "vue-property-decorator";
     import Util from "../../../lib/util";
