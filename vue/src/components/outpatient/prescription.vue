@@ -5,7 +5,7 @@
     <div class="topbuttongroup">
         <Row>
             <Col span="16" style="text-align: right" class="button-col">
-                <StationButton v-for="item in imgList" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></StationButton>
+                <StationButton   v-for="item in imgList" :key="item.id" :title='item.title'  @click="click" :imageUrl='item.url' :backgroundColor='item.backgroundColor'></StationButton>
             </Col>
             <Col span="8" style="text-align: right" class="button-col">
                 <OrderButton v-for="item in imgList2" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></OrderButton>
@@ -29,6 +29,7 @@
     <div class="orderinfo">
         <Table height="370" width="100%" :columns="columns2" :data="data2"></Table>
     </div>
+    <!-- <SelectPatient v-model="selectModalShow" @save-success="getpage"></SelectPatient> -->
 </div>
 </template>
 <script>
@@ -36,17 +37,20 @@
     import StationButton from "@/components/common/icon-on-button-top.vue";
     import OrderButton from "@/components/common/icon-on-button-right.vue";
     import OutpatientInfo from "@/components/outpatient/outpatient-info.vue";
+    import SelectPatient from "@/components/outpatient/select-patient.vue";
     
     export default {
+        selectModalShow: Boolean = false,
         components: {
             StationButton,
             OrderButton,
-            OutpatientInfo
+            OutpatientInfo,
+            SelectPatient
         },
         data() {
             return {
                 imgList: [
-                    { id: 1, title: "查找患者", url: require('../../assets/images/查找.png') ,backgroundColor:{background:'#FF9966'}},
+                    { id: 1, title: "查找患者", url: require('../../assets/images/查找.png') ,backgroundColor:{background:'#FF9966'},click:"select"},
                     { id: 2, title: "电子病历", url: require('../../assets/images/病例.png') ,backgroundColor:{background:'#FF9999'}},
                     { id: 3, title: "选择疾病", url: require('../../assets/images/诊断.png') ,backgroundColor:{background:'#CCCC00'}},
                     { id: 4, title: "选择处方", url: require('../../assets/images/处方.png') ,backgroundColor:{background:'#0099CC'}},
@@ -242,7 +246,10 @@
             },
             show() {
                 this.$viewer.show()
-            }
+            },
+            select() {
+    this.selectModalShow = true;
+  }
         }
     }
 </script>
