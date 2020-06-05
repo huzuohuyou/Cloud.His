@@ -16,8 +16,8 @@ export default class Footer extends Vue{
 </script>
 <style scoped>
   .copyright{
-    padding: 0 16px;
-    margin: 48px 0 24px;
+    padding: 5px;
+    margin: 0;
     text-align: center;
     color: rgba(0,0,0,.45);
     font-size: 14px;

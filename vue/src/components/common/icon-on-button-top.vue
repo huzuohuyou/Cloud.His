@@ -45,7 +45,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     margin-left: 10px;
-    ;
+    margin-bottom: 10px;
     border-radius: 15%;
     width: 100px;
     height: 100px;

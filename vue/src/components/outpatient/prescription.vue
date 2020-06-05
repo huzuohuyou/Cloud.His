@@ -3,16 +3,24 @@
 
    
     <div class="topbuttongroup">
-        <StationButton v-for="item in imgList" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></StationButton>
-        <OrderButton v-for="item in imgList2" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></OrderButton>
+        <Row>
+            <Col span="16" style="text-align: right" class="button-col">
+                <StationButton v-for="item in imgList" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></StationButton>
+            </Col>
+            <Col span="8" style="text-align: right" class="button-col">
+                <OrderButton v-for="item in imgList2" :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'></OrderButton>
+            </Col>
+        </Row>
+        
+        
     </div>
     <div class="baseinfo">
         <Row class="patient-row">
-            <Col span="7" style="text-align: right">
+            <Col span="7" style="text-align: right" class="left-pat-continer">
                 <OutpatientInfo></OutpatientInfo>
             </Col>
-            <Col span="17">
-                <Table height="200" :columns="columns1" :data="data2"></Table>
+            <Col span="17" class="right-ill-continer">
+                <Table  height="200" :columns="columns1" :data="data2"></Table>
             </Col>
             
         </Row>
@@ -101,6 +109,31 @@
                 ]
                 ,data2: [
                     {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
                         name: 'John Brown',
                         age: 18,
                         address: 'New York No. 1 Lake Park',
@@ -215,7 +248,7 @@
 </script>
 <style>
     .continer{height: 100%;}
-    .topbuttongroup {
+    .button-col{
         background-color: white;
         border-radius: 10px;
         padding: 10px;
@@ -223,19 +256,42 @@
         flex-direction: row;
         flex-wrap: wrap;
         height: 120px;
+        overflow-y:auto;
+    }
+    .topbuttongroup {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        padding-top: 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 120px;
     }
     .patient-row{
-        height: 100%;
+        margin-top: 10px;
+        height: 90%;
+        /* overflow:auto; */
     }
+    .left-pat-continer{
+        overflow: auto;
+    }
+    .right-ill-continer{
+        overflow: auto;
+        padding-left: 10px;
+    }
+    /* .pat-ill{
+        height:95%;
+        width: 1224px;
+    } */
     .baseinfo {
         margin-top: 10px;
         background-color: white;
         border-radius: 10px;
-        padding: 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        height: 220px;
+        height: 240px;
     }
     .orderinfo {
         margin-top: 10px;

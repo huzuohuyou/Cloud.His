@@ -46,7 +46,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 10px;
-    /* border-radius: 3px; */
+    margin-bottom: 10px;
     width: 130px;
     height: 100px;
   }

@@ -1,5 +1,4 @@
 <template>
-    <Row></Row>
     <div class="left-continer">
         <Row >
             <Col span="4" style="text-align: right">患者编号：</Col>
@@ -32,17 +31,16 @@
             </Col>
         </Row>
         <Row class="patinfo-row">
-            <Col span="4" style="text-align: right">最近就诊：</Col>
-            <Col span="8">
-                <Input placeholder="Enter something..."></Input>
-            </Col>
-            <Col span="4" style="text-align: right">最近就诊：</Col>
-            <Col span="8">
-            <Input placeholder="Enter something..."></Input>
-            </Col>
-        </Row>
-      
-        
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+            <Button>6</Button>
+            <Button>7</Button>
+            <Button>8</Button>
+          
+            <Button>更多</Button></Row>
     </div>
 </template>
   <script>
@@ -72,8 +70,9 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        width: 100%;
+        min-width: 420px;
         height: 100%;
+        overflow:auto;
     }
     .patinfo-row{
         margin-top: 10px;
