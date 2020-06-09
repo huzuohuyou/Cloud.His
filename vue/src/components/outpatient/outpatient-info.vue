@@ -1,46 +1,36 @@
 <template>
-    <div class="left-continer">
-        <Row >
-            <Col span="4" style="text-align: right">患者编号：</Col>
+    <div class="patinfo-continer">
+        <div class="item-continer">
+            <Col span="4" class="label">患者编号：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-            <Col span="4" style="text-align: right">性别年龄：</Col>
+            <Col span="4" class="label">性别年龄：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-        </Row>
-        <Row class="patinfo-row">
-            <Col span="4" style="text-align: right">诊疗科室：</Col>
+        </div>
+        <div class="item-continer">
+            <Col span="4" class="label">诊疗科室：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-            <Col span="4" style="text-align: right">挂号区分：</Col>
+            <Col span="4" class="label">挂号区分：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-        </Row>
-        <Row class="patinfo-row">
-            <Col span="4" style="text-align: right">诊疗区分：</Col>
+        </div>
+        <div class="item-continer">
+            <Col span="4" class="label">诊疗区分：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-            <Col span="4" style="text-align: right">最近就诊：</Col>
+            <Col span="4" class="label">最近就诊：</Col>
             <Col span="8">
             <Input placeholder="Enter something..."></Input>
             </Col>
-        </Row>
-        <Row class="patinfo-row">
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
-            <Button>6</Button>
-            <Button>7</Button>
-            <Button>8</Button>
-          
-            <Button>更多</Button></Row>
+        </div>
+       
     </div>
 </template>
   <script>
@@ -63,7 +53,11 @@
     }
   </script>
   <style>
-    .left-continer {
+    .label{
+      margin-top: 5px;
+      text-align: right;;
+    }
+    .patinfo-continer {
         background-color: white;
         border-radius: 10px;
         padding: 0,10px;
@@ -73,9 +67,10 @@
         min-width: 420px;
         height: 100%;
         overflow:auto;
-    }
-    .patinfo-row{
         margin-top: 10px;
+    }
+    .item-continer{
+        margin-top: 5px;
         /* margin-top: -45px; */
     }
     .baseinfo {

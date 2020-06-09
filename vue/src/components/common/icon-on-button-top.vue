@@ -1,9 +1,14 @@
 <template>
-  <div id="app" class="content" >
-    <div class="img-container" :style="backgroundColor">
+  <div id="app" class="content">
+    <div class="img-container" :style="backgroundColor" @click="modal1 = true">
       <img class="img" :src="imageUrl">
     </div>
     <div class="text-container">{{title}}</div>
+    <Modal v-model="modal1" title="Common Modal dialog box title" @on-ok="ok" @on-cancel="cancel">
+      <p>Content of dialog</p>
+      <p>Content of dialog</p>
+      <p>Content of dialog</p>
+    </Modal>
   </div>
 </template>
 <script>
@@ -20,21 +25,32 @@
       title: {
         type: String,
       },
+      abcClick: {
+        type: String,
+      }
     },
     components: {
       Viewer
     },
     data() {
       return {
-
+        modal1: false,
       };
     },
     methods: {
+      ok() {
+        this.$Message.info('Clicked ok');
+      },
+      cancel() {
+        this.$Message.info('Clicked cancel');
+      },
       inited(viewer) {
         this.$viewer = viewer
       },
       show() {
         this.$viewer.show()
+      }, childClick() {
+        this.$emit('abcClick')
       }
     }
   }
