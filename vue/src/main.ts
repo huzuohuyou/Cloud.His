@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './app.vue';
 import iView from 'iview';
+// import iView from 'view-design';
+
 import {router} from './router/index';
 import 'famfamfam-flags/dist/sprite/famfamfam-flags.css';
 import './theme.less';
@@ -13,6 +15,7 @@ Vue.prototype.$layer = layer(Vue);
 
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
+// import 'view-design/dist/styles/iview.css';
 Vue.use(Viewer);
 Viewer.setDefaults({
     'inline':true,

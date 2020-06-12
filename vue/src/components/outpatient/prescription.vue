@@ -3,6 +3,9 @@
         <div class="topbuttongroup ">
             <Row>
                 <Col span="24" style="text-align: right" class="button-col">
+                <SelectPatient2></SelectPatient2>
+                <SelectOrder></SelectOrder>
+                <SelectDiagnosis></SelectDiagnosis>
                 <StationButton v-for="item in imgList" :key="item.id" :title='item.title' :imageUrl='item.url'
                     :backgroundColor='item.backgroundColor' ></StationButton>
                 <OrderButton v-for="item in imgList2" :key="item.id" :title='item.title' :imageUrl='item.url'
@@ -13,11 +16,12 @@
         <div class="outpatient-info ">
             <OutpatientInfo></OutpatientInfo>
         </div>
-        <div class="baseinfo" style="overflow-x:scroll">
-            <Table height="200" width="100%" :columns="columns1" :data="data2"></Table>
-        </div>
+        
+        <div >
+            <Table height="200" :columns="columns1" :data="data2"  ></Table>
+          </div>
         <div class="orderinfo" style="overflow-x:scroll">
-            <Table height="350" width="100%" :columns="columns2" :data="data2"></Table>
+            <Table height="550" :columns="columns2" :data="data2"></Table>
         </div>
         <Modal v-model="modal1" title="Common Modal dialog box title" @on-ok="ok" @on-cancel="cancel">
             <p>Content of dialog</p>
@@ -32,14 +36,19 @@
     import OrderButton from "@/components/common/icon-on-button-right.vue";
     import OutpatientInfo from "@/components/outpatient/outpatient-info.vue";
     import SelectPatient from "@/components/outpatient/select-patient.vue";
-
+    import SelectPatient2 from "@/components/outpatient/select-patient2.vue";
+    import SelectOrder from "@/components/order/select-order.vue";
+    import SelectDiagnosis from "@/components/diagnosis/select-diagnosis.vue";
     export default {
         // selectModalShow: Boolean = false,
         components: {
             StationButton,
             OrderButton,
             OutpatientInfo,
-            SelectPatient
+            SelectPatient,
+            SelectPatient2,
+            SelectOrder,
+            SelectDiagnosis
         },
         data() {
             return {
@@ -67,17 +76,19 @@
                     {
                         title: '发生日期',
                         key: 'date',
-                        width: 120
+                        width: 170,
+                        fixed: 'left',
                     },
                     {
                         title: '疾病编码',
                         key: 'ill',
-                        width: 170
+                        width: 170,
+                       
                     },
                     {
                         title: '问题及诊断',
                         key: 'age',
-                        width: 600
+                        width: 170,
                     },
                     {
                         title: '是否打印',
@@ -142,18 +153,60 @@
                         address: 'New York No. 1 Lake Park',
                         date: '2016-10-03'
                     }
-
+                    , {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }, {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    }
                 ]
                 , columns2: [
                     {
                         title: '序号',
                         key: 'age',
-                        width: 70
+                        width: 70,
+                        fixed: 'left',
                     },
                     {
                         title: '区分',
                         key: 'ill',
-                        width: 70
+                        width: 70,
+                        fixed: 'left',
                     },
                     {
                         title: '医嘱名称',
@@ -299,6 +352,7 @@
         flex-wrap: wrap;
         /* height: 100px; */
         margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .patient-row {
@@ -324,20 +378,20 @@
         margin-top: 10px;
         background-color: white;
         border-radius: 10px;
-        display: flex;
+        /* display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        height: 240px;
+        height: 240px; */
     }
 
     .orderinfo {
         margin-top: 10px;
-        background-color: white;
+        /* background-color: white;
         border-radius: 10px;
         padding: 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        height: 390px;
+        height: 390px; */
     }
 </style>
