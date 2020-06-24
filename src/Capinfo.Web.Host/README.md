@@ -6,3 +6,5 @@
 #### 创建图片服务网站
 - http://capinfo.devops.com：8081
 - D://wwwroot/
+
+- 以管理员身份运行vs

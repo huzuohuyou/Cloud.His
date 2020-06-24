@@ -1,8 +1,10 @@
 <template>
-    <div style="height: 100px;" @click="modal7 = true">
-        <StationButton :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'>
+    <!-- <div style="height: 100px;" @click="modal7 = true"> -->
+        <div style="margin: auto 0;"  @click="modal7 = true">
+        <Button type="primary" icon="ios-search">选择患者</Button>
+        <!-- <StationButton :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'> -->
         </StationButton>
-        <Modal width="900px" title="选择患者" v-model="modal7" :closable="false">
+        <Modal :styles="{background: '#f3f3f3',top:'0px',}"  style="position: fixed;z-index: 999999;"  width="900px" title="选择患者" v-model="modal7" :closable="false" >
             <div>
                 <div class="select-patient-continer ">
                     <Row>

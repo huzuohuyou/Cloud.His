@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="content">
+    <div class="content" style="width: 100%;">
       <div class="top">
         <div class="header">
           <a>

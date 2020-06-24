@@ -10,6 +10,7 @@
     "electron_build": "electron-packager ./dist/ --arch=x64 --overwrite"
   },
   "dependencies": {
+    "jquery":"^2.2.1",
     "@aspnet/signalr": "^1.0.0",
     "abp-web-resources": "^3.8.2",
     "axios": "^0.18.0",

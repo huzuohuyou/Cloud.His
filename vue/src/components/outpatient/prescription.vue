@@ -1,33 +1,24 @@
 <template>
     <div class="continer">
-        <div class="topbuttongroup ">
-            <Row>
-                <Col span="24" style="text-align: right" class="button-col">
-                <SelectPatient2></SelectPatient2>
-                <SelectOrder></SelectOrder>
-                <SelectDiagnosis></SelectDiagnosis>
-                <StationButton v-for="item in imgList" :key="item.id" :title='item.title' :imageUrl='item.url'
-                    :backgroundColor='item.backgroundColor' ></StationButton>
-                <OrderButton v-for="item in imgList2" :key="item.id" :title='item.title' :imageUrl='item.url'
-                    :backgroundColor='item.backgroundColor'></OrderButton>
-                </Col>
-            </Row>
-        </div>
-        <div class="outpatient-info ">
+
+        <div class="group-info flex-style ">
             <OutpatientInfo></OutpatientInfo>
         </div>
-        
-        <div >
-            <Table height="200" :columns="columns1" :data="data2"  ></Table>
-          </div>
-        <div class="orderinfo" style="overflow-x:scroll">
-            <Table height="550" :columns="columns2" :data="data2"></Table>
+
+        <div class="group-info ">
+            <Table height="200" :columns="columns1" :data="data2"></Table>
         </div>
-        <Modal v-model="modal1" title="Common Modal dialog box title" @on-ok="ok" @on-cancel="cancel">
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
-        </Modal>
+        <div class="group-info flex-style">
+           
+            <SelectPatient2></SelectPatient2>
+            <SelectOrder></SelectOrder>
+            <SelectDiagnosis></SelectDiagnosis>
+           
+        </div>
+        <div class="group-info" >
+            <Table :columns="columns2" :data="data2"></Table>
+        </div>
+        
     </div>
 </template>
 <script>
@@ -83,7 +74,7 @@
                         title: '疾病编码',
                         key: 'ill',
                         width: 170,
-                       
+
                     },
                     {
                         title: '问题及诊断',
@@ -317,81 +308,20 @@
 <style>
     .continer {
         height: 100%;
+        padding: 0 10px;
+        background-color:#2d8cf000;
+    }
+    
+    .group-info {
+        background-color:white;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 0 10px ;
     }
 
-    .button-col {
-        background-color: white;
-        border-radius: 10px;
-        padding: 10px;
+    .flex-style{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        height: 120px;
-        overflow-y: auto;
-    }
-
-    .topbuttongroup {
-        background-color: white;
-        border-radius: 10px;
-        padding: 10px;
-        padding-top: 0px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        height: 120px;
-        margin-top: 5px;
-    }
-
-    .outpatient-info {
-        background-color: white;
-        border-radius: 10px;
-        padding: 10px;
-        padding-top: 0px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        /* height: 100px; */
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-
-    .patient-row {
-        margin-top: 10px;
-        height: 90%;
-        /* overflow:auto; */
-    }
-
-    .left-pat-continer {
-        overflow: auto;
-    }
-
-    .right-ill-continer {
-        overflow: auto;
-        padding-left: 10px;
-    }
-
-    /* .pat-ill{
-        height:95%;
-        width: 1224px;
-    } */
-    .baseinfo {
-        margin-top: 10px;
-        background-color: white;
-        border-radius: 10px;
-        /* display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        height: 240px; */
-    }
-
-    .orderinfo {
-        margin-top: 10px;
-        /* background-color: white;
-        border-radius: 10px;
-        padding: 10px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        height: 390px; */
     }
 </style>

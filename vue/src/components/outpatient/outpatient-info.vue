@@ -59,18 +59,17 @@
     }
     .patinfo-continer {
         background-color: white;
-        border-radius: 10px;
-        padding: 0,10px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         min-width: 420px;
         height: 100%;
         overflow:auto;
-        margin-top: 10px;
+        
     }
     .item-continer{
-        margin-top: 5px;
+      margin: auto 0;
         /* margin-top: -45px; */
     }
     .baseinfo {

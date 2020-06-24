@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './app.vue';
 import iView from 'iview';
 // import iView from 'view-design';
+import $ from 'jquery';
 
 import {router} from './router/index';
 import 'famfamfam-flags/dist/sprite/famfamfam-flags.css';
