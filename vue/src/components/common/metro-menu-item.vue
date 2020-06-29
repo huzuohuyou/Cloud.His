@@ -49,6 +49,7 @@
   import 'viewerjs/dist/viewer.css'
   import Viewer from "v-viewer/src/component.vue"
   import Prescription from "@/components/outpatient/prescription.vue";
+  import notImplemented from "@/components/common/not-implemented.vue";
   export default {
     props: {
       page: {
@@ -63,17 +64,22 @@
     },
     components: {
       Viewer,
-      Prescription
+      Prescription,
+      notImplemented
     },
     data() {
       return {
-        currentView: 'default',
+        currentView: 'notImplemented',
         modal11: false,
       };
     },
     methods: {
       click() {
-        this.currentView = this.page;
+        if (this.page != undefined) {
+          this.currentView = this.page;
+
+        }
+
         this.modal11 = true;
       },
       inited(viewer) {
