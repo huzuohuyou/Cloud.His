@@ -1,6 +1,37 @@
 <template>
     <div class="continer">
-
+        <div class="group-info flex-style group-info-menu">
+            <Menu mode="horizontal" :theme="theme1" active-name="1">
+                <MenuItem name="1">
+                    <Icon type="ios-paper" />
+                    内容管理
+                </MenuItem>
+                <MenuItem name="2">
+                    <Icon type="ios-people" />
+                    用户管理
+                </MenuItem>
+                <Submenu name="3">
+                    <template slot="title">
+                        <Icon type="ios-stats" />
+                        统计分析
+                    </template>
+                    <MenuGroup title="使用">
+                        <MenuItem name="3-1">新增和启动</MenuItem>
+                        <MenuItem name="3-2">活跃分析</MenuItem>
+                        <MenuItem name="3-3">时段分析</MenuItem>
+                    </MenuGroup>
+                    <MenuGroup title="留存">
+                        <MenuItem name="3-4">用户留存</MenuItem>
+                        <MenuItem name="3-5">流失用户</MenuItem>
+                    </MenuGroup>
+                </Submenu>
+                <MenuItem name="4">
+                    <Icon type="ios-construct" />
+                    综合设置
+                </MenuItem>
+            </Menu>
+        </div>
+       
         <div class="group-info flex-style ">
             <OutpatientInfo></OutpatientInfo>
         </div>
@@ -16,7 +47,7 @@
            
         </div>
         <div class="group-info" >
-            <Table :columns="columns2" :data="data2"></Table>
+            <Table height="530" :columns="columns2" :data="data2"></Table>
         </div>
         
     </div>
@@ -43,6 +74,7 @@
         },
         data() {
             return {
+                theme1: 'primary',
                 modal1: false,
                 imgList: [
                     { id: 1, title: "查找患者", url: require('../../assets/images/查找.png'), backgroundColor: { background: '#FF9966' }, modal: "sayHello" },
@@ -307,16 +339,21 @@
 </script>
 <style>
     .continer {
-        height: 100%;
-        padding: 0 10px;
+        height: 98%;
+        padding: 0px;
         background-color:#2d8cf000;
     }
     
     .group-info {
         background-color:white;
         border-radius: 10px;
-        margin: 10px;
+        margin: 0 0 10px;
         padding: 0 10px ;
+    }
+
+    .group-info-menu {
+        
+        padding: 0px ;
     }
 
     .flex-style{
@@ -324,4 +361,7 @@
         flex-direction: row;
         flex-wrap: wrap;
     }
+    .ivu-menu-primary {
+     width: 100%!important;  
+}
 </style>

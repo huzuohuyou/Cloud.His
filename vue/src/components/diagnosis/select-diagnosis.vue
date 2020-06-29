@@ -3,7 +3,7 @@
         <Button type="primary" icon="ios-search">选择疾病</Button>
         <!-- <StationButton :key="item.id" :title='item.title' :imageUrl='item.url' :backgroundColor='item.backgroundColor'>
         </StationButton> -->
-        <Modal width="900px" title="选择疾病" v-model="modal7" :closable="false">
+        <Modal width="900px"  style="position: fixed;z-index: 999999;"  title="选择疾病" v-model="modal7" :closable="false">
             <div>
                 <div >
                     <Row style="width: 100%;">
