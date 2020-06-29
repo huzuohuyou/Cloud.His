@@ -1,15 +1,14 @@
 <template>
-
-  <a class="tile app bg-color-blueDark" href="#" @click="modal11 = true">
+  <a class="tile app bg-color-blueDark" href="#" @click="click">
     <div class="image-wrapper">
-       <span :class = "['icon',menuIcon]" ></span>
+      <span :class="['icon',menuIcon]"></span>
     </div>
     <span class="app-label">{{title}}</span>
-    <Modal :styles="{background: '#f3f3f3',padding:'0px',}"  footer-hide  v-model="modal11"   fullscreen  >
+    <Modal :styles="{background: '#f3f3f3',padding:'0px',}" footer-hide v-model="modal11" fullscreen>
       <component :is="currentView"></component>
       <!-- <Prescription></Prescription> -->
-   </Modal>
- </a>
+    </Modal>
+  </a>
 </template>
 <style scoped src="../../statics/css/bootstrap.css"></style>
 <style scoped src="../../statics/css/bootstrap-responsive.css"></style>
@@ -20,25 +19,31 @@
 <style scoped src="../../statics/css/icomoon.css"></style>
 
 <style>
-  .fades-enter-active, .fades-leave-active {
-      transition: opacity 1s
+  .fades-enter-active,
+  .fades-leave-active {
+    transition: opacity 1s
   }
-  .fades-enter, .fades-leave-to {
-      opacity: 0
+
+  .fades-enter,
+  .fades-leave-to {
+    opacity: 0
   }
-  .fades-leave, .fades-enter-to {
+
+  .fades-leave,
+  .fades-enter-to {
     opacity: 1
   }
 
-.ivu-modal-body {
-    padding:0px !important;  
+  .ivu-modal-body {
+    padding: 0px !important;
     font-size: 12px;
     line-height: 1.5;
-}
-.ivu-menu-horizontal {
-    height: 40px !important;  
-    line-height: 40px !important;  
-}
+  }
+
+  .ivu-menu-horizontal {
+    height: 40px !important;
+    line-height: 40px !important;
+  }
 </style>
 <script>
   import 'viewerjs/dist/viewer.css'
@@ -46,7 +51,7 @@
   import Prescription from "@/components/outpatient/prescription.vue";
   export default {
     props: {
-      currentView: {
+      page: {
         type: String,
       },
       menuIcon: {
@@ -62,11 +67,15 @@
     },
     data() {
       return {
-        // currentView:'Prescription',
-        modal11:false,
+        currentView: 'default',
+        modal11: false,
       };
     },
     methods: {
+      click() {
+        this.currentView = this.page;
+        this.modal11 = true;
+      },
       inited(viewer) {
         this.$viewer = viewer
       },

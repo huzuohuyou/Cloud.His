@@ -249,7 +249,7 @@
       modal11:boolean=false;
       currentView:String='Prescription';
       items: Array<Object> =[
-      { title:'门诊处方12',menuIcon:'icon-list-2',currentView:'Prescription' ,message: 'Foo' }
+      { title:'门诊处方12',menuIcon:'icon-list-2',page:'Prescription' ,message: 'Foo' }
     ];
       get userName(){
         return this.$store.state.session.user?this.$store.state.session.user.name:''

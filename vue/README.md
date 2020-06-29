@@ -17,7 +17,7 @@ yarn install
 And then start
 
 ```
-yarn serve
+运行项目 yarn serve
 ```
 
 ## Deployment
