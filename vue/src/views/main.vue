@@ -60,102 +60,21 @@
                  <div id="section1" class="metro-section tile-span-4">
      
                     <h2>门诊医生站</h2>
-     
+                    <metroMenu
+                    :menu-list="menuList">
+                    </metroMenu>
+                    
                     <metroMenuItem v-for="item in items" 
                     :key="item.message" 
                     :menuIcon="item.menuIcon" 
                     :title="item.title"
-                    :page="item.page"></metroMenuItem>
-                    <!-- <a class="tile app bg-color-blueDark" href="#" @click="modal11 = true">
-                      <div class="image-wrapper">
-                         <span class="icon icon-IcoMoon" ></span>
-                      </div>
-                      <span class="app-label">门诊处方</span>
-                   </a>
-                  
-                  
-                  <Modal :styles="{background: '#f3f3f3',padding:'0px',}"  footer-hide  v-model="modal11"   fullscreen  >
-                     <component :is="currentView"></component>
-                     <Prescription></Prescription>
-                  </Modal> -->
-              
-                    <a class="tile app bg-color-blueDark" href="./icons.html">
-                      <div class="image-wrapper">
-                         <span class="icon icon-cloud-7" ></span>
-                      </div>
-                      <span class="app-label">Icons</span>
-                   </a>
-     
-                    <a class="tile app wide bg-color-greenDark" href="./table.html">
-                       <div class="image-wrapper">
-                        <span class="icon icon-dial"></span>
-                       </div>
-                       <div class="app-label">Styled Table</div>
-                    </a>
-     
-                    <a class="tile app bg-color-purple" href="./listviews.html">
-                       <div class="image-wrapper">
-                          <span class="icon icon-list-2"></span>
-                       </div>
-                       <span class="app-label">ListView</span>
-                    </a>
-     
-                    <a class="tile app bg-color-red" href="./charms-demo.html">
-                       <div class="image-wrapper">
-                          <span class="icon icon-publish"></span>
-                       </div>
-                       <span class="app-label">[TODO] Charms</span>
-                    </a>
-     
-                    <a class="tile app bg-color-yellow" href="./images.html">
-                       <div class="image-wrapper">
-                          <span class="icon icon-images"></span>
-                       </div>
-                       <span class="app-label">[TODO] Images</span>
-                    </a>
-     
-                    <a class="tile app bg-color-blueDark" href="./icons.html">
-                       <div class="image-wrapper">
-                          <span class="icon   icon-leaf" ></span>
-                       </div>
-                       <span class="app-label">Icons</span>
-                    </a>
+                    :page="item.page"
+                    :compmentUrl="item.compmentUrl"></metroMenuItem>
+                    
      
                  </div>
      
-                 <div id="section2" class="metro-section tile-span-4">
-     
-                    <h2>Bootstrap Metro</h2>
-     
-                    <a class="tile app bg-color-blueDark" href="./icons.html">
-                      <div class="image-wrapper">
-                         <span class="icon icon-mail-3" ></span>
-                      </div>
-                      <span class="app-label">Icons</span>
-                   </a>
-     
-                   <a class="tile app bg-color-blueDark" href="./icons.html">
-                    <div class="image-wrapper">
-                       <span class="icon  icon-magnifying-glass" ></span>
-                    </div>
-                    <span class="app-label">Icons</span>
-                 </a>
-     
-                    <a class="tile app bg-color-orange" href="./components.html">
-                       <div class="image-wrapper">
-                          <img src="content/img/RegEdit.png" alt="" />
-                       </div>
-                       <span class="app-label">COMPONENTS</span>
-                    </a>
-     
-                    <a class="tile app bg-color-red" href="./javascript.html">
-                       <div class="image-wrapper">
-                          <img src="content/img/Devices.png" alt="" />
-                       </div>
-                       <span class="app-label">JAVASCRIPT</span>
-                    </a>
-     
-                 </div>
+                 
               </div>
            </div>
         </div>
@@ -240,16 +159,17 @@
   import AbpBase from '../lib/abpbase'
   import Prescription from "@/components/outpatient/prescription.vue";
   import metroMenuItem from "@/components/common/metro-menu-item.vue";
+  import metroMenu from "@/components/common/metro-menu.vue";
   @Component({
-    components:{shrinkableMenu,tagsPageOpened,breadcrumbNav,fullScreen,lockScreen,notice,copyfooter,LanguageList,Prescription,metroMenuItem}
+    components:{shrinkableMenu,tagsPageOpened,breadcrumbNav,fullScreen,lockScreen,notice,copyfooter,LanguageList,Prescription,metroMenuItem,metroMenu}
   })
   export default class Main extends AbpBase {
       show : boolean= true;
       shrink:boolean=false;
       modal11:boolean=false;
-      currentView:String='Prescription';
+      currenComptmentName:String='Prescription';
       items: Array<Object> =[
-      { title:'门诊处方12',menuIcon:'icon-list-2',page:'Prescription' ,message: 'Foo' }
+      { title:'门诊处方12',menuIcon:'icon-list-2',page:'formalComponent' ,componentUrl:'/components/outpatient/prescription.vue',message: 'Foo' }
     ];
       get userName(){
         return this.$store.state.session.user?this.$store.state.session.user.name:''

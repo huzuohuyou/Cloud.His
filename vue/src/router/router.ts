@@ -5,9 +5,11 @@ declare global {
     interface Router {
         path: string;
         name: string;
+        menuIcon?: string;
         icon?: string;
         permission?: string;
         meta?: RouterMeta;
+        componentName?: string;
         component: any;
         children?: Array<Router>;
     }
@@ -36,6 +38,7 @@ export const loginRouter: Router = {
 export const otherRouters: Router = {
     path: '/main',
     name: 'main',
+    
     permission: '',
     meta: { title: 'ManageMenu' },
     component: main,
@@ -46,6 +49,7 @@ export const otherRouters: Router = {
 export const appRouters: Array<Router> = [{
     path: '/setting',
     name: 'setting',
+    menuIcon: 'icon-list-2',
     permission: '',
     meta: { title: 'ManageMenu' },
     icon: '&#xe68a;',
@@ -59,6 +63,7 @@ export const appRouters: Array<Router> = [{
 {
     path: '/setting',
     name: '运维服务',
+    menuIcon: 'icon-screen ',
     permission: '',
     meta: { title: '运维服务' },
     icon: '&#xe68a;',
@@ -72,6 +77,8 @@ export const appRouters: Array<Router> = [{
     path: '/outpatient-department',
     name: '门诊系统',
     permission: '',
+    menuIcon: 'icon-drawer-2 ',
+    componentName:'Prescription',
     meta: { title: '门诊系统' },
     icon: '&#xe68a;',
     component: main,

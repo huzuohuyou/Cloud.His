@@ -5,8 +5,8 @@
     </div>
     <span class="app-label">{{title}}</span>
     <Modal :styles="{background: '#f3f3f3',padding:'0px',}" footer-hide v-model="modal11" fullscreen>
-      <component :is="currentView"></component>
-      <!-- <Prescription></Prescription> -->
+      <!-- <router-view ></router-view> -->
+      <component :is="currentComponent"></component>
     </Modal>
   </a>
 </template>
@@ -46,11 +46,13 @@
   }
 </style>
 <script>
+
+  
   import 'viewerjs/dist/viewer.css'
   import Viewer from "v-viewer/src/component.vue"
-  import Prescription from "@/components/outpatient/prescription.vue";
   import notImplemented from "@/components/common/not-implemented.vue";
   export default {
+    tempComponentUrl1:'@/components/outpatient/prescription.vue',
     props: {
       page: {
         type: String,
@@ -61,23 +63,39 @@
       title: {
         type: String,
       },
+      componentUrl: {
+        type: String,
+      },
+      componentName: {
+        type: String,
+      },
+     
+     
     },
     components: {
       Viewer,
-      Prescription,
-      notImplemented
+      notImplemented,
+      // formalComponent(resolve) {
+        
+      //   require(['@/components/outpatient/prescription.vue'], resolve);
+      // },
     },
     data() {
       return {
-        currentView: 'notImplemented',
+        
+        tempComponentUrl:'@/components/outpatient/prescription.vue',
+        currentComponent: '',
         modal11: false,
       };
     },
     methods: {
-      click() {
-        if (this.page != undefined) {
-          this.currentView = this.page;
 
+      click() {
+        // alert(this.componentName)
+        if (this.page != undefined) {
+          this.currentComponent =this.componentName;// this.page;
+        } else {
+          this.currentComponent = 'notImplemented';
         }
 
         this.modal11 = true;
