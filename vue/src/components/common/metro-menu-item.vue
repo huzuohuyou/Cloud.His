@@ -89,9 +89,7 @@
       };
     },
     methods: {
-
       click() {
-        // alert(this.componentName)
         if (this.page != undefined) {
           this.currentComponent =this.componentName;// this.page;
         } else {

@@ -56,9 +56,9 @@
     import 'viewerjs/dist/viewer.css'
     import StationButton from "@/components/common/icon-on-button-top.vue";
     import OrderButton from "@/components/common/icon-on-button-right.vue";
-    import OutpatientInfo from "@/components/outpatient/outpatient-info.vue";
-    import SelectPatient from "@/components/outpatient/select-patient.vue";
-    import SelectPatient2 from "@/components/outpatient/select-patient2.vue";
+    import OutpatientInfo from "@/views/outpatient/outpatient-info.vue";
+    import SelectPatient from "@/views/outpatient/select-patient.vue";
+    import SelectPatient2 from "@/views/outpatient/select-patient2.vue";
     import SelectOrder from "@/components/order/select-order.vue";
     import SelectDiagnosis from "@/components/diagnosis/select-diagnosis.vue";
     export default {

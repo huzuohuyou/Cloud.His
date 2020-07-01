@@ -157,11 +157,10 @@
   import copyfooter from '../components/Footer.vue'
   import LanguageList from '../components/language-list.vue'
   import AbpBase from '../lib/abpbase'
-  import Prescription from "@/components/outpatient/prescription.vue";
   import metroMenuItem from "@/components/common/metro-menu-item.vue";
   import metroMenu from "@/components/common/metro-menu.vue";
   @Component({
-    components:{shrinkableMenu,tagsPageOpened,breadcrumbNav,fullScreen,lockScreen,notice,copyfooter,LanguageList,Prescription,metroMenuItem,metroMenu}
+    components:{shrinkableMenu,tagsPageOpened,breadcrumbNav,fullScreen,lockScreen,notice,copyfooter,LanguageList,metroMenuItem,metroMenu}
   })
   export default class Main extends AbpBase {
       show : boolean= true;
