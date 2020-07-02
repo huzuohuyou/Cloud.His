@@ -1,24 +1,27 @@
 <template>
     <div class="continer">
-        
-        <div class="group-info flex-style ">
-            <OutpatientInfo></OutpatientInfo>
-        </div>
+        <div class="group-info flex-style group-info-menu">
+            <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme"
+                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
+                <!-- <div slot="top" class="logo-con">
+                    <a>
+                        <Icon type="cube" size="32"></Icon>
+                        <h1>{{L('AppName')}}</h1>
+                    </a>
 
-        <div class="group-info ">
-            <Table height="200" :columns="columns1" :data="data2"></Table>
+                </div> -->
+            </shrinkable-menu>
+           
         </div>
-        <div class="group-info flex-style">
-
-            <SelectPatient2></SelectPatient2>
-            <SelectOrder></SelectOrder>
-            <SelectDiagnosis></SelectDiagnosis>
-
+        <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
+            <div class="single-page">
+                <keep-alive :include="cachePage" >
+                    <router-view ></router-view>
+                </keep-alive>                
+            </div>
+            <!-- <copyfooter :copyright="L('CopyRight')"></copyfooter> -->
         </div>
-        <div class="group-info">
-            <Table height="530" :columns="columns2" :data="data2"></Table>
-        </div>
-
+      
     </div>
 </template>
 <script lang="ts">

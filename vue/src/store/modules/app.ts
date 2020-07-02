@@ -30,7 +30,7 @@ class AppModule implements Module<AppState, any>{
         lang: '',
         isFullScreen: false,
         openedSubmenuArr: [],
-        menuTheme: 'dark',
+        menuTheme: 'primary',
         themeColor: '',
         pageOpenedList: [{
             meta: { title: 'HomePage' },

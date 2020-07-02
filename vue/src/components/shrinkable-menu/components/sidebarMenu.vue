@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <Menu ref="sideMenu" :active-name="$route.name" :open-names="openNames" :theme="menuTheme" width="auto" @on-select="changeMenu">
+    <Menu mode="horizontal" ref="sideMenu" :active-name="$route.name" :open-names="openNames" :theme="menuTheme" width="auto" @on-select="changeMenu">
         <template v-for="item in menuList">
             <MenuItem v-if="item.children.length<=0" :name="item.children[0].name" :key="item.name">
                 <!-- <Icon :type="item.icon" :size="iconSize"></Icon> -->

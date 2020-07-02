@@ -79,7 +79,7 @@ export const appRouters: Array<Router> = [{
     name: '门诊系统',
     permission: '',
     menuIcon: 'icon-drawer-2 ',
-    componentName:'Prescription',
+    componentName:'PrescriptionContiner',
     meta: { title: '门诊系统' },
     icon: '&#xe68a;',
     component: main,

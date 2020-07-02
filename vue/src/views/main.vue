@@ -134,7 +134,7 @@
   }
 
 .ivu-modal-body {
-    padding:0px !important;  
+    padding:5px !important;  
     font-size: 12px;
     line-height: 1.5;
 }

@@ -18,7 +18,7 @@
 <style scoped src="../../statics/css/metro-ui-light.css"></style>
 <style scoped src="../../statics/css/icomoon.css"></style>
 
-<style>
+<style scoped>
   .fades-enter-active,
   .fades-leave-active {
     transition: opacity 1s
@@ -35,7 +35,7 @@
   }
 
   .ivu-modal-body {
-    padding: 0px !important;
+    padding: 5px !important;
     font-size: 12px;
     line-height: 1.5;
   }
