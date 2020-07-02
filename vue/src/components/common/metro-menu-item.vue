@@ -10,13 +10,13 @@
     </Modal>
   </a>
 </template>
-<style scoped src="../../statics/css/bootstrap.css"></style>
-<style scoped src="../../statics/css/bootstrap-responsive.css"></style>
-<style scoped src="../../statics/css/bootmetro.css"></style>
-<style scoped src="../../statics/css/bootmetro-tiles.css"></style>
-<style scoped src="../../statics/css/bootmetro-charms.css"></style>
-<style scoped src="../../statics/css/metro-ui-light.css"></style>
-<style scoped src="../../statics/css/icomoon.css"></style>
+<style scoped src="@/statics/css/bootstrap.css"></style>
+<style scoped src="@/statics/css/bootstrap-responsive.css"></style>
+<style scoped src="@/statics/css/bootmetro.css"></style>
+<style scoped src="@/statics/css/bootmetro-tiles.css"></style>
+<style scoped src="@/statics/css/bootmetro-charms.css"></style>
+<style scoped src="@/statics/css/metro-ui-light.css"></style>
+<style scoped src="@/statics/css/icomoon.css"></style>
 
 <style scoped>
   .fades-enter-active,

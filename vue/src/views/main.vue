@@ -114,13 +114,13 @@
   </div>
  
 </template>
-<style scoped src="./css2/bootstrap.css"></style>
-<style scoped src="./css2/bootstrap-responsive.css"></style>
-<style scoped src="./css2/bootmetro.css"></style>
-<style scoped src="./css2/bootmetro-tiles.css"></style>
-<style scoped src="./css2/bootmetro-charms.css"></style>
-<style scoped src="./css2/metro-ui-light.css"></style>
-<style scoped src="./css2/icomoon.css"></style>
+<style scoped src="@/statics/css/bootstrap.css"></style>
+<style scoped src="@/statics/css/bootstrap-responsive.css"></style>
+<style scoped src="@/statics/css/bootmetro.css"></style>
+<style scoped src="@/statics/css/bootmetro-tiles.css"></style>
+<style scoped src="@/statics/css/bootmetro-charms.css"></style>
+<style scoped src="@/statics/css/metro-ui-light.css"></style>
+<style scoped src="@/statics/css/icomoon.css"></style>
 
 <style>
   .fades-enter-active, .fades-leave-active {
