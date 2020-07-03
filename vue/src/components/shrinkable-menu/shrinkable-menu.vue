@@ -33,7 +33,7 @@ export default class ShrinkableMenu extends Vue {
     @Prop({type:Array}) openNames:Array<string>;
     @Prop({type:Function}) beforePush:Function;
     @Prop({
-           validator:(val)=>{return util.oneOf(val, ['dark', 'light']);}
+           validator:(val)=>{return util.oneOf(val, ['dark', 'light','primary']);}
     }) theme:string;
     get bgColor(){
             return this.theme === 'dark' ? '#001529' : '#fff';

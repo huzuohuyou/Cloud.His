@@ -64,13 +64,7 @@
                     :menu-list="menuList">
                     </metroMenu>
                     
-                    <metroMenuItem v-for="item in items" 
-                    :key="item.message" 
-                    :menuIcon="item.menuIcon" 
-                    :title="item.title"
-                    :page="item.page"
-                    :compmentUrl="item.compmentUrl"></metroMenuItem>
-                    
+                   
      
                  </div>
      
@@ -167,9 +161,7 @@
       shrink:boolean=false;
       modal11:boolean=false;
       currenComptmentName:String='Prescription';
-      items: Array<Object> =[
-      { title:'门诊处方12',menuIcon:'icon-list-2',page:'formalComponent' ,componentUrl:'/components/outpatient/prescription.vue',message: 'Foo' }
-    ];
+     
       get userName(){
         return this.$store.state.session.user?this.$store.state.session.user.name:''
       }
