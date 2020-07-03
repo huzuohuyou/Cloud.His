@@ -2,15 +2,15 @@
     <div class="continer">
         <div class="group-info flex-style group-info-menu">
             <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme"
-                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
+                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList2">
             </shrinkable-menu>
            
         </div>
         <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
             <div class="single-page">
-                <keep-alive :include="cachePage" >
+                <!-- <keep-alive :include="cachePage" > -->
                     <router-view ></router-view>
-                </keep-alive>                
+                <!-- </keep-alive>                 -->
             </div>
             <!-- <copyfooter :copyright="L('CopyRight')"></copyfooter> -->
         </div>
@@ -55,8 +55,9 @@
       get openedSubmenuArr(){
         return this.$store.state.app.openedSubmenuArr
       }
-      get menuList () {
-        return this.$store.state.app.subMenuList;
+      get menuList2 () {
+          console.log(this.$store.state.app.currentContiner)
+        return this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner);
       }
       get pageTagsList () {
         return this.$store.state.app.pageOpenedList as Array<any>;
@@ -136,13 +137,14 @@
         this.$store.commit('app/setCurrentPageName', to.name);
         let pathArr = util.setCurrentPath(this, to.name);
         if (pathArr.length > 2) {
-          this.$store.commit('app/addOpenmenu', pathArr[1].name);
+          this.$store.commit('app/addOpenSubmenu', pathArr[1].name);
         }
         this.checkTag(to.name);
         localStorage.currentPageName = to.name;
       }
       @Watch('lang')
       langChange(){
+          console.log("------------"+this.$route.name as string)
         util.setCurrentPath(this, this.$route.name as string);
       }
       mounted () {

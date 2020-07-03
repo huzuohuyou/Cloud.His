@@ -2,7 +2,7 @@
     <div class="continer">
         <div class="group-info flex-style group-info-menu">
             <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme"
-                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
+                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList1">
                 <!-- <div slot="top" class="logo-con">
                     <a>
                         <Icon type="cube" size="32"></Icon>
@@ -15,9 +15,9 @@
         </div>
         <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
             <div class="single-page">
-                <keep-alive :include="cachePage" >
+                <!-- <keep-alive :include="cachePage" > -->
                     <router-view ></router-view>
-                </keep-alive>                
+                <!-- </keep-alive>                 -->
             </div>
             <!-- <copyfooter :copyright="L('CopyRight')"></copyfooter> -->
         </div>
@@ -299,8 +299,9 @@
       get openedSubmenuArr(){
         return this.$store.state.app.openedSubmenuArr
       }
-      get menuList () {
-        return this.$store.state.app.menuList;
+      get menuList1 () {
+          console.log(this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner))
+        return this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner);
       }
       get pageTagsList () {
         return this.$store.state.app.pageOpenedList as Array<any>;

@@ -171,7 +171,7 @@
         return this.$store.state.app.openedSubmenuArr
       }
       get menuList () {
-        return this.$store.state.app.menuList;
+        return this.$store.state.app.menuList.filter(item => item.sub!=true);
       }
       get pageTagsList () {
         return this.$store.state.app.pageOpenedList as Array<any>;

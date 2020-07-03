@@ -16,6 +16,7 @@ interface AppState {
     pageOpenedList: Array<any>;
     currentPageName: string;
     currentPath: Array<any>;
+    currentContiner?:string;
     menuList: Array<any>;
     routers: Array<any>;
     tagsList: Array<any>;

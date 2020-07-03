@@ -91,6 +91,11 @@
     methods: {
       click() {
         if (this.page != undefined) {
+          this.$store.state.app.cachePage = [];
+          
+          this.$store.state.app.currentContiner="";
+          this.$store.state.app.currentContiner=this.componentName;
+          console.log("this.currentComponent"+this.componentName)
           this.currentComponent =this.componentName;// this.page;
         } else {
           this.currentComponent = 'notImplemented';
