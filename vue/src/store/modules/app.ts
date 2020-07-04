@@ -106,15 +106,17 @@ class AppModule implements Module<AppState, any>{
             state.themeColor = mainTheme;
         },
         addOpenSubmenu(state: AppState, name: any) {
+            // alert(name)
             let hasThisName = false;
             let isEmpty = false;
             if (name.length === 0) {
                 isEmpty = true;
             }
+            isEmpty = true;
             if (state.openedSubmenuArr.indexOf(name) > -1) {
                 hasThisName = true;
             }
-            if (!hasThisName && !isEmpty) {
+            if ( !isEmpty) {
                 state.openedSubmenuArr.push(name);
             }
         },

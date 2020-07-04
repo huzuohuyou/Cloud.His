@@ -166,10 +166,6 @@ export default class Roles extends AbpBase {
       data: this.pagerequest
     });
   }
-  haha(){
-alert('hha');
-
-  }
   get pageSize() {
     return this.$store.state.question.pageSize;
   }

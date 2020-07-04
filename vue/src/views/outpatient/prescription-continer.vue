@@ -1,27 +1,6 @@
 <template>
     <div class="continer">
-        <div class="group-info flex-style group-info-menu">
-            <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme"
-                :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList1">
-                <!-- <div slot="top" class="logo-con">
-                    <a>
-                        <Icon type="cube" size="32"></Icon>
-                        <h1>{{L('AppName')}}</h1>
-                    </a>
-
-                </div> -->
-            </shrinkable-menu>
-           
-        </div>
-        <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
-            <div class="single-page">
-                <!-- <keep-alive :include="cachePage" > -->
-                    <router-view ></router-view>
-                <!-- </keep-alive>                 -->
-            </div>
-            <!-- <copyfooter :copyright="L('CopyRight')"></copyfooter> -->
-        </div>
-      
+         <SubFormContiner  :menuList="menuList" :defaultView="defaultView"></SubFormContiner>
     </div>
 </template>
 <script lang="ts">
@@ -37,9 +16,11 @@
     import SelectDiagnosis from "@/components/diagnosis/select-diagnosis.vue";
     import shrinkableMenu from '@/components/shrinkable-menu/shrinkable-menu.vue';
     import AbpBase from '@/lib/abpbase'
+    import SubFormContiner from "@/components/common/subform-continer.vue";
 
     @Component({
         components: {
+            SubFormContiner,
             StationButton,
             OrderButton,
             OutpatientInfo,
@@ -51,6 +32,7 @@
         }
     })
     export default class Prescription extends AbpBase {
+        defaultView :string='/outpatient-department/outpatient-prescription';
         shrink:boolean=false;
         theme1: String = "primary"
         modal1: Boolean = false;
@@ -299,8 +281,7 @@
       get openedSubmenuArr(){
         return this.$store.state.app.openedSubmenuArr
       }
-      get menuList1 () {
-          console.log(this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner))
+      get menuList () {
         return this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner);
       }
       get pageTagsList () {

@@ -4,10 +4,12 @@
       <span :class="['icon',menuIcon]"></span>
     </div>
     <span class="app-label">{{title}}</span>
-    <Modal :styles="{background: '#f3f3f3',padding:'0px',}" footer-hide v-model="modal11" fullscreen>
-      <!-- <router-view ></router-view> -->
-      <component :is="currentComponent"></component>
-    </Modal>
+    <div  v-if="modal11" >
+      <Modal :styles="{background: '#f3f3f3',padding:'0px',}"  @on-cancel="cancel" v-model="modal11" fullscreen>
+        <component :is="currentComponent"></component>
+      </Modal>
+    </div>
+    
   </a>
 </template>
 <style scoped src="@/statics/css/bootstrap.css"></style>
@@ -91,11 +93,7 @@
     methods: {
       click() {
         if (this.page != undefined) {
-          this.$store.state.app.cachePage = [];
-          
-          this.$store.state.app.currentContiner="";
           this.$store.state.app.currentContiner=this.componentName;
-          console.log("this.currentComponent"+this.componentName)
           this.currentComponent =this.componentName;// this.page;
         } else {
           this.currentComponent = 'notImplemented';
@@ -108,7 +106,10 @@
       },
       show() {
         this.$viewer.show()
-      }
+      },
+      cancel () {
+       console.log( this.modal11)
+            }
     }
   }
 </script>

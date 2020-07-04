@@ -1,6 +1,7 @@
 declare global {
     interface RouterMeta {
         title: string;
+        keepAlive?:boolean;
     }
     interface Router {
         path: string;
@@ -8,6 +9,7 @@ declare global {
         menuIcon?: string;
         icon?: string;
         permission?: string;
+        modal?:Array<boolean>;
         sub?: boolean;
         meta?: RouterMeta;
         componentName?: string;
@@ -55,13 +57,13 @@ export const appRouters: Array<Router> = [
         menuIcon: 'icon-list-2',
         permission: '',
         sub: true,
-        meta: { title: '权限管理' },
+        meta: { title: '权限管理',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
-            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
-            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
+            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users',keepAlive: false  }, name: 'user', component: () => import('../views/setting/user/user.vue') },
+            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles',keepAlive: false  }, name: 'role', component: () => import('../views/setting/role/role.vue') },
+            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants',keepAlive: false  }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
         ]
     },
     {
@@ -71,13 +73,13 @@ export const appRouters: Array<Router> = [
         menuIcon: 'icon-list-2',
         permission: '',
         sub: true,
-        meta: { title: '权限管理3' },
+        meta: { title: '权限管理3',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
-            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
-            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
+            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users',keepAlive: false  }, name: 'user', component: () => import('../views/setting/user/user.vue') },
+            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles',keepAlive: false  }, name: 'role', component: () => import('../views/setting/role/role.vue') },
+            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants',keepAlive: false  }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
         ]
     },
     {
@@ -87,13 +89,13 @@ export const appRouters: Array<Router> = [
         menuIcon: 'icon-list-2',
         permission: '',
         sub: true,
-        meta: { title: '权限管理3' },
+        meta: { title: '权限管理3',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
-            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
-            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
+            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' ,keepAlive: false }, name: 'user', component: () => import('../views/setting/user/user.vue') },
+            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles',keepAlive: false  }, name: 'role', component: () => import('../views/setting/role/role.vue') },
+            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants',keepAlive: false  }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
         ]
     },
     {
@@ -103,13 +105,13 @@ export const appRouters: Array<Router> = [
         menuIcon: 'icon-list-2',
         permission: '',
         // sub:true,
-        meta: { title: '权限管理2' },
+        meta: { title: '权限管理2',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
-            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users' }, name: 'user', component: () => import('../views/setting/user/user.vue') },
-            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles' }, name: 'role', component: () => import('../views/setting/role/role.vue') },
-            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants' }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
+            { path: 'user', permission: 'Pages.Users', meta: { title: 'Users',keepAlive: false  }, name: 'user', component: () => import('../views/setting/user/user.vue') },
+            { path: 'role', permission: 'Pages.Roles', meta: { title: 'Roles',keepAlive: false  }, name: 'role', component: () => import('../views/setting/role/role.vue') },
+            { path: 'tenant', permission: 'Pages.Tenants', meta: { title: 'Tenants',keepAlive: false  }, name: 'tenant', component: () => import('../views/setting/tenant/tenant.vue') }
         ]
     },
     {
@@ -118,12 +120,12 @@ export const appRouters: Array<Router> = [
         componentName: 'Record',
         menuIcon: 'icon-screen ',
         permission: '',
-        meta: { title: '运维服务' },
+        meta: { title: '运维服务',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
 
-            { path: 'question', permission: 'Pages.Tenants', meta: { title: '运维记录' }, name: 'question', component: () => import('../views/setting/questions/record.vue') }
+            { path: 'question', permission: 'Pages.Tenants', meta: { title: '运维记录',keepAlive: false  }, name: 'question', component: () => import('../views/setting/questions/record.vue') }
         ]
     },
     {
@@ -132,12 +134,12 @@ export const appRouters: Array<Router> = [
         permission: '',
         menuIcon: 'icon-drawer-2 ',
         componentName: 'PrescriptionContiner',
-        meta: { title: '门诊系统' },
+        meta: { title: '门诊系统',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
 
-            { path: 'outpatient-prescription', permission: 'Pages.Tenants', meta: { title: '门诊医生站' }, name: 'outpatient-prescription', component: () => import('../views/outpatient/prescription.vue') }
+            { path: 'outpatient-prescription', permission: 'Pages.Tenants', meta: { title: '门诊医生站',keepAlive: false  }, name: 'outpatient-prescription', component: () => import('../views/outpatient/prescription.vue') }
         ]
     },
     {
@@ -147,12 +149,12 @@ export const appRouters: Array<Router> = [
         menuIcon: 'icon-drawer-2 ',
         sub:true,
         componentName: 'PrescriptionContiner',
-        meta: { title: '门诊系统' },
+        meta: { title: '门诊系统',keepAlive: false },
         icon: '&#xe68a;',
         component: main,
         children: [
 
-            { path: 'outpatient-prescription', permission: 'Pages.Tenants', meta: { title: '门诊医生站' }, name: 'outpatient-prescription', component: () => import('../views/outpatient/prescription.vue') }
+            { path: 'outpatient-prescription', permission: 'Pages.Tenants', meta: { title: '门诊医生站',keepAlive: false  }, name: 'outpatient-prescription', component: () => import('../views/outpatient/prescription.vue') }
         ]
     }
     
