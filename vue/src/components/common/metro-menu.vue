@@ -4,7 +4,7 @@
         v-for="item in menuList" 
         :key="item.message" 
         :menuIcon="item.menuIcon" 
-        :title="item.name"
+        :title="item.meta.title"
         :page="item.componentName" 
         :componentName="item.componentName"
         :compmentUrl="item.compmentUrl">
