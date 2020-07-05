@@ -8,3 +8,7 @@
 - D://wwwroot/
 
 - 以管理员身份运行vs
+#### 更新数据库
+- https://www.cnblogs.com/alunchen/p/6554299.html
+- Add-Migration InitialCreate1
+- Update-Database

@@ -2,50 +2,82 @@
   <Card dis-hover>
     <div class="page-body">
       <Row>
-        <Col span="6" >
+        <Col span="6">
           <Card dis-hover style="margin-right:10px">
-            <Tree :data="data2" show-checkbox></Tree>
+            <Tree :data="data2" ></Tree>
           </Card>
         </Col>
         <Col span="18">
-        <div class="page-body">
-                <Form ref="queryForm" :label-width="90" label-position="left" inline>
-                    <Row :gutter="16">
-                        <Col span="8">
-                            <FormItem :label="L('Keyword')+':'" style="width:100%">
-                                <Input v-model="pagerequest.keyword" :placeholder="L('RoleName')+'/'+L('DisplayName')+'/'+L('Description')"></Input>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</Button>
-                        <Button icon="ios-search" type="primary" size="large" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
-                    </Row>
-                </Form>
-                
+          <Card dis-hover style="margin-right:10px">
+            <div class="page-body">
+              <Form ref="queryForm" :label-width="90" label-position="left" inline>
+                <Row :gutter="16">
+                  <Col span="8">
+                    <FormItem :label="L('Keyword')+':'" style="width:100%">
+                      <Input
+                        v-model="pagerequest.keyword"
+                        :placeholder="L('RoleName')+'/'+L('DisplayName')+'/'+L('Description')"
+                      ></Input>
+                    </FormItem>
+                  </Col>
+                </Row>
+                <Row>
+                  <Button
+                    @click="create"
+                    icon="android-add"
+                    type="primary"
+                    
+                  >{{L('添加模块组')}}</Button>
+                   <Button
+                    icon="ios-search"
+                    type="primary"
+                    @click="create"
+                    class="toolbar-btn"
+                  >{{L('添加模块')}}</Button>
+                   <Button
+                    icon="ios-search"
+                    type="primary"
+                    @click="getpage"
+                    class="toolbar-btn"
+                  >{{L('添加菜单')}}</Button>
+                   <Button
+                    icon="ios-search"
+                    type="primary"
+                    @click="getpage"
+                    class="toolbar-btn"
+                  >{{L('添加子菜单')}}</Button>
+                  <Button
+                    icon="ios-search"
+                    type="primary"
+                    @click="getpage"
+                    class="toolbar-btn"
+                  >{{L('Find')}}</Button>
+                </Row>
+              </Form>
             </div>
-          <Table
-            :loading="loading"
-            :columns="columns"
-            :no-data-text="L('NoDatas')"
-            border
-            :data="list"
-          ></Table>
-          <Page
-            show-sizer
-            class-name="fengpage"
-            :total="totalCount"
-            class="margin-top-10"
-            @on-change="pageChange"
-            @on-page-size-change="pagesizeChange"
-            :page-size="pageSize"
-            :current="currentPage"
-          ></Page>
+            <Table
+              :loading="loading"
+              :columns="columns"
+              :no-data-text="L('NoDatas')"
+              border
+              :data="list"
+            ></Table>
+            <Page
+              show-sizer
+              class-name="fengpage"
+              :total="totalCount"
+              class="margin-top-10"
+              @on-change="pageChange"
+              @on-page-size-change="pagesizeChange"
+              :page-size="pageSize"
+              :current="currentPage"
+            ></Page>
+          </Card>
         </Col>
       </Row>
     </div>
-      <create-user v-model="createModalShow" @save-success="getpage"></create-user>
-        <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
+    <create-user v-model="createModalShow" @save-success="getpage"></create-user>
+    <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
   </Card>
 </template>
 <script lang="ts">
@@ -68,18 +100,31 @@ class PageUserRequest extends PageRequest {
 export default class Users extends AbpBase {
   data2: Array<Object> = [
     {
-      title: "parent 1",
+      title: "系统管理",
       expand: true,
+      selected:true,
       children: [
         {
-          title: "parent 1-1",
+          title: "权限系统",
           expand: true,
           children: [
             {
-              title: "leaf 1-1-1"
+               title: "权限管理",
+          expand: true,
+          children: [
+            {
+              title: "用户管理"
             },
             {
-              title: "leaf 1-1-2"
+              title: "角色管理"
+            },
+            {
+              title: "权限管理"
+            },
+            {
+              title: "租户管理"
+            }
+          ]
             }
           ]
         },

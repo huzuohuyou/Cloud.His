@@ -11,11 +11,6 @@
     <RootNamespace>Capinfo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="新文件夹\**" />
-    <EmbeddedResource Remove="新文件夹\**" />
-    <None Remove="新文件夹\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="His\IPatientAppService_bak.cs" />
     <Compile Remove="His\PatientAppService_bak.cs" />
   </ItemGroup>

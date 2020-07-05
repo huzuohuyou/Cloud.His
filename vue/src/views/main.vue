@@ -57,7 +57,7 @@
            <div class="metro span12" style="overflow-x: scroll;">
               <div class="metro-sections">
                  <div id="section1" class="metro-section tile-span-4">
-                    <h2>门诊医生站</h2>
+                    <h2>ABP VUE</h2>
                     <metroMenu
                     :menu-list="menuList">
                     </metroMenu>
