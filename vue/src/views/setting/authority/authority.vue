@@ -8,6 +8,22 @@
           </Card>
         </Col>
         <Col span="18">
+        <div class="page-body">
+                <Form ref="queryForm" :label-width="90" label-position="left" inline>
+                    <Row :gutter="16">
+                        <Col span="8">
+                            <FormItem :label="L('Keyword')+':'" style="width:100%">
+                                <Input v-model="pagerequest.keyword" :placeholder="L('RoleName')+'/'+L('DisplayName')+'/'+L('Description')"></Input>
+                            </FormItem>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</Button>
+                        <Button icon="ios-search" type="primary" size="large" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
+                    </Row>
+                </Form>
+                
+            </div>
           <Table
             :loading="loading"
             :columns="columns"
@@ -28,6 +44,8 @@
         </Col>
       </Row>
     </div>
+      <create-user v-model="createModalShow" @save-success="getpage"></create-user>
+        <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
   </Card>
 </template>
 <script lang="ts">
