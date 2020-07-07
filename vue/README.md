@@ -33,3 +33,5 @@ yarn build
 * [Vuex](https://vuex.vuejs.org/) - Vuex is a state management pattern + library for Vue.js applications. 
 * [iView](https://www.iviewui.com/) - A High quality and rich functions, friendly APIs, free and flexible UI Toolkit based on Vue.js.
 
+#### index.ts
+- 引入moudle

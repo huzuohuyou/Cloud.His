@@ -1,7 +1,7 @@
 <template>
   <div style="width: 700px;">
     <Modal title="添加模块组" :value="value" @on-ok="save" @on-visible-change="visibleChange">
-      <Form ref="moudleGroupForm" label-position="top" :model="moudlegroup">
+      <Form ref="moudleGroupForm" label-position="top" :rules="tenantRule" :model="moudlegroup">
         <FormItem>
           <Row>
             <Col span="6" style="text-align: center">模块组名称</Col>
@@ -34,17 +34,20 @@
     @Prop({ type: Boolean, default: false }) value: boolean;
     moudlegroup: MoudleGroup = new MoudleGroup();
     save() {
-      console.log('1112');
-      (this.$refs.moudleGroupForm as any).validate(async (valid: boolean) => {
-        console.log(valid);
-        await this.$store.dispatch({
+      this.$store.dispatch({
           type: "moudlegroup/create",
           data: this.moudlegroup
         });
-        (this.$refs.moudleGroupForm as any).resetFields();
-        this.$emit("save-success");
-        this.$emit("input", false);
-      });
+      // (this.$refs.moudleGroupForm as any).validate(async (valid: boolean) => {
+      //   console.log(valid);
+      //   await this.$store.dispatch({
+      //     type: "moudlegroup/create",
+      //     data: this.moudlegroup
+      //   });
+      //   (this.$refs.moudleGroupForm as any).resetFields();
+      //   this.$emit("save-success");
+      //   this.$emit("input", false);
+      // });
     }
     cancel() {
       (this.$refs.moudleGroupForm as any).resetFields();
@@ -59,6 +62,14 @@
     }
     getImagesFormSon(data) {
     }
-
+    tenantRule = {
+    type: [
+      {
+        required: true,
+        message: this.L("FieldIsRequired", undefined, this.L("TenantName")),
+        trigger: "blur"
+      }
+    ]
+  };
   }
 </script>

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Capinfo.Common
 {
-    public class AppServiceBase<TEntity, TEntityDto, TPrimaryKey> 
+    public abstract class AppServiceBase<TEntity, TEntityDto, TPrimaryKey> 
     {
         public readonly IRepository<TEntity> _personRepository;
         public TEntityDto GetbyPrimaryKey(TPrimaryKey primaryKey) {

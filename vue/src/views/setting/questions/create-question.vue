@@ -145,8 +145,6 @@ export default class CreateQuestion extends AbpBase {
         trigger: "blur"
       }
     ]
-    // tenancyName: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('TenancyName')), trigger: 'blur' }],
-    // adminEmailAddress: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('AdminEmailAddress')), trigger: 'blur' }, { type: 'email' }]
   };
 }
 </script>

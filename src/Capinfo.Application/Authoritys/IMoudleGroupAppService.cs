@@ -2,7 +2,7 @@
 
 namespace Capinfo.His
 {
-    public interface IMouleGroupAppService : IApplicationService
+    public interface IMoudleGroupAppService : IApplicationService
     {
         
     }
