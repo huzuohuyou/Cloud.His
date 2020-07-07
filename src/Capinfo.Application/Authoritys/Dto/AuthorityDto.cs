@@ -35,12 +35,6 @@ namespace Capinfo.His
 
         public long? LastModifierUserId { get; set; }
 
-        public string Content
-        {
-            get
-            {
-                return $@"{Date.ToString("yyyy-MM-dd")} 科室：{Dept} 电话：{Phone} 用户：{User} 问题：{Question} 原因：{Reason} 方案：{Answer}";
-            }
-        }
+        
     }
 }

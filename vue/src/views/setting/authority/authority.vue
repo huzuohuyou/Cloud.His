@@ -23,7 +23,7 @@
                 </Row>
                 <Row>
                   <Button
-                    @click="create"
+                    @click="createMoudleGroup"
                     icon="android-add"
                     type="primary"
                     
@@ -76,6 +76,7 @@
         </Col>
       </Row>
     </div>
+    <CreateMouleGroup v-model="createMoudleGroupModalShow" @save-success="getpage"></CreateMouleGroup>
     <create-user v-model="createModalShow" @save-success="getpage"></create-user>
     <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
   </Card>
@@ -86,6 +87,7 @@ import Util from "@/lib/util";
 import AbpBase from "@/lib/abpbase";
 import PageRequest from "@/store/entities/page-request";
 import CreateUser from "./create-authority.vue";
+import CreateMouleGroup from "./create-moulegroup.vue";
 import EditUser from "./edit-authority.vue";
 class PageUserRequest extends PageRequest {
   keyword: string;
@@ -95,7 +97,7 @@ class PageUserRequest extends PageRequest {
 }
 
 @Component({
-  components: { CreateUser, EditUser }
+  components: { CreateUser, EditUser ,CreateMouleGroup}
 })
 export default class Users extends AbpBase {
   data2: Array<Object> = [
@@ -151,6 +153,7 @@ export default class Users extends AbpBase {
   creationTime: Date[] = [];
 
   createModalShow: boolean = false;
+  createMoudleGroupModalShow: boolean = false;
   editModalShow: boolean = false;
   get list() {
     return this.$store.state.user.list;
@@ -160,6 +163,9 @@ export default class Users extends AbpBase {
   }
   create() {
     this.createModalShow = true;
+  }
+  createMoudleGroup() {
+    this.createMoudleGroupModalShow = true;
   }
   isActiveChange(val: string) {
     console.log(val);

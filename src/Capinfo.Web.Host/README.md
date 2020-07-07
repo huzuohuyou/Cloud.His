@@ -12,3 +12,11 @@
 - https://www.cnblogs.com/alunchen/p/6554299.html
 - Add-Migration InitialCreate1
 - Update-Database
+
+#### Failed to fetch swagger
+ - action错误
+ - http://capinfo.devops.com:21021/swagger/index.html
+
+#### 启动/调试项目
+- 已管理员方式启动VS
+- 设置网站website参见 my showdoc
