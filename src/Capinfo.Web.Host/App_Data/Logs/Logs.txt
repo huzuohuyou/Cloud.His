@@ -15045,3 +15045,220 @@ DEBUG 2020-07-07 15:58:19,408 [13   ] HttpRequestEntityChangeSetReasonProvider -
 DEBUG 2020-07-07 15:58:24,424 [17   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
 DEBUG 2020-07-07 15:58:29,444 [7    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
 DEBUG 2020-07-07 15:58:34,475 [17   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:31:55,942 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-07-07 17:31:56,040 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-07-07 17:31:56,059 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.Web.Host.Startup.CapinfoWebHostModule, Capinfo.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,061 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoWebCoreModule, Capinfo.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,062 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoApplicationModule, Capinfo.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,062 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.CapinfoCoreModule, Capinfo.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,062 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,063 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,063 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,063 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,064 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Capinfo.EntityFrameworkCore.CapinfoEntityFrameworkModule, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,064 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,064 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:56,070 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-07-07 17:31:56,185 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-07-07 17:31:56,185 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-07-07 17:31:56,185 [1    ] o.Configuration.LanguageManagementConfig - Converted Capinfo (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-07-07 17:31:56,185 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-07-07 17:31:56,646 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Capinfo.EntityFrameworkCore.CapinfoDbContext, Capinfo.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-07-07 17:31:57,837 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-07-07 17:31:57,917 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-07-07 17:31:57,990 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-07-07 17:31:58,011 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Capinfo
+DEBUG 2020-07-07 17:31:58,046 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-07-07 17:31:58,295 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-07-07 17:31:58,458 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2020-07-07 17:31:58,506 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 13 classes define auto mapping attributes
+DEBUG 2020-07-07 17:31:58,506 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-07-07 17:31:58,511 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.CreateUserDto
+DEBUG 2020-07-07 17:31:58,512 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Users.Dto.UserDto
+DEBUG 2020-07-07 17:31:58,512 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-07-07 17:31:58,512 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-07-07 17:31:58,512 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.Roles.Dto.PermissionDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.MultiTenancy.Dto.TenantDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.MouleGroupDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.CreateUpdatePatientDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.CreateUpdateQuestionDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.PatientDto
+DEBUG 2020-07-07 17:31:58,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Capinfo.His.QuestionDto
+DEBUG 2020-07-07 17:32:00,995 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:01,052 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:01,185 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:01,247 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-07-07 17:32:01,682 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\吴海龙\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-07-07 17:32:01,761 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-07-07 17:32:01,862 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host)'
+DEBUG 2020-07-07 17:32:03,894 [10   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-07-07 17:32:05,503 [13   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Capinfo.Web.Host.Controllers.HomeController (Capinfo.Web.Host).
+INFO  2020-07-07 17:32:06,442 [13   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host) - Validation state: Valid
+INFO  2020-07-07 17:32:06,449 [13   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.47740000000000005ms.
+INFO  2020-07-07 17:32:06,641 [7    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-07-07 17:32:06,648 [7    ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host) in 1140.6026000000002ms
+INFO  2020-07-07 17:32:06,652 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Web.Host.Controllers.HomeController.Index (Capinfo.Web.Host)'
+INFO  2020-07-07 17:32:06,669 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4909.4974ms 302 
+INFO  2020-07-07 17:32:06,672 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-07-07 17:32:06,861 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 188.20180000000002ms 200 text/html;charset=utf-8
+INFO  2020-07-07 17:32:06,990 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/swagger/v1/swagger.json  
+INFO  2020-07-07 17:32:06,998 [14   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:07,006 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 15.949300000000001ms 204 
+INFO  2020-07-07 17:32:07,021 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/swagger/v1/swagger.json  
+INFO  2020-07-07 17:32:07,024 [14   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:07,133 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+DEBUG 2020-07-07 17:32:07,212 [9    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Configuration.Setting, Id:5
+INFO  2020-07-07 17:32:07,418 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 395.954ms 200 application/json;charset=utf-8
+DEBUG 2020-07-07 17:32:09,644 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:14,706 [9    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:19,731 [4    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:24,746 [13   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:29,765 [10   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-07-07 17:32:30,059 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/User/GetAll?maxResultCount=10&skipCount=0  
+INFO  2020-07-07 17:32:30,060 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/User/GetRoles  
+INFO  2020-07-07 17:32:30,064 [9    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:30,066 [10   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:30,071 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 12.120700000000001ms 204 
+INFO  2020-07-07 17:32:30,073 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 12.7181ms 204 
+INFO  2020-07-07 17:32:30,089 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/User/GetRoles  
+INFO  2020-07-07 17:32:30,091 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/User/GetAll?maxResultCount=10&skipCount=0  
+INFO  2020-07-07 17:32:30,095 [9    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:30,097 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:30,101 [9    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:32:30,102 [4    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:32:30,105 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Users.UserAppService.GetRoles (Capinfo.Application)'
+INFO  2020-07-07 17:32:30,107 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:32:30,123 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetRoles", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.ListResultDto`1[Capinfo.Roles.Dto.RoleDto]] GetRoles() on controller Capinfo.Users.UserAppService (Capinfo.Application).
+INFO  2020-07-07 17:32:30,147 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[Capinfo.Users.Dto.UserDto]] GetAllAsync(Capinfo.Users.Dto.PagedUserResultRequestDto) on controller Capinfo.Users.UserAppService (Capinfo.Application).
+DEBUG 2020-07-07 17:32:30,415 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:5
+INFO  2020-07-07 17:32:30,697 [4    ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) - Validation state: Valid
+DEBUG 2020-07-07 17:32:30,729 [10   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Roles.Role, Id:1
+DEBUG 2020-07-07 17:32:30,772 [9    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Roles.Role, Id:1
+DEBUG 2020-07-07 17:32:30,798 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:1
+DEBUG 2020-07-07 17:32:30,798 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:2
+DEBUG 2020-07-07 17:32:30,798 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:3
+INFO  2020-07-07 17:32:30,893 [14   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Users.UserAppService.GetRoles (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:32:30,938 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Users.UserAppService.GetRoles (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 42.4519ms.
+DEBUG 2020-07-07 17:32:30,939 [9    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Roles.Role, Id:1
+INFO  2020-07-07 17:32:30,964 [9    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:32:30,985 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Users.UserAppService.GetRoles (Capinfo.Application) in 860.1959ms
+INFO  2020-07-07 17:32:30,987 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Users.UserAppService.GetRoles (Capinfo.Application)'
+INFO  2020-07-07 17:32:30,989 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 899.9005000000001ms 200 application/json; charset=utf-8
+INFO  2020-07-07 17:32:31,051 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 352.08410000000003ms.
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:5
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Roles.Role, Id:1
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:1
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:2
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Roles.RolePermissionSetting, Id:3
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:1
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:1
+DEBUG 2020-07-07 17:32:31,055 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:5
+INFO  2020-07-07 17:32:31,064 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:32:31,072 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) in 923.6579ms
+INFO  2020-07-07 17:32:31,075 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:32:31,078 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 985.7251ms 200 application/json; charset=utf-8
+INFO  2020-07-07 17:32:32,322 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/User/GetAll?maxResultCount=10&skipCount=0  
+INFO  2020-07-07 17:32:32,325 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/User/GetRoles  
+INFO  2020-07-07 17:32:32,333 [11   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:32,335 [13   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:32:32,345 [13   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:32:32,348 [11   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:32:32,356 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:32:32,357 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Users.UserAppService.GetRoles (Capinfo.Application)'
+INFO  2020-07-07 17:32:32,366 [13   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[Capinfo.Users.Dto.UserDto]] GetAllAsync(Capinfo.Users.Dto.PagedUserResultRequestDto) on controller Capinfo.Users.UserAppService (Capinfo.Application).
+INFO  2020-07-07 17:32:32,367 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetRoles", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.ListResultDto`1[Capinfo.Roles.Dto.RoleDto]] GetRoles() on controller Capinfo.Users.UserAppService (Capinfo.Application).
+INFO  2020-07-07 17:32:32,389 [11   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Users.UserAppService.GetRoles (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:32:32,410 [13   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:32:32,421 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Users.UserAppService.GetRoles (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 30.042ms.
+DEBUG 2020-07-07 17:32:32,422 [11   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Roles.Role, Id:1
+INFO  2020-07-07 17:32:32,436 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:32:32,438 [12   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Users.UserAppService.GetRoles (Capinfo.Application) in 68.8271ms
+INFO  2020-07-07 17:32:32,441 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 27.9346ms.
+INFO  2020-07-07 17:32:32,444 [12   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Users.UserAppService.GetRoles (Capinfo.Application)'
+INFO  2020-07-07 17:32:32,446 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 121.89070000000001ms 200 application/json; charset=utf-8
+DEBUG 2020-07-07 17:32:32,447 [11   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:1
+DEBUG 2020-07-07 17:32:32,447 [11   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:1
+DEBUG 2020-07-07 17:32:32,447 [11   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:5
+DEBUG 2020-07-07 17:32:32,447 [11   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:5
+INFO  2020-07-07 17:32:32,455 [11   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:32:32,458 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) in 88.60950000000001ms
+INFO  2020-07-07 17:32:32,462 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:32:32,466 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 143.4436ms 200 application/json; charset=utf-8
+DEBUG 2020-07-07 17:32:34,793 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:39,824 [12   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:44,882 [23   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:49,913 [9    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:54,946 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:32:59,977 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:05,004 [9    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:10,026 [13   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:15,044 [12   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:20,072 [23   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:25,090 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:30,107 [9    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:35,121 [23   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:40,135 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:45,153 [13   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:33:50,170 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-07-07 17:33:52,691 [23   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/MoudleGroup/Create  
+INFO  2020-07-07 17:33:52,693 [23   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:33:52,708 [23   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.4949ms 204 
+INFO  2020-07-07 17:33:52,716 [23   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://capinfo.devops.com:21021/api/services/app/MoudleGroup/Create application/json;charset=UTF-8 20
+INFO  2020-07-07 17:33:52,718 [23   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:33:52,722 [23   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:33:52,725 [23   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application)'
+INFO  2020-07-07 17:33:52,733 [23   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Create", controller = "MoudleGroup"}. Executing controller action with signature Boolean Create(Capinfo.His.MouleGroupDto) on controller Capinfo.His.MoudleGroupAppService (Capinfo.Application).
+INFO  2020-07-07 17:33:52,939 [23   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:33:52,957 [23   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 16.0163ms.
+DEBUG 2020-07-07 17:33:52,971 [14   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Authoritys.MouleGroup, Id:3
+INFO  2020-07-07 17:33:53,052 [23   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:33:53,059 [23   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application) in 319.3437ms
+INFO  2020-07-07 17:33:53,060 [23   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application)'
+INFO  2020-07-07 17:33:53,062 [23   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 351.3587ms 200 application/json; charset=utf-8
+DEBUG 2020-07-07 17:33:55,183 [25   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:00,200 [24   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:05,215 [26   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:10,220 [25   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:15,246 [26   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2020-07-07 17:34:16,536 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/MoudleGroup/Create  
+INFO  2020-07-07 17:34:16,542 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:34:16,543 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://capinfo.devops.com:21021/api/services/app/User/GetAll?maxResultCount=10&skipCount=0  
+INFO  2020-07-07 17:34:16,546 [14   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:34:16,553 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 12.482000000000001ms 204 
+INFO  2020-07-07 17:34:16,557 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 17.05ms 204 
+INFO  2020-07-07 17:34:16,561 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://capinfo.devops.com:21021/api/services/app/MoudleGroup/Create application/json;charset=UTF-8 19
+INFO  2020-07-07 17:34:16,564 [14   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:34:16,569 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://capinfo.devops.com:21021/api/services/app/User/GetAll?maxResultCount=10&skipCount=0  
+INFO  2020-07-07 17:34:16,573 [4    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-07-07 17:34:16,577 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:34:16,580 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application)'
+INFO  2020-07-07 17:34:16,582 [4    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2020-07-07 17:34:16,584 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:34:16,589 [14   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Create", controller = "MoudleGroup"}. Executing controller action with signature Boolean Create(Capinfo.His.MouleGroupDto) on controller Capinfo.His.MoudleGroupAppService (Capinfo.Application).
+INFO  2020-07-07 17:34:16,594 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[Capinfo.Users.Dto.UserDto]] GetAllAsync(Capinfo.Users.Dto.PagedUserResultRequestDto) on controller Capinfo.Users.UserAppService (Capinfo.Application).
+INFO  2020-07-07 17:34:16,619 [14   ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:34:16,645 [4    ] c.Infrastructure.ControllerActionInvoker - Executing action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) - Validation state: Valid
+INFO  2020-07-07 17:34:16,670 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 48.9829ms.
+DEBUG 2020-07-07 17:34:16,680 [13   ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Authoritys.MouleGroup, Id:4
+INFO  2020-07-07 17:34:16,683 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action method Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 35.3202ms.
+DEBUG 2020-07-07 17:34:16,684 [4    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:1
+DEBUG 2020-07-07 17:34:16,684 [4    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:1
+DEBUG 2020-07-07 17:34:16,684 [4    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Capinfo.Authorization.Users.User, Id:5
+DEBUG 2020-07-07 17:34:16,684 [4    ] Abp.EntityHistory.EntityHistoryHelper    - Skipping Entity Change Creation for Abp.Authorization.Users.UserRole, Id:5
+INFO  2020-07-07 17:34:16,712 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:34:16,715 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application) in 118.95280000000001ms
+INFO  2020-07-07 17:34:16,717 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.Users.UserAppService.GetAllAsync (Capinfo.Application)'
+INFO  2020-07-07 17:34:16,720 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 153.6981ms 200 application/json; charset=utf-8
+INFO  2020-07-07 17:34:16,732 [26   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-07-07 17:34:16,734 [26   ] c.Infrastructure.ControllerActionInvoker - Executed action Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application) in 142.96ms
+INFO  2020-07-07 17:34:16,738 [26   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Capinfo.His.MoudleGroupAppService.Create (Capinfo.Application)'
+INFO  2020-07-07 17:34:16,743 [26   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 179.7904ms 200 application/json; charset=utf-8
+DEBUG 2020-07-07 17:34:20,270 [14   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:25,276 [25   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:30,295 [25   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2020-07-07 17:34:35,308 [24   ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null

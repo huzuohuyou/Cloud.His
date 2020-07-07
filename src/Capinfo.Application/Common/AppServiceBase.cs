@@ -9,7 +9,6 @@ namespace Capinfo.Common
 {
     public abstract class AppServiceBase<TEntity, TEntityDto, TPrimaryKey> 
     {
-        public readonly IRepository<TEntity> _personRepository;
         public TEntityDto GetbyPrimaryKey(TPrimaryKey primaryKey) {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<TEntity, TEntityDto>());
             var mapper = config.CreateMapper();

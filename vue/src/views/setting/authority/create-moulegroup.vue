@@ -38,6 +38,9 @@
           type: "moudlegroup/create",
           data: this.moudlegroup
         });
+        (this.$refs.moudleGroupForm as any).resetFields();
+        this.$emit("save-success");
+        this.$emit("input", false);
       // (this.$refs.moudleGroupForm as any).validate(async (valid: boolean) => {
       //   console.log(valid);
       //   await this.$store.dispatch({
