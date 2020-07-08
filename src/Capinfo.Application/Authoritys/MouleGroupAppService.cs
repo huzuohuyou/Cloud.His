@@ -11,19 +11,19 @@ namespace Capinfo.His
     public class MoudleGroupAppService : IMoudleGroupAppService
     {
         private readonly UserManager _userManager;
-        public readonly IRepository<MouleGroup> _personRepository;
+        public readonly IRepository<MoudleGroup> _personRepository;
 
-        public MoudleGroupAppService(IRepository<MouleGroup> repository, UserManager userManager)
+        public MoudleGroupAppService(IRepository<MoudleGroup> repository, UserManager userManager)
         {
             _userManager = userManager;
             _personRepository = repository;
         }
         [HttpPost]
-        public bool Create(MouleGroupDto dto)
+        public bool Create(MoudleGroupDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<MouleGroupDto, MouleGroup>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MoudleGroupDto, MoudleGroup>());
             var mapper = config.CreateMapper();
-            var po = mapper.Map<MouleGroup>(dto);
+            var po = mapper.Map<MoudleGroup>(dto);
 
             po.CreatorUserId = _userManager.UserId.Value;
             po.CreationTime = DateTime.Now;

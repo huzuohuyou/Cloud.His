@@ -11,7 +11,7 @@ namespace Capinfo.EntityFrameworkCore
     public class CapinfoDbContext : AbpZeroDbContext<Tenant, Role, User, CapinfoDbContext>
     {
         public DbSet<Authority> AbpAuthoritys { get; set; }
-        public DbSet<MouleGroup> AbpMouleGroups { get; set; }
+        public DbSet<MoudleGroup> AbpMouleGroups { get; set; }
         /* Define a DbSet for each entity of the application */
         public DbSet<Patient> Patient { get; set; }
         public DbSet<Questions> Questions { get; set; }

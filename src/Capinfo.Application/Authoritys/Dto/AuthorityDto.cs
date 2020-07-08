@@ -1,10 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Capinfo.Authorization.Authoritys;
-using Capinfo.His.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Capinfo.His
 {

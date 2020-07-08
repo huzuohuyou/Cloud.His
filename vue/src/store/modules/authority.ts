@@ -4,10 +4,13 @@ import ListState from './list-state'
 import Authority from '../entities/authority'
 import Ajax from '../../lib/ajax'
 import PageResult from '@/store/entities/page-result';
+import AuthorityTree from '../entities/authority-tree'
 
 interface AuthorityState extends ListState<Authority>{
+    random:number;
     editRole:Authority;
-    permissions:Array<string>
+    permissions:Array<string>;
+    tree: Array<AuthorityTree>;
 }
 class AuthorityModule extends ListModule<AuthorityState,any,Authority>{
     state={
@@ -17,18 +20,19 @@ class AuthorityModule extends ListModule<AuthorityState,any,Authority>{
         list: new Array<Authority>(),
         loading:false,
         editRole:new Authority(),
-        permissions:new Array<string>()
+        permissions:new Array<string>(),
+        
     }
     actions={
         async getAll(context:ActionContext<AuthorityState,any>,payload:any){
             context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/Role/GetAll',{params:payload.data});
+            let reponse=await Ajax.get('/api/services/app/Authority/GetAll',{params:payload.data});
             context.state.loading=false;
-            let page=reponse.data.result as PageResult<Authority>;
-            context.state.totalCount=page.totalCount;
-            context.state.list=page.items;
+            console.log(reponse.data.result)
+            let page=reponse.data.result as Array<AuthorityTree>;
+            context.state.tree=page;
         },
-        async getAllRecord(context:ActionContext<AuthorityState,any>,payload:any){
+        async getAuthoritys(context:ActionContext<AuthorityState,any>,payload:any){
             context.state.loading=true;
             let reponse=await Ajax.get('/api/services/app/question/GetAllQuestion',{params:payload.data});
             context.state.loading=false;

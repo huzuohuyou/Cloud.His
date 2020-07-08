@@ -4,7 +4,7 @@
       <Row>
         <Col span="6">
           <Card dis-hover style="margin-right:10px">
-            <Tree :data="data2" ></Tree>
+            <Tree :data="tree" ref="tree" show-checkbox multiple  check-strictly=true></Tree>
           </Card>
         </Col>
         <Col span="18">
@@ -37,7 +37,7 @@
                    <Button
                     icon="ios-search"
                     type="primary"
-                    @click="getpage"
+                    @click="create"
                     class="toolbar-btn"
                   >{{L('添加菜单')}}</Button>
                    <Button
@@ -101,49 +101,7 @@ class PageUserRequest extends PageRequest {
 })
 export default class Users extends AbpBase {
   data2: Array<Object> = [
-    {
-      title: "系统管理",
-      expand: true,
-      selected:true,
-      children: [
-        {
-          title: "权限系统",
-          expand: true,
-          children: [
-            {
-               title: "权限管理",
-          expand: true,
-          children: [
-            {
-              title: "用户管理"
-            },
-            {
-              title: "角色管理"
-            },
-            {
-              title: "权限管理"
-            },
-            {
-              title: "租户管理"
-            }
-          ]
-            }
-          ]
-        },
-        {
-          title: "parent 1-2",
-          expand: true,
-          children: [
-            {
-              title: "leaf 1-2-1"
-            },
-            {
-              title: "leaf 1-2-1"
-            }
-          ]
-        }
-      ]
-    }
+    
   ];
   edit() {
     this.editModalShow = true;
@@ -158,10 +116,15 @@ export default class Users extends AbpBase {
   get list() {
     return this.$store.state.user.list;
   }
+  get tree() {
+    
+    return this.$store.state.authority.tree;
+  }
   get loading() {
     return this.$store.state.user.loading;
   }
   create() {
+    console.log(this.$refs.tree.getCheckedNodes())
     this.createModalShow = true;
   }
   createMoudleGroup() {
@@ -198,9 +161,17 @@ export default class Users extends AbpBase {
     }
 
     await this.$store.dispatch({
-      type: "user/getAll",
+      type: "authority/getAuthoritys",
       data: this.pagerequest
     });
+    console.log("authority/getAll")
+     this.$store.dispatch({
+      type: "authority/getAll",
+      data: this.pagerequest
+    });
+    this.$store.state.authority.random=Math.ceil(Math.random()*10); 
+    console.log(this.$store.state.authority.random);
+    console.log(this.$store.state.authority.tree)
   }
   get pageSize() {
     return this.$store.state.user.pageSize;

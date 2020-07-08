@@ -9,6 +9,7 @@ import role from './modules/role'
 import tenant from './modules/tenant'
 import question from './modules/question'
 import moudlegroup from './modules/moudlegroup'
+import authority from './modules/authority'
 const store = new Vuex.Store({
     state: {
         //
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
         role,
         tenant,
         question,
-        moudlegroup
+        moudlegroup,
+        authority
     }
 });
 

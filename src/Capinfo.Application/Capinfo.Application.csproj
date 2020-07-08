@@ -11,9 +11,6 @@
     <RootNamespace>Capinfo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Authoritys\AuthorityAppService.cs" />
-    <Compile Remove="Authoritys\Dto\AuthorityDto.cs" />
-    <Compile Remove="Authoritys\IAuthorityAppService.cs" />
     <Compile Remove="Common\AppServiceBase.cs" />
     <Compile Remove="Common\IAppServiceBase.cs" />
     <Compile Remove="His\IPatientAppService_bak.cs" />
