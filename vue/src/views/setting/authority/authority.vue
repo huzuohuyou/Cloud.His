@@ -114,17 +114,17 @@ export default class Users extends AbpBase {
   createMoudleGroupModalShow: boolean = false;
   editModalShow: boolean = false;
   get list() {
-    return this.$store.state.user.list;
+    return this.$store.state.authority.list;
   }
   get tree() {
     
-    return this.$store.state.authority.tree;
+    
+    return this.$store.state.authoritytree.list;
   }
   get loading() {
     return this.$store.state.user.loading;
   }
   create() {
-    console.log(this.$refs.tree.getCheckedNodes())
     this.createModalShow = true;
   }
   createMoudleGroup() {
@@ -166,12 +166,9 @@ export default class Users extends AbpBase {
     });
     console.log("authority/getAll")
      this.$store.dispatch({
-      type: "authority/getAll",
-      data: this.pagerequest
+      type: "authoritytree/getAll",
+      data: this.data2
     });
-    this.$store.state.authority.random=Math.ceil(Math.random()*10); 
-    console.log(this.$store.state.authority.random);
-    console.log(this.$store.state.authority.tree)
   }
   get pageSize() {
     return this.$store.state.user.pageSize;

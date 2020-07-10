@@ -10,6 +10,7 @@ import tenant from './modules/tenant'
 import question from './modules/question'
 import moudlegroup from './modules/moudlegroup'
 import authority from './modules/authority'
+import authoritytree from './modules/authority-tree'
 const store = new Vuex.Store({
     state: {
         //
@@ -29,7 +30,8 @@ const store = new Vuex.Store({
         tenant,
         question,
         moudlegroup,
-        authority
+        authority,
+        authoritytree
     }
 });
 
