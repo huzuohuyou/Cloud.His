@@ -1,6 +1,6 @@
 <template>
     <div class="continer">
-        <SubFormContiner  :menuList="menuList" :defaultView="defaultView"></SubFormContiner>
+        <SubFormContiner  :menuList="menuList" :defaultView="defaultView" ></SubFormContiner>
     </div>
 </template>
 <script lang="ts">
