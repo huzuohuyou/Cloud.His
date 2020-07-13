@@ -6,33 +6,25 @@
       @on-ok="save"
       @on-visible-change="visibleChange"
     >
-      <Form ref="questionForm" label-position="top" :rules="tenantRule" :model="question">
+      <Form ref="questionForm" label-position="top" :rules="tenantRule" :model="entity">
         <FormItem>
           <Row>
             <Col span="3" style="text-align: center">模块名称</Col>
             <i-col span="9">
-              <DatePicker
-                @on-change="getRecordTime"
-                type="date"
-                placeholder="Select date"
-                style="width: 200px"
-              ></DatePicker>
+              <Input v-model="entity.title"></Input>
             </i-col>
-            <Col span="3" style="text-align: center">父节点</Col>
-            <i-col span="9">
-              <Input v-model="question.phone"></Input>
-            </i-col>
+            
           </Row>
         </FormItem>
         <FormItem>
           <Row>
             <Col span="3" style="text-align: center">子模块名称</Col>
             <i-col span="9">
-              <Input v-model="question.dept"></Input>
+              <Input v-model="entity.dept"></Input>
             </i-col>
             <Col span="3" style="text-align: center">路径</Col>
             <i-col span="9">
-              <Input v-model="question.user"></Input>
+              <Input v-model="entity.path"></Input>
             </i-col>
           </Row>
         </FormItem>
@@ -40,34 +32,23 @@
           <Row>
             <Col span="3" style="text-align: center">图标</Col>
             <i-col span="9">
-              <Input v-model="question.ptno"></Input>
+              <Input v-model="entity.menuIcon"></Input>
             </i-col>
-            <Col span="3" style="text-align: center">菜单名称</Col>
+            <!-- <Col span="3" style="text-align: center">菜单名称</Col>
             <i-col span="9">
-              <RadioGroup v-model="question.kind">
-                <Radio :label="1">门诊</Radio>
-                <Radio :label="2">住院</Radio>
-              </RadioGroup>
-            </i-col>
+              <Input v-model="entity.title"></Input>
+            </i-col> -->
           </Row>
         </FormItem>
         <FormItem prop="databaseConnectionString" required>
           <Row>
             <Col span="3" style="text-align: center">组件名称</Col>
             <i-col span="9">
-              <RadioGroup v-model="question.role">
-                <Radio :label="1">医生</Radio>
-                <Radio :label="2">护士</Radio>
-              </RadioGroup>
+              <Input v-model="entity.componentName"></Input>
             </i-col>
             <Col span="3" style="text-align: center">组件</Col>
             <i-col span="9">
-              <RadioGroup v-model="question.type">
-                <Radio :label="1" checked>咨询</Radio>
-                <Radio :label="2">解锁</Radio>
-                <Radio :label="3">权限</Radio>
-                <Radio :label="4">现场</Radio>
-              </RadioGroup>
+              <Input v-model="entity.component"></Input>
             </i-col>
           </Row>
         </FormItem>
@@ -75,10 +56,7 @@
           <Row>
             <Col span="3" style="text-align: center">权限</Col>
             <i-col span="9">
-              <RadioGroup v-model="question.role">
-                <Radio :label="1">医生</Radio>
-                <Radio :label="2">护士</Radio>
-              </RadioGroup>
+              <Input v-model="entity.permission"></Input>
             </i-col>
            
           </Row>
@@ -96,26 +74,26 @@
 import { Component, Vue, Inject, Prop, Watch } from "vue-property-decorator";
 import Util from "../../../lib/util";
 import AbpBase from "../../../lib/abpbase";
-import Question from "@/store/entities/question";
+import Entity from "@/store/entities/authority";
 import iView from "iview";
-import MyUpload from "@/components/common/MyUpload.vue";
 
 @Component({
   // 引入子组件
   components: {
-    MyUpload
   }
 })
 export default class CreateQuestion extends AbpBase {
   @Prop({ type: Boolean, default: false }) value: boolean;
-  question: Question = new Question();
+  entity: Entity = new Entity();
   save() {
-    console.log(this.$store);
+this.entity.father=this.$store.state.authority.nodeId;
+    this.$Message.info(this.$store.state.authority.nodeId);
+    console.log(this.$store.state.authority.nodeId);
     (this.$refs.questionForm as any).validate(async (valid: boolean) => {
       if (valid) {
         await this.$store.dispatch({
-          type: "question/create",
-          data: this.question
+          type: "authority/create",
+          data: this.entity
         });
         (this.$refs.questionForm as any).resetFields();
         this.$emit("save-success");
@@ -133,10 +111,10 @@ export default class CreateQuestion extends AbpBase {
     }
   }
   getRecordTime(date) {
-    this.question.date = date;
+    // this.question.date = date;
   }
   getImagesFormSon(data) {
-    this.question.uploadList = data;
+    // this.question.uploadList = data;
   }
   tenantRule = {
     type: [

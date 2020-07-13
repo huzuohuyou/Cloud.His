@@ -3,13 +3,12 @@
     <div class="page-body">
       <Row>
         <Col span="6">
-        <Card dis-hover style="margin-right:10px">
-          <Tree :data="tree" ref="tree" 
-            @on-select-change='haha'></Tree>
+        <Card dis-hover style="margin-right:10px;height:721px;overflow-y:scroll;">
+          <Tree :data="tree" ref="tree" @on-select-change='haha'></Tree>
         </Card>
         </Col>
         <Col span="18">
-        <Card dis-hover style="margin-right:10px">
+        <Card dis-hover style="margin-right:10px;">
           <div class="page-body">
             <Form ref="queryForm" :label-width="90" label-position="left" inline>
               <Row :gutter="16">
@@ -23,8 +22,8 @@
               <Row>
                 <Button @click="createMoudleGroup" icon="android-add" type="primary">{{L('添加模块组')}}</Button>
                 <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加模块')}}</Button>
-                <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加菜单')}}</Button>
-                <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('添加子菜单')}}</Button>
+                <!-- <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加菜单')}}</Button>
+                <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('添加子菜单')}}</Button> -->
                 <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
               </Row>
             </Form>
@@ -37,7 +36,7 @@
       </Row>
     </div>
     <CreateMouleGroup v-model="createMoudleGroupModalShow" @save-success="getpage"></CreateMouleGroup>
-    <create-user v-model="createModalShow" @save-success="getpage"></create-user>
+    <create-authority v-model="createModalShow" @save-success="getpage"></create-authority>
     <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
   </Card>
 </template>
@@ -46,7 +45,7 @@
   import Util from "@/lib/util";
   import AbpBase from "@/lib/abpbase";
   import PageRequest from "@/store/entities/page-request";
-  import CreateUser from "./create-authority.vue";
+  import CreateAuthority from "./create-authority.vue";
   import CreateMouleGroup from "./create-moulegroup.vue";
   import EditUser from "./edit-authority.vue";
   class PageUserRequest extends PageRequest {
@@ -57,12 +56,10 @@
   }
 
   @Component({
-    components: { CreateUser, EditUser, CreateMouleGroup }
+    components: { CreateAuthority, EditUser, CreateMouleGroup }
   })
   export default class Users extends AbpBase {
-    data2: Array<Object> = [
-
-    ];
+    nodeId: string = ''
     edit() {
       this.editModalShow = true;
     }
@@ -74,22 +71,30 @@
     createMoudleGroupModalShow: boolean = false;
     editModalShow: boolean = false;
     get list() {
+
       return this.$store.state.authority.list;
     }
     get tree() {
       return this.$store.state.authoritytree.list;
     }
     get loading() {
-      return this.$store.state.user.loading;
+      return this.$store.state.authority.loading;
     }
     create() {
-      this.createModalShow = true;
+      // this.$Message.info(this.$store.state.authority.nodeId);
+      if (
+      this.$store.state.authority.nodeId == null 
+      || this.$store.state.authority.nodeId == undefined
+      || this.$store.state.authority.nodeId == '') {
+        this.$Message.info('请选择父节点');
+      } else {
+        this.createModalShow = true;
+      }
+
     }
     createMoudleGroup() {
       this.createMoudleGroupModalShow = true;
     }
-
-
     isActiveChange(val: string) {
       console.log(val);
       if (val === "Actived") {
@@ -101,17 +106,21 @@
       }
     }
     pageChange(page: number) {
-      this.$store.commit("user/setCurrentPage", page);
+      this.$store.commit("authority/setCurrentPage", page);
       this.getpage();
     }
     pagesizeChange(pagesize: number) {
-      this.$store.commit("user/setPageSize", pagesize);
+      this.$store.commit("authority/setPageSize", pagesize);
       this.getpage();
     }
-    haha(data){
-      console.log(data)
+    haha(data) {
+      this.$store.state.authority.nodeId = data[0].id;
+      this.nodeId = data[0].id;
+      this.pagerequest.keyword=data[0].title;
+      this.getpage();
     }
     async getpage() {
+      this.$store.state.authority.nodeId='';
       this.pagerequest.maxResultCount = this.pageSize;
       this.pagerequest.skipCount = (this.currentPage - 1) * this.pageSize;
       //filters
@@ -124,32 +133,48 @@
       }
 
       await this.$store.dispatch({
-        type: "authority/getAuthoritys",
+        type: "authority/getAll",
         data: this.pagerequest
       });
-      console.log("authority/getAll")
       this.$store.dispatch({
         type: "authoritytree/getAll",
-        data: this.data2
+        data: this.pagerequest
       });
     }
     get pageSize() {
-      return this.$store.state.user.pageSize;
+      return this.$store.state.authority.pageSize;
     }
     get totalCount() {
-      return this.$store.state.user.totalCount;
+      return this.$store.state.authority.totalCount;
     }
     get currentPage() {
-      return this.$store.state.user.currentPage;
+      return this.$store.state.authority.currentPage;
     }
     columns = [
       {
-        title: this.L("UserName"),
-        key: "userName"
+        title: this.L("标题"),
+        fixed: 'left',
+        key: "title"
       },
       {
-        title: this.L("Name"),
-        key: "name"
+        title: this.L("模块"),
+        key: "MoudleName"
+      },
+      {
+        title: this.L("父级"),
+        key: "Father"
+      },
+      {
+        title: this.L("路径"),
+        key: "Path"
+      },
+      {
+        title: this.L("模块名"),
+        key: "ComponentName"
+      },
+      {
+        title: this.L("模块"),
+        key: "Component"
       },
       {
         title: this.L("IsActive"),
@@ -167,16 +192,12 @@
           );
         }
       },
-      {
-        title: this.L("LastLoginTime"),
-        render: (h: any, params: any) => {
-          return h("span", new Date(params.row.lastLoginTime).toLocaleString());
-        }
-      },
+
       {
         title: this.L("Actions"),
         key: "Actions",
         width: 150,
+        fixed: 'right',
         render: (h: any, params: any) => {
           return h("div", [
             h(

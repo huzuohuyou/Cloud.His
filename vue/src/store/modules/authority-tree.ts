@@ -24,7 +24,7 @@ class AuthorityModule extends ListModule<AuthorityState,any,AuthorityTree>{
     actions={
         async getAll(context:ActionContext<AuthorityState,any>,payload:any){
             context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/Authority/GetAll',{params:payload.data});
+            let reponse=await Ajax.get('/api/services/app/Authority/GetTree',{params:payload.data});
             context.state.loading=false;
             let page=reponse.data.result as Array<AuthorityTree>;
             context.state.list=page;

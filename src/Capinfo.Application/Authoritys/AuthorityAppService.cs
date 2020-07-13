@@ -1,8 +1,10 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.Domain.Repositories;
+﻿using Abp.Domain.Repositories;
 using AutoMapper;
 using Capinfo.Authorization.Authoritys;
 using Capinfo.Authorization.Users;
+using Capinfo.His.Dto;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,25 +39,102 @@ namespace Capinfo.His
                 
                 temp.ForEach(r =>
                 {
-                    var c = new AuthorityTreeDto { title = r.Title, Id = r.Id };
+                    var c = MapToEntityDto(r);
                     tree.children.Add(CreateTree(authoritys, c));
                 });
             }
             return tree;
         }
+        List<AuthorityTreeDto> AllNodes = new List<AuthorityTreeDto>();
+        private void GetAllNodes(List<AuthorityTreeDto> list)
+        {
+            list.ForEach(node =>
+            {
+                if (node.children.Count == 0)
+                {
+                    AllNodes.Add(node);
+                }
+                else
+                {
+                    node.children.ForEach(r =>
+                    {
+                        GetAllNodes(node.children);
+                    });
+                }
+            });
+        }
+
+        protected  Authority MapToEntity(AuthorityTreeDto dto)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Authority>(dto);
+            return po;
+        }
+
+        
+
+        protected  AuthorityTreeDto MapToEntityDto(Authority po)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityTreeDto>());
+            var mapper = config.CreateMapper();
+            var dto = mapper.Map<AuthorityTreeDto>(po);
+            return dto;
+        }
+
         List<Authority>  authoritys =  new List<Authority> ();
         //List<Authority> authoritys = null;
-        List<AuthorityTreeDto> result = new List<AuthorityTreeDto>();
-        public async Task<List<AuthorityTreeDto>> GetAll()
+        List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
+        public async Task<List<AuthorityTreeDto>> GetTree()
         {
-            
             var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
             moudlegroups.ForEach(r =>
             {
                 var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
-                result.Add(CreateTree(authoritys, tree));
+                globalResult.Add(CreateTree(authoritys, tree));
             });
-            return result;
+            return globalResult;
         }
+        public async Task<PageDto<AuthorityTreeDto>> GetTreePage(string Keyword, int SkipCount, int MaxResultCount)
+        {
+            globalResult = await GetTree();
+            var list = new List<AuthorityDto>();
+            GetAllNodes(globalResult)
+
+            var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
+            moudlegroups.ForEach(r =>
+            {
+                var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
+                globalResult.Add(CreateTree(authoritys, tree));
+            });
+            List<AuthorityTreeDto> temp = null;
+            //return globalResult.Skip(SkipCount).Take(MaxResultCount).ToList();
+            if ((Keyword??"").Contains("#"))
+            {
+                var father = int.Parse(Keyword.Replace("#", ""));
+                temp = globalResult.Where(r => r.Father == father).ToList();
+            }
+            temp = globalResult.Where(r => r.title.Contains(Keyword ?? "")).ToList();
+            return new PageDto<AuthorityTreeDto>
+            {
+                totalCount = temp.Count,
+                items = temp.Skip(SkipCount).Take(MaxResultCount).ToArray()
+            };
+        }
+
+        [HttpPost]
+        public bool Create(AuthorityTreeDto dto)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Authority>(dto);
+
+            po.CreatorUserId = _userManager.UserId.Value;
+            po.CreationTime = DateTime.Now;
+
+            var ok = _authorityRepository.Insert(po) != null;
+            return ok;
+        }
+
     }
 }

@@ -9,7 +9,7 @@ import AuthorityTree from '../entities/authority-tree'
 interface AuthorityState extends ListState<AuthorityTree>{
     editRole:AuthorityTree;
     permissions:Array<string>;
-    
+    nodeId:string;
 }
 class AuthorityModule extends ListModule<AuthorityState,any,AuthorityTree>{
     state={
@@ -23,23 +23,18 @@ class AuthorityModule extends ListModule<AuthorityState,any,AuthorityTree>{
     }
     actions={
         async getAll(context:ActionContext<AuthorityState,any>,payload:any){
+            console.log(payload.data)
             context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/Authority/GetAll',{params:payload.data});
-            context.state.loading=false;
-            let page=reponse.data.result as Array<AuthorityTree>;
-            context.state.list=page;
-            
-        },
-        async getAuthoritys(context:ActionContext<AuthorityState,any>,payload:any){
-            context.state.loading=true;
-            let reponse=await Ajax.get('/api/services/app/question/GetAllQuestion',{params:payload.data});
+            let reponse=await Ajax.get('/api/services/app/Authority/GetTreePage',{params:payload.data});
             context.state.loading=false;
             let page=reponse.data.result as PageResult<AuthorityTree>;
             context.state.totalCount=page.totalCount;
             context.state.list=page.items;
+            console.log(page)
         },
+       
         async create(context:ActionContext<AuthorityState,any>,payload:any){
-            await Ajax.post('/api/services/app/Role/Create',payload.data);
+            await Ajax.post('/api/services/app/Authority/Create',payload.data);
         },
         async update(context:ActionContext<AuthorityState,any>,payload:any){
             await Ajax.put('/api/services/app/Role/Update',payload.data);
