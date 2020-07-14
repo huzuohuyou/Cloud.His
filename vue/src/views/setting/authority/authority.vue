@@ -132,7 +132,7 @@
       }
 
       await this.$store.dispatch({
-        type: "authority/getAll",
+        type: "authority/GetTreePage",
         data: this.pagerequest
       });
       

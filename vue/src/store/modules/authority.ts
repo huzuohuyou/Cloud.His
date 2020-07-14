@@ -22,7 +22,7 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
         permissions: new Array<string>(),
     }
     actions = {
-        async getAll(context: ActionContext<AuthorityState, any>, payload: any) {
+        async GetTreePage(context: ActionContext<AuthorityState, any>, payload: any) {
             context.state.loading = true;
             let reponse = await Ajax.get('/api/services/app/Authority/GetTreePage', { params: payload.data });
             context.state.loading = false;
