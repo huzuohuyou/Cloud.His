@@ -50,17 +50,14 @@ namespace Capinfo.His
         {
             list.ForEach(node =>
             {
-                if (node.children.Count == 0)
-                {
-                    AllNodes.Add(node);
-                }
-                else
+                if (node.children.Count > 0)
                 {
                     node.children.ForEach(r =>
                     {
                         GetAllNodes(node.children);
                     });
                 }
+                AllNodes.Add(node);
             });
         }
 
@@ -95,26 +92,30 @@ namespace Capinfo.His
             });
             return globalResult;
         }
+
+        public async Task<List<AuthorityTreeDto>> GetMainMenu(string user)
+        { return await GetTree(); }
+
         public async Task<PageDto<AuthorityTreeDto>> GetTreePage(string Keyword, int SkipCount, int MaxResultCount)
         {
             globalResult = await GetTree();
             var list = new List<AuthorityDto>();
-            GetAllNodes(globalResult)
+            GetAllNodes(globalResult);
 
-            var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
-            moudlegroups.ForEach(r =>
-            {
-                var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
-                globalResult.Add(CreateTree(authoritys, tree));
-            });
-            List<AuthorityTreeDto> temp = null;
-            //return globalResult.Skip(SkipCount).Take(MaxResultCount).ToList();
-            if ((Keyword??"").Contains("#"))
-            {
-                var father = int.Parse(Keyword.Replace("#", ""));
-                temp = globalResult.Where(r => r.Father == father).ToList();
-            }
-            temp = globalResult.Where(r => r.title.Contains(Keyword ?? "")).ToList();
+            //var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
+            //moudlegroups.ForEach(r =>
+            //{
+            //    var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
+            //    globalResult.Add(CreateTree(authoritys, tree));
+            //});
+            //List<AuthorityTreeDto> temp = null;
+            ////return globalResult.Skip(SkipCount).Take(MaxResultCount).ToList();
+            //if ((Keyword??"").Contains("#"))
+            //{
+            //    var father = int.Parse(Keyword.Replace("#", ""));
+            //    temp = globalResult.Where(r => r.Father == father).ToList();
+            //}
+            var temp = AllNodes.Where(r => r.title==(Keyword ?? "")).ToList();
             return new PageDto<AuthorityTreeDto>
             {
                 totalCount = temp.Count,

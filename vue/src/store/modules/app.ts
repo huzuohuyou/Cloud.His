@@ -5,6 +5,8 @@ import { Store, Module, ActionContext } from 'vuex'
 import Vuex from 'vuex';
 import ajax from '../../lib/ajax'
 import appconst from '../../lib/appconst'
+import AuthorityTree from '../entities/authority-tree'
+
 Vue.use(Vuex);
 interface AppState {
     cachePage: Array<any>;
@@ -16,8 +18,9 @@ interface AppState {
     pageOpenedList: Array<any>;
     currentPageName: string;
     currentPath: Array<any>;
-    currentContiner?:string;
+    currentContiner?: string;
     menuList: Array<any>;
+    menuGroup: Array<any>;
     routers: Array<any>;
     tagsList: Array<any>;
     messageCount: number;
@@ -47,6 +50,7 @@ class AppModule implements Module<AppState, any>{
             }
         ],
         menuList: [],
+        menuGroup: [],
         routers: [
             otherRouters,
             ...appRouters
@@ -64,6 +68,7 @@ class AppModule implements Module<AppState, any>{
         setTagsList(state: AppState, list: Array<any>) {
             state.tagsList.push(...list);
         },
+        
         updateMenulist(state: AppState) {
             let menuList: Array<Router> = [];
             appRouters.forEach((item, index) => {
@@ -116,7 +121,7 @@ class AppModule implements Module<AppState, any>{
             if (state.openedSubmenuArr.indexOf(name) > -1) {
                 hasThisName = true;
             }
-            if ( !isEmpty) {
+            if (!isEmpty) {
                 state.openedSubmenuArr.push(name);
             }
         },
@@ -201,7 +206,7 @@ class AppModule implements Module<AppState, any>{
             var tokenExpireDate = payload.data.rememberMe ? (new Date(new Date().getTime() + 1000 * rep.data.result.expireInSeconds)) : undefined;
             Util.abp.auth.setToken(rep.data.result.accessToken, tokenExpireDate);
             Util.abp.utils.setCookieValue(appconst.authorization.encrptedAuthTokenName, rep.data.result.encryptedAccessToken, tokenExpireDate, Util.abp.appPath)
-        },
+        }
     }
 }
 const appModule = new AppModule();

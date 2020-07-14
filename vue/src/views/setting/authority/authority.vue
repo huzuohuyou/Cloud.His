@@ -117,7 +117,25 @@
       this.$store.state.authority.nodeId = data[0].id;
       this.nodeId = data[0].id;
       this.pagerequest.keyword=data[0].title;
-      this.getpage();
+      this.getnode();
+    }
+    async getnode(){
+      this.pagerequest.maxResultCount = this.pageSize;
+      this.pagerequest.skipCount = (this.currentPage - 1) * this.pageSize;
+      //filters
+
+      if (this.creationTime.length > 0) {
+        this.pagerequest.from = this.creationTime[0];
+      }
+      if (this.creationTime.length > 1) {
+        this.pagerequest.to = this.creationTime[1];
+      }
+
+      await this.$store.dispatch({
+        type: "authority/getAll",
+        data: this.pagerequest
+      });
+      
     }
     async getpage() {
       this.$store.state.authority.nodeId='';

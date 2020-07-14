@@ -2,12 +2,12 @@
     <div>
         <metroMenuItem 
         v-for="item in menuList" 
-        :key="item.message" 
+        :key="item.id" 
         :menuIcon="item.menuIcon" 
-        :title="item.meta.title"
+        :title="item.title"
         :page="item.componentName" 
         :componentName="item.componentName"
-        :compmentUrl="item.compmentUrl">
+        :compmentUrl="item.component">
         </metroMenuItem>
 
     </div>
