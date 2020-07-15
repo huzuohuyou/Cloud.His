@@ -93,6 +93,7 @@
     methods: {
       click() {
         if (this.page != undefined) {
+          // alert(this.$store.state.app.currentContiner)
           this.$store.state.app.currentContiner=this.componentName;
           this.currentComponent =this.componentName;// this.page;
         } else {

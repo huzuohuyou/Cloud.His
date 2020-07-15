@@ -175,7 +175,7 @@
       return this.$store.state.app.openedSubmenuArr
     }
     get menuGroup() {
-      console.log(1)
+      console.log(this.$store.state.authoritymain.list)
       return this.$store.state.authoritymain.list;
     }
 
