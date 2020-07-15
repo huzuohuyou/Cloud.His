@@ -151,11 +151,11 @@
       }
 
       await this.$store.dispatch({
-        type: "authority/getAll",
+        type: "authority/GetTreePage",
         data: this.pagerequest
       });
       this.$store.dispatch({
-        type: "authoritytree/getAll",
+        type: "authoritytree/GetTree",
         data: this.pagerequest
       });
     }

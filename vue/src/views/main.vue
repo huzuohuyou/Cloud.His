@@ -176,7 +176,7 @@
     }
     get menuGroup() {
       console.log(1)
-      return this.$store.state.authority.list;
+      return this.$store.state.authoritymain.list;
     }
 
     get menuList() {
@@ -206,7 +206,7 @@
     async init2() {
       console.log(2)
       await this.$store.dispatch({
-        type: "authority/getMainMenu",
+        type: "authoritymain/getMainMenu",
         data: ''
       });
 

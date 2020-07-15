@@ -46,19 +46,21 @@ namespace Capinfo.His
             return tree;
         }
         List<AuthorityTreeDto> AllNodes = new List<AuthorityTreeDto>();
-        private void GetAllNodes(List<AuthorityTreeDto> list)
+        private AuthorityTreeDto GetAllNodes(AuthorityTreeDto node)
         {
-            list.ForEach(node =>
+            if (node.children.Count == 0)
             {
-                if (node.children.Count > 0)
-                {
-                    node.children.ForEach(r =>
-                    {
-                        GetAllNodes(node.children);
-                    });
-                }
+                AllNodes.Add( node);
+            }
+            else
+            {
                 AllNodes.Add(node);
-            });
+                node.children.ForEach(r =>
+                {
+                    GetAllNodes(r);
+                });
+            }
+            return node;
         }
 
         protected  Authority MapToEntity(AuthorityTreeDto dto)
@@ -100,7 +102,9 @@ namespace Capinfo.His
         {
             globalResult = await GetTree();
             var list = new List<AuthorityDto>();
-            GetAllNodes(globalResult);
+            globalResult.ForEach(r=> {
+                GetAllNodes(r);
+            });
 
             //var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
             //moudlegroups.ForEach(r =>
@@ -115,7 +119,7 @@ namespace Capinfo.His
             //    var father = int.Parse(Keyword.Replace("#", ""));
             //    temp = globalResult.Where(r => r.Father == father).ToList();
             //}
-            var temp = AllNodes.Where(r => r.title==(Keyword ?? "")).ToList();
+            var temp = AllNodes.Where(r => r.title.Contains(Keyword ?? "")).ToList();
             return new PageDto<AuthorityTreeDto>
             {
                 totalCount = temp.Count,

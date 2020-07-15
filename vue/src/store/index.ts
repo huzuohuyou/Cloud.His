@@ -11,6 +11,7 @@ import question from './modules/question'
 import moudlegroup from './modules/moudlegroup'
 import authority from './modules/authority'
 import authoritytree from './modules/authority-tree'
+import authoritymain from './modules/authority-main'
 const store = new Vuex.Store({
     state: {
         //
@@ -31,7 +32,8 @@ const store = new Vuex.Store({
         question,
         moudlegroup,
         authority,
-        authoritytree
+        authoritytree,
+        authoritymain
     }
 });
 
