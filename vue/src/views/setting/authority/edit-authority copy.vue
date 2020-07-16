@@ -1,33 +1,27 @@
 <template>
     <div>
         <Modal
-         :title="L('EditUser')"
+         :title="L('EditRole')"
          :value="value"
          @on-ok="save"
          @on-visible-change="visibleChange"
         >
-            <Form ref="userForm"  label-position="top" :rules="userRule" :model="user">
+            <Form ref="roleForm"  label-position="top" :rules="roleRule" :model="role">
                 <Tabs value="detail">
-                    <TabPane :label="L('UserDetails')" name="detail">
-                        <FormItem :label="L('UserName')" prop="userName">
-                            <Input v-model="user.userName" :maxlength="32" :minlength="2"></Input>
+                    <TabPane :label="L('RoleDetails')" name="detail">
+                        <FormItem :label="L('RoleName')" prop="name">
+                            <Input v-model="role.name" :maxlength="32" :minlength="2"></Input>
                         </FormItem>
-                        <FormItem :label="L('Name')" prop="name">
-                            <Input v-model="user.name" :maxlength="32"></Input>
+                        <FormItem :label="L('DisplayName')" prop="displayName">
+                            <Input v-model="role.displayName" :maxlength="32" :minlength="2"></Input>
                         </FormItem>
-                        <FormItem :label="L('Surname')" prop="surname">
-                            <Input v-model="user.surname" :maxlength="1024"></Input>
+                        <FormItem :label="L('Description')" prop="description">
+                            <Input v-model="role.description" :maxlength="1024"></Input>
                         </FormItem>
-                        <FormItem :label="L('EmailAddress')" prop="emailAddress">
-                            <Input v-model="user.emailAddress" type="email" :maxlength="32"></Input>
-                        </FormItem>
-                        <FormItem>
-                            <Checkbox v-model="user.isActive">{{L('IsActive')}}</Checkbox>
-                        </FormItem>
-                    </TabPane>
-                    <TabPane :label="L('UserRoles')" name="roles">
-                        <CheckboxGroup v-model="user.roleNames">
-                            <Checkbox :label="role.normalizedName" v-for="role in roles" :key="role.id"><span>{{role.name}}</span></Checkbox>
+                      </TabPane>
+                    <TabPane :label="L('RolePermission')" name="permission">
+                        <CheckboxGroup v-model="role.grantedPermissions">
+                            <Checkbox :label="permission.name" v-for="permission in permissions" :key="permission.name"><span>{{permission.displayName}}</span></Checkbox>
                         </CheckboxGroup>
                     </TabPane>
                 </Tabs>
@@ -43,46 +37,41 @@
     import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
     import Util from '../../../lib/util'
     import AbpBase from '../../../lib/abpbase'
-    import User from '../../../store/entities/user'
+    import Role from '@/store/entities/role';
     @Component
-    export default class EditUser extends AbpBase{
+    export default class EditRole extends AbpBase{
         @Prop({type:Boolean,default:false}) value:boolean;
-        user:User=new User();
-        created(){
-            
-        }
-        get roles(){
-            return this.$store.state.user.roles;
+        role:Role=new Role();
+        get permissions(){
+            return this.$store.state.role.permissions
         }
         save(){
-            (this.$refs.userForm as any).validate(async (valid:boolean)=>{
+            (this.$refs.roleForm as any).validate(async (valid:boolean)=>{
                 if(valid){
                     await this.$store.dispatch({
-                        type:'user/update',
-                        data:this.user
+                        type:'role/update',
+                        data:this.role
                     });
-                    (this.$refs.userForm as any).resetFields();
+                    (this.$refs.roleForm as any).resetFields();
                     this.$emit('save-success');
                     this.$emit('input',false);
                 }
             })
         }
         cancel(){
-            (this.$refs.userForm as any).resetFields();
+            (this.$refs.roleForm as any).resetFields();
             this.$emit('input',false);
         }
         visibleChange(value:boolean){
             if(!value){
                 this.$emit('input',value);
             }else{
-                this.user=Util.extend(true,{},this.$store.state.user.editUser);
+                this.role=Util.extend(true,{},this.$store.state.role.editRole);
             }
         }
-        userRule={
-            userName:[{required: true,message:this.L('FieldIsRequired',undefined,this.L('UserName')),trigger: 'blur'}],
-            name:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Name')),trigger: 'blur'}],
-            surname:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Surname')),trigger: 'blur'}],
-            emailAddress:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('Email')),trigger: 'blur'},{type: 'email'}],
+        roleRule={
+            name:[{required: true,message:this.L('FieldIsRequired',undefined,this.L('RoleName')),trigger: 'blur'}],
+            displayName:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('DisplayName')),trigger: 'blur'}]
         }
     }
 </script>

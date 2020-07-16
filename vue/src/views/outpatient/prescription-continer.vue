@@ -32,7 +32,7 @@
         }
     })
     export default class Prescription extends AbpBase {
-        defaultView :string='/outpatient-department/outpatient-prescription';
+        defaultView :string='/outpatient/prescription';
         shrink:boolean=false;
         theme1: String = "primary"
         modal1: Boolean = false;

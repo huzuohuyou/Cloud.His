@@ -2,7 +2,7 @@
   <Menu mode="horizontal" :theme="theme1" active-name="1"  @on-select="turnUrl">
     <div v-for="(item, i) in menuList">
      
-      <MenuItem v-if="item.children.length ==0" name="item.name">
+      <MenuItem v-if="item.children.length ==0" :name="item.path">
       <Icon type="item.menuIcon" />
       {{item.title}}
       </MenuItem>

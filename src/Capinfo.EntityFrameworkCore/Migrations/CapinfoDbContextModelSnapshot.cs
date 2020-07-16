@@ -1118,13 +1118,13 @@ namespace Capinfo.Migrations
                     b.Property<string>("ComponentName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreationTime")
+                    b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorUserId")
+                    b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("DeleterUserId")
+                    b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DeletionTime")
@@ -1136,7 +1136,7 @@ namespace Capinfo.Migrations
                     b.Property<int>("Father")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -1165,20 +1165,20 @@ namespace Capinfo.Migrations
                     b.ToTable("AbpAuthoritys");
                 });
 
-            modelBuilder.Entity("Capinfo.Authorization.Authoritys.MouleGroup", b =>
+            modelBuilder.Entity("Capinfo.Authorization.Authoritys.MoudleGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationTime")
+                    b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CreatorUserId")
+                    b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("DeleterUserId")
+                    b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("DeletionTime")
@@ -1190,7 +1190,7 @@ namespace Capinfo.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")

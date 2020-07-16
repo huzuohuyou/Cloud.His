@@ -61,11 +61,11 @@
 
             </metroGroup>
 
-            <div id="section1" class="metro-section tile-span-4">
+            <!-- <div id="section1" class="metro-section tile-span-4">
               <h2>ABP VUE2</h2>
               <metroMenu :menu-list="menuList">
               </metroMenu>
-            </div>
+            </div> -->
 
           </div>
         </div>

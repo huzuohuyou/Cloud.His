@@ -7,7 +7,7 @@ import PageResult from '@/store/entities/page-result';
 import AuthorityTree from '../entities/authority-tree'
 
 interface AuthorityState extends ListState<AuthorityTree> {
-    editRole: AuthorityTree;
+    editAuthority: AuthorityTree;
     permissions: Array<string>;
     nodeId: string;
 }
@@ -18,7 +18,7 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
         pageSize: 10,
         list: new Array<AuthorityTree>(),
         loading: false,
-        editRole: new AuthorityTree(),
+        editAuthority: new AuthorityTree(),
         permissions: new Array<string>(),
     }
     actions = {
@@ -35,10 +35,11 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
             await Ajax.post('/api/services/app/Authority/Create', payload.data);
         },
         async update(context: ActionContext<AuthorityState, any>, payload: any) {
-            await Ajax.put('/api/services/app/Role/Update', payload.data);
+            await Ajax.put('/api/services/app/Authority/Update', payload.data);
         },
         async delete(context: ActionContext<AuthorityState, any>, payload: any) {
-            await Ajax.delete('/api/services/app/Role/Delete?Id=' + payload.data.id);
+            console.log(payload.data)
+            await Ajax.delete('/api/services/app/Authority/Delete?Id=' + payload.data.id+'&father='+payload.data.father);
         },
         async getMainMenu(context: ActionContext<AuthorityState, any>, payload: any) {
             console.log(3)
@@ -66,8 +67,8 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
         setPageSize(state: AuthorityState, pagesize: number) {
             state.pageSize = pagesize;
         },
-        edit(state: AuthorityState, role: AuthorityTree) {
-            state.editRole = role;
+        edit(state: AuthorityState, authority: AuthorityTree) {
+            state.editAuthority = authority;
         }
     }
 }

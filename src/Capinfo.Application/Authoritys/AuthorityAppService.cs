@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Application.Services.Dto;
+using Abp.Domain.Repositories;
 using AutoMapper;
 using Capinfo.Authorization.Authoritys;
 using Capinfo.Authorization.Users;
@@ -139,6 +140,24 @@ namespace Capinfo.His
 
             var ok = _authorityRepository.Insert(po) != null;
             return ok;
+        }
+
+        [HttpDelete]
+        public async Task DeleteAsync(EntityDto<int> input,int father)
+        {
+            if (father==0)
+            {
+                var po1 = await _moudleGroupRepository.GetAsync(input.Id);
+                await _moudleGroupRepository.DeleteAsync(po1);
+            }
+            else
+            {
+                var po = await _authorityRepository.GetAsync(input.Id);
+                await _authorityRepository.DeleteAsync(po);
+            }
+            
+            
+            
         }
 
     }

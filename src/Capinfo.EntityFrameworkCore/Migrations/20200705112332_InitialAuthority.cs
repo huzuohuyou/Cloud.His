@@ -7,33 +7,7 @@ namespace Capinfo.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AbpAuthoritys",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MoudleName = table.Column<string>(nullable: true),
-                    Father = table.Column<int>(nullable: false),
-                    Path = table.Column<string>(nullable: true),
-                    MenuIcon = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    ComponentName = table.Column<string>(nullable: true),
-                    Component = table.Column<string>(nullable: true),
-                    Permission = table.Column<string>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    CreatorUserId = table.Column<long>(nullable: false),
-                    DeleterUserId = table.Column<long>(nullable: false),
-                    DeletionTime = table.Column<DateTime>(nullable: true),
-                    DisplayName = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    LastModificationTime = table.Column<DateTime>(nullable: true),
-                    LastModifierUserId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AbpAuthoritys", x => x.Id);
-                });
+            
 
             migrationBuilder.CreateTable(
                 name: "AbpMouleGroups",
@@ -41,13 +15,13 @@ namespace Capinfo.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupName = table.Column<string>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    CreatorUserId = table.Column<long>(nullable: false),
-                    DeleterUserId = table.Column<long>(nullable: false),
+                    GroupName = table.Column<string>(nullable: false),
+                    CreationTime = table.Column<DateTime>(nullable: true),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    DeleterUserId = table.Column<long>(nullable: true),
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     DisplayName = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     LastModifierUserId = table.Column<long>(nullable: true)
                 },

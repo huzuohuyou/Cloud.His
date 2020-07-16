@@ -20,10 +20,8 @@
                 </Col>
               </Row>
               <Row>
-                <Button @click="createMoudleGroup" icon="android-add" type="primary">{{L('添加模块组')}}</Button>
-                <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加模块')}}</Button>
-                <!-- <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加菜单')}}</Button>
-                <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('添加子菜单')}}</Button> -->
+                <Button @click="createMoudleGroup" icon="android-add" type="primary">{{L('添加根')}}</Button>
+                <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加节点')}}</Button>
                 <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
               </Row>
             </Form>
@@ -37,7 +35,7 @@
     </div>
     <CreateMouleGroup v-model="createMoudleGroupModalShow" @save-success="getpage"></CreateMouleGroup>
     <create-authority v-model="createModalShow" @save-success="getpage"></create-authority>
-    <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
+    <edit-authority v-model="editModalShow" @save-success="getpage"></edit-authority>
   </Card>
 </template>
 <script lang="ts">
@@ -47,7 +45,7 @@
   import PageRequest from "@/store/entities/page-request";
   import CreateAuthority from "./create-authority.vue";
   import CreateMouleGroup from "./create-moulegroup.vue";
-  import EditUser from "./edit-authority.vue";
+  import EditAuthority from "./edit-authority.vue";
   class PageUserRequest extends PageRequest {
     keyword: string;
     isActive: boolean = null; //nullable
@@ -56,7 +54,7 @@
   }
 
   @Component({
-    components: { CreateAuthority, EditUser, CreateMouleGroup }
+    components: { CreateAuthority, EditAuthority, CreateMouleGroup }
   })
   export default class Users extends AbpBase {
     nodeId: string = ''
@@ -230,7 +228,7 @@
                 },
                 on: {
                   click: () => {
-                    this.$store.commit("user/edit", params.row);
+                    this.$store.commit("authority/edit", params.row);
                     this.edit();
                   }
                 }
@@ -248,12 +246,12 @@
                   click: async () => {
                     this.$Modal.confirm({
                       title: this.L("Tips"),
-                      content: this.L("DeleteUserConfirm"),
+                      content: this.L("确定删除此条权限吗？"),
                       okText: this.L("Yes"),
                       cancelText: this.L("No"),
                       onOk: async () => {
                         await this.$store.dispatch({
-                          type: "user/delete",
+                          type: "authority/delete",
                           data: params.row
                         });
                         await this.getpage();
