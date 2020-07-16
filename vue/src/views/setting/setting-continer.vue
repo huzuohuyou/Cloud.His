@@ -19,31 +19,16 @@
         defaultView: string = '/setting/user';
 
         get menuList() {
-            let settingList=this.$store.state.app.menuList.filter(item => item.sub===true && item.componentName===this.$store.state.app.currentContiner);
-            // return settingList;
 
-            let settingList2=[]
-            for ( var  i = 0; i < this.$store.state.authoritymain.list.length; i++) {
-                settingList2= this.$store.state.authoritymain.list[i].children
-                .filter(item => item.componentName === this.$store.state.app.currentContiner);
-                if (settingList2.length >0) { break; }
+            let settingList = []
+            for (var i = 0; i < this.$store.state.authoritymain.list.length; i++) {
+                for (var j = 0; j < this.$store.state.authoritymain.list[i].children.length; j++)
+                    if (this.$store.state.authoritymain.list[i].children[j].componentName === this.$store.state.app.currentContiner) {
+                        settingList = this.$store.state.authoritymain.list[i].children[j].children;
+                        break;
+                    }
             }
-            
-           
-            var tmp=[ {
-                path:settingList2[0].path,
-                name:settingList2[0].name,
-                meta:settingList2[0].meta,
-                menuIcon:settingList2[0].menuIcon,
-                componentName:settingList2[0].componentName,
-                children:settingList2[0].children,
-                component: () => import(settingList2[0].component),
-
-            }];
-            console.log("===================")
-            console.log(tmp)
-            console.log(settingList)
-            return  tmp;
+            return settingList;
         }
 
 

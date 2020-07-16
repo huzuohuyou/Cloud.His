@@ -77,10 +77,7 @@
     components: {
       Viewer,
       notImplemented,
-      // formalComponent(resolve) {
-        
-      //   require(['@/components/outpatient/prescription.vue'], resolve);
-      // },
+      
     },
     data() {
       return {

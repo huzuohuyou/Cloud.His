@@ -12,7 +12,7 @@ namespace Capinfo.His
     public class AuthorityTreeDto : AuditedEntityDto<int>
     {
         public string title { get; set; }
-        public string name { get { return title; } }
+        public string name { get; set; }
         public Mate mate
         {
             get
@@ -24,7 +24,7 @@ namespace Capinfo.His
         public bool selected { get; set; }
         public string MoudleName { get; set; }
         public int Father { get; set; }
-        public string Path { get { return title; } }
+        public string Path { get; set; }
         public string MenuIcon { get; set; }
         //public string Title { get; set; }
         public string ComponentName { get; set; }
