@@ -1,16 +1,17 @@
 <template>
   <Menu mode="horizontal" :theme="theme1" active-name="1"  @on-select="turnUrl">
     <div v-for="(item, i) in menuList">
+     
       <MenuItem v-if="item.children.length ==0" name="item.name">
-      <Icon type="item.icon" />
+      <Icon type="item.menuIcon" />
       {{item.title}}
       </MenuItem>
       <Submenu v-else name="item.name">
         <template slot="title">
-          <Icon type="item.menuIcon" />
+          <Icon :type="item.menuIcon" />
           {{item.title}}
         </template>
-        <MenuItem v-for="(child, j) in item.children"  :name="child.path">{{child.title}}</MenuItem>
+        <MenuItem v-for="(child, j) in item.children" :name="child.path">{{child.title}}</MenuItem>
       </Submenu>
     </div>
 
@@ -31,8 +32,8 @@
     @Prop() defaultView: string;
 
     theme1: String = "primary"
-    turnUrl(path:string) {
-      this.$router.push({path:path})
+    turnUrl(path: string) {
+      this.$router.push({ path: path })
 
     }
     mounted() {
