@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import {routers} from './router';
+import { routers } from './router';
 import iView from 'iview';
 import Util from '../lib/util';
 import Cookies from 'js-cookie'
-import { appRouters,otherRouters} from './router'
-
+import { appRouters, otherRouters } from './router'
+const _import = file => require('@/views/' + file ).default// require('./router/_import_production' ) //_import_production 
 Vue.use(VueRouter);
 
 const RouterConfig = {
@@ -13,7 +13,9 @@ const RouterConfig = {
     routes: routers
 };
 
-export const router = new VueRouter(RouterConfig);
+
+ 
+export const router =  new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
@@ -23,10 +25,10 @@ router.beforeEach((to, from, next) => {
             replace: true,
             name: 'locking'
         });
-    }else if (Cookies.get('locking') === '0' && to.name === 'locking') {
+    } else if (Cookies.get('locking') === '0' && to.name === 'locking') {
         next(false);
     } else {
-        if (!Util.abp.session.userId&& to.name !== 'login') {
+        if (!Util.abp.session.userId && to.name !== 'login') {
             next({
                 name: 'login'
             });
@@ -53,7 +55,22 @@ router.beforeEach((to, from, next) => {
     }
 });
 router.afterEach((to) => {
-    Util.openNewPage(router.app, to.name, to.params, to.query);
+    // Util.openNewPage(router.app, to.name, to.params, to.query);
     iView.LoadingBar.finish();
     window.scrollTo(0, 0);
 });
+
+function filterAsyncRouter(asyncRouterMap: Array<Router>) { //遍历后台传来的路由字符串，转换为组件对象
+    const accessedRouters = asyncRouterMap.filter(route => {
+        if (route.component) {
+
+            route.component = _import(route.component)
+        }
+        if (route.children && route.children.length) {
+            route.children = filterAsyncRouter(route.children)
+        }
+        return true
+    })
+
+    return accessedRouters
+}

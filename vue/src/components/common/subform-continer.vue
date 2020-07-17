@@ -71,6 +71,7 @@
       return this.$store.state.app.messageCount;
     }
     init() {
+      alert(this.$route.name as string)
       let pathArr = util.setCurrentPath(this, this.$route.name as string);
       this.$store.commit('app/updateMenulist');
       if (pathArr.length >= 2) {

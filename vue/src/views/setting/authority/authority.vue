@@ -23,6 +23,7 @@
                 <Button @click="createMoudleGroup" icon="android-add" type="primary">{{L('添加根')}}</Button>
                 <Button icon="ios-search" type="primary" @click="create" class="toolbar-btn">{{L('添加节点')}}</Button>
                 <Button icon="ios-search" type="primary" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
+                <Button icon="ios-search" type="primary" @click="close" class="toolbar-btn">{{L('关闭')}}</Button>
               </Row>
             </Form>
           </div>
@@ -134,6 +135,9 @@
         data: this.pagerequest
       });
       
+    }
+    async close(){
+      this.$Modal.remove()
     }
     async getpage() {
       this.$store.state.authority.nodeId='';
