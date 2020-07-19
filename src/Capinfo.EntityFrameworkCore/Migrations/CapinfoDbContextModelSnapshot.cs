@@ -1115,7 +1115,7 @@ namespace Capinfo.Migrations
                     b.Property<string>("Component")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ComponentName")
+                    b.Property<string>("Continer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreationTime")
@@ -1133,8 +1133,11 @@ namespace Capinfo.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Father")
-                        .HasColumnType("int");
+                    b.Property<long?>("Father")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
@@ -1145,17 +1148,17 @@ namespace Capinfo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("MenuIcon")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MenuType")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MoudleName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Path")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Permission")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Root")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -1163,45 +1166,6 @@ namespace Capinfo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AbpAuthoritys");
-                });
-
-            modelBuilder.Entity("Capinfo.Authorization.Authoritys.MoudleGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AbpMouleGroups");
                 });
 
             modelBuilder.Entity("Capinfo.Authorization.Roles.Role", b =>

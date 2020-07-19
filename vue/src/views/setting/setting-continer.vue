@@ -1,44 +1,78 @@
 <template>
-    <div class="continer">
-        <SubFormContiner :menuList="menuList" :defaultView="defaultView"></SubFormContiner>
-    </div>
+  <div class="continer">
+    <SubFormContiner :menuList="menuList" :defaultView="defaultView"></SubFormContiner>
+  </div>
 </template>
 <script lang="ts">
-    import { Component, Vue, Inject, Prop, Watch } from 'vue-property-decorator';
-    import util from '@/lib/util';
-    import 'viewerjs/dist/viewer.css'
-    import SubFormContiner from "@/components/common/subform-continer.vue";
-    import AbpBase from '@/lib/abpbase'
+import { Component, Vue, Inject, Prop, Watch } from "vue-property-decorator";
+import util from "@/lib/util";
+import "viewerjs/dist/viewer.css";
+import SubFormContiner from "@/components/common/subform-continer.vue";
+import AbpBase from "@/lib/abpbase";
+import axios from "axios";
+const _import = file => require('@/views/' + file).default
+@Component({
+  components: {
+    SubFormContiner
+  }
+})
+export default class Setting extends AbpBase {
+  defaultView: string = "/setting/user";
 
-    @Component({
-        components: {
-            SubFormContiner
-        }
-    })
-    export default class Setting extends AbpBase {
-        defaultView: string = '/setting/user';
-
-        get menuList() {
-
-            let settingList = []
-            for (var i = 0; i < this.$store.state.authoritymain.list.length; i++) {
-                for (var j = 0; j < this.$store.state.authoritymain.list[i].children.length; j++)
-                    if (this.$store.state.authoritymain.list[i].children[j].componentName === this.$store.state.app.currentContiner) {
-                        settingList = this.$store.state.authoritymain.list[i].children[j].children;
-                        break;
+  get menuList() {
+      let menuList: Array<Router> = []
+    axios
+      .get("http://capinfo.devops.com:21021/api/services/app/Authority/GetContinerMenu?Continer="+this.$store.state.app.currentContiner)
+      .then(function(response) {
+          console.log('获取子菜单')
+          console.log(response.data.result)
+         for (let value2 of response.data.result) {
+             let item: Router = {
+                    'path': value2.path,
+                    'name': value2.componentName,
+                    'componentName': value2.componentName,
+                    'menuIcon': value2.menuIcon,
+                    'permission': '',
+                    'sub': true,
+                    'meta': { 'title': value2.title, 'keepAlive': false },
+                    'icon': '&#xe68a;',
+                    'component': _import(value2.component),
+                }
+                if (value2.children.length > 0) {
+                    item.children = new Array<Router>()
+                    for (let value3 of value2.children) {
+                        let item1: Router = {
+                            'path': value3.path,
+                            'name': value3.componentName,
+                            'componentName': value3.componentName,
+                            'menuIcon': value3.menuIcon,
+                            'permission': '',
+                            'sub': true,
+                            'meta': { 'title': value3.title, 'keepAlive': false },
+                            'icon': '&#xe68a;',
+                            'component': _import(value3.component),
+                        }
+                        item.children.push(item1)
                     }
-            }
-            return settingList;
-        }
-
-
-    }
-
+                }
+                console.log('item')
+                console.log(item)
+                menuList.push(item)
+         }
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+      console.log( '1menuList') 
+      console.log( menuList) 
+     return menuList;
+  }
+}
 </script>
 <style>
-    .continer {
-        height: 98%;
-        padding: 0px;
-        background-color: #2d8cf000;
-    }
+.continer {
+  height: 98%;
+  padding: 0px;
+  background-color: #2d8cf000;
+}
 </style>

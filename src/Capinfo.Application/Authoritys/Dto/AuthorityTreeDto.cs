@@ -25,7 +25,7 @@ namespace Capinfo.His
         public string MoudleName { get; set; }
         public int Father { get; set; }
         public string Path { get; set; }
-        public string MenuIcon { get; set; }
+        public string Icon { get; set; }
         //public string Title { get; set; }
         public string ComponentName { get; set; }
         public string Component { get; set; }

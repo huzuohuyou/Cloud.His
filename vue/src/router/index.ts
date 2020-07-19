@@ -16,6 +16,27 @@ const RouterConfig = {
 
  
 export const router =  new VueRouter(RouterConfig);
+router.addRoutes(routers.concat(
+    [
+        {
+            'path': 'setting',
+            'name': 'continer',
+            'componentName': 'SettingContiner1',
+            'menuIcon': 'icon-list-2',
+            'permission': '',
+            'sub': true,
+            'meta': { 'title': '权限管理', 'keepAlive': false },
+            'icon': '&#xe68a;',
+            'component': _import('main.vue'),
+            'children': [
+                { 'path': 'user', 'permission': 'Pages.Users', 'meta': { 'title': 'Users', 'keepAlive': false }, 'name': 'continer', 'component': _import('setting/user/user.vue' )},
+                { 'path': 'role', 'permission': 'Pages.Roles', 'meta': { 'title': 'Roles', 'keepAlive': false }, 'name': 'continer', 'component': _import('setting/role/role.vue' )},
+                { 'path': 'authority', 'permission': 'Pages.Roles', 'meta': { 'title': '权限', 'keepAlive': false }, 'name': 'continer', 'component':_import('setting/tenant/tenant.vue')  },
+                { 'path': 'tenant', 'permission': 'Pages.Tenants', 'meta': { 'title': 'Tenants', 'keepAlive': false }, 'name': 'continer', 'component': _import('setting/tenant/tenant.vue') }
+            ]
+        }
+    ]
+))
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
@@ -55,7 +76,7 @@ router.beforeEach((to, from, next) => {
     }
 });
 router.afterEach((to) => {
-    // Util.openNewPage(router.app, to.name, to.params, to.query);
+    Util.openNewPage(router.app, to.name, to.params, to.query);
     iView.LoadingBar.finish();
     window.scrollTo(0, 0);
 });

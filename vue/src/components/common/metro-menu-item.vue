@@ -53,6 +53,7 @@
   import 'viewerjs/dist/viewer.css'
   import Viewer from "v-viewer/src/component.vue"
   import notImplemented from "@/components/common/not-implemented.vue";
+  import SettingContiner from "@/views/setting/setting-continer.vue";
   export default {
     tempComponentUrl1:'@/components/outpatient/prescription.vue',
     props: {
@@ -90,10 +91,8 @@
     methods: {
       click() {
         if (this.page != undefined) {
-         
-          // alert(this.$store.state.app.currentContiner)
-          this.$store.state.app.currentContiner=this.componentName;
-          this.currentComponent =this.componentName;// this.page;
+          this.$store.state.app.currentContiner=this.page;
+          this.currentComponent =this.page;
         } else {
           this.currentComponent = 'notImplemented';
         }

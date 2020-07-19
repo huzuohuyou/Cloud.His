@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="item in menugroup" id="section1" class="metro-section tile-span-4">
+        <div v-for="item in mainMenu" :key='item.name' id="section1" class="metro-section tile-span-4">
             <h2>{{item.title}}</h2>
             <metroMenu :menuList="item.children">
             </metroMenu>
@@ -58,7 +58,7 @@
     export default class ShrinkableMenu extends Vue {
         name: string = 'shrinkableMenu';
         @Prop() groupName: String;
-        @Prop({ required: true, type: Array }) menugroup: Array<any>;
+        @Prop({ required: true, type: Array }) mainMenu: Array<any>;
         @Prop({ type: Array }) openNames: Array<string>;
         @Prop({ type: Function }) beforePush: Function;
         @Prop({

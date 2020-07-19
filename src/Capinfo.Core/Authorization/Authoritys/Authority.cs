@@ -1,20 +1,20 @@
 ﻿using Abp.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Capinfo.Authorization.Authoritys
 {
     public class Authority : Entity
     {
-        public string MoudleName { get; set; }
-        public int Father { get; set; }
-        public string Path { get; set; }
-        public string MenuIcon { get; set; }
+        public string Name { get; set; }
         public string Title { get; set; }
-        public string ComponentName { get; set; }
+        public string Path { get; set; }
+        public long? Father { get; set; }
+        public string Icon { get; set; }
+        public EnumMenuTypes MenuType { get; set; }
+        public bool Root { get; set; }
         public string Component { get; set; }
-        public string Permission { get; set; }
+        
+        public string Continer { get; set; }
 
         public DateTime? CreationTime { get; set; }
 

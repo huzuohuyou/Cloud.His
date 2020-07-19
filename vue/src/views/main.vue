@@ -57,7 +57,7 @@
         <div class="metro span12" style="overflow-y: scroll;
         height: 678px;">
           <div class="metro-sections">
-            <metroGroup :menugroup="menuGroup">
+            <metroGroup :mainMenu="mainMenu">
 
             </metroGroup>
 
@@ -174,8 +174,7 @@
     get openedSubmenuArr() {
       return this.$store.state.app.openedSubmenuArr
     }
-    get menuGroup() {
-      console.log(this.$store.state.authoritymain.list)
+    get mainMenu() {
       return this.$store.state.authoritymain.list;
     }
 

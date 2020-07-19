@@ -5,9 +5,8 @@
         :key="item.id" 
         :menuIcon="item.menuIcon" 
         :title="item.title"
-        :page="item.componentName" 
-        :componentName="item.componentName"
-        :compmentUrl="item.component">
+        :page="item.path" 
+        >
         </metroMenuItem>
 
     </div>

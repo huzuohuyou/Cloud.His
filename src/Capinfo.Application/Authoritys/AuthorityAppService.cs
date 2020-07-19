@@ -18,13 +18,12 @@ namespace Capinfo.His
         //public IAbpSession AbpSession { get; set; }
         ////通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
         public readonly IRepository<Authority> _authorityRepository;
-        public readonly IRepository<MoudleGroup> _moudleGroupRepository;
+        //public readonly IRepository<MoudleGroup> _moudleGroupRepository;
 
-        public AuthorityAppService(IRepository<Authority> repository, IRepository<MoudleGroup> repository2, UserManager userManager)
+        public AuthorityAppService(IRepository<Authority> repository, UserManager userManager)
         {
             _userManager = userManager;
             _authorityRepository = repository;
-            _moudleGroupRepository = repository2;
             authoritys = _authorityRepository.GetAllList();
         }
         IMapper mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityDto>()).CreateMapper();
@@ -87,13 +86,37 @@ namespace Capinfo.His
         List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
         public async Task<List<AuthorityTreeDto>> GetTree()
         {
-            var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
-            moudlegroups.ForEach(r =>
+            var mainAuthoritys = await _authorityRepository.GetAllListAsync(r=>r.Root==true);
+            mainAuthoritys.ForEach(r =>
             {
-                var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
+                var tree = new AuthorityTreeDto { title = r.Title, Id = r.Id ,Icon=r.Icon};
                 globalResult.Add(CreateTree(authoritys, tree));
             });
             return globalResult;
+        }
+
+        public async Task<List<AuthorityTreeDto>> GetContinerMenu(string Continer)
+        {
+            var continerlResult = new List<AuthorityTreeDto>();
+            var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == Continer );
+            continerAuthoritys.Where(r=>(r.Path
+            ?? "") == "").ToList().ForEach(r =>
+            {
+                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon,Component=r.Component }));
+            });
+            return continerlResult;
+        }
+
+        public async Task<List<AuthorityTreeDto>> GetRouters()
+        {
+            var continerlResult = new List<AuthorityTreeDto>();
+            var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == "SettingContiner");
+            continerAuthoritys.Where(r => (r.Path
+            ?? "") == "").ToList().ForEach(r =>
+            {
+                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon }));
+            });
+            return continerlResult;
         }
 
         public async Task<List<AuthorityTreeDto>> GetMainMenu(string user)
@@ -147,8 +170,8 @@ namespace Capinfo.His
         {
             if (father==0)
             {
-                var po1 = await _moudleGroupRepository.GetAsync(input.Id);
-                await _moudleGroupRepository.DeleteAsync(po1);
+                //var po1 = await _moudleGroupRepository.GetAsync(input.Id);
+                //await _moudleGroupRepository.DeleteAsync(po1);
             }
             else
             {

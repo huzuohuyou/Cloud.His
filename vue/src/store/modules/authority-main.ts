@@ -41,8 +41,6 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
             await Ajax.delete('/api/services/app/Role/Delete?Id=' + payload.data.id);
         },
         async getMainMenu(context: ActionContext<AuthorityState, any>, payload: any) {
-            console.log(3)
-            console.log('getMainMenu')
             context.state.loading = true;
             let reponse = await Ajax.get('/api/services/app/Authority/GetMainMenu', { params: payload.data });
             context.state.loading = false;
