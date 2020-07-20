@@ -88,13 +88,12 @@
     }
     handleTabRemove(name) {
       console.log(name)
-
-      // this["tab" + name] = false;
-      for (var i = 0; i < this.tabs.length; i++) {
-        if (this.tabs[i]['title'] == name) {
-          this.tabs.splice(i,1)
+      this.tabs.forEach((val, idx, array) => {
+        if (val['title'] == name) {
+          this.tabs.splice(idx, 1)
         }
-      }
+      })
+
     }
     init() {
       let pathArr = util.setCurrentPath(this, this.$route.name as string);
