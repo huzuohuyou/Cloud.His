@@ -5,8 +5,8 @@
     </div>
     <div class="single-page-con" :style="{left: shrink?'80px':'256px'}">
       <div class="single-page">
-        <Tabs id='tabs' type="card" closable @on-tab-remove="handleTabRemove" >
-          <TabPane v-for="(tab,i) in tabs" :key="tab.title" :label="tab.title">
+        <Tabs id='tabs' type="card" closable @on-tab-remove="handleTabRemove" :value="currentTab">
+          <TabPane v-for="(tab,i) in tabs" :key="tab.title" :label="tab.title" :name="tab.title">
             <component :is="tab.component"></component>
           </TabPane>
           </TabPane>
@@ -35,7 +35,7 @@
   export default class Prescription extends AbpBase {
     @Prop({ required: true, type: Array }) menuList: Array<Router>;
     @Prop() defaultView: string;
-
+    currentTab: string = "";
     shrink: boolean = false;
     theme1: string = "primary";
     modal1: boolean = false;
@@ -77,15 +77,24 @@
     get mesCount() {
       return this.$store.state.app.messageCount;
     }
-    turnUrl(title: string,component: string) {
-      console.log({title:title,component:component})
-      this.tabs.push({title:title,component:component});
-      //{path:path,title:'a',component:'Authority'}
+    turnUrl(title: string, component: string) {
+      this.currentTab = title;
+      console.log({ title: title, component: component })
+      if (this.tabs.filter((item, index, array) => {
+        return item['title'] == title;
+      }).length == 0) {
+        this.tabs.push({ title: title, component: component });
+      }
     }
     handleTabRemove(name) {
       console.log(name)
-      // this.tabs.pop(name)
-      this["tab" + name] = false;
+
+      // this["tab" + name] = false;
+      for (var i = 0; i < this.tabs.length; i++) {
+        if (this.tabs[i]['title'] == name) {
+          this.tabs.splice(i,1)
+        }
+      }
     }
     init() {
       let pathArr = util.setCurrentPath(this, this.$route.name as string);
