@@ -2,7 +2,7 @@
   <Menu mode="horizontal" :theme="theme1" active-name="1" @on-select="turnUrl">
     
     <div v-for="(item, i) in tempMenu" :key="i">
-      <MenuItem v-if="item.children.length ==0" :name="item.path">
+      <MenuItem v-if="item.children.length ==0" :name="child.meta.title+'#'+child.componentName">
         <Icon type="item.menuIcon" />{{item.meta.title}}
         <!-- <router-link :to="item.path">{{item.meta.title}}</router-link> -->
       </MenuItem>
@@ -13,7 +13,7 @@
         </template>
         <MenuItem
           v-for="(child, j) in item.children"
-          :name="child.path"
+          :name="child.meta.title+'#'+child.componentName"
           :key="j"
         >{{child.meta.title}}
          <!-- <router-link :to="child.path">{{child.meta.title}}</router-link> -->
@@ -36,8 +36,12 @@ export default class Prescription extends AbpBase {
   @Prop() defaultView: string;
  tempMenu :Array<Router>=[];
   theme1: String = "primary";
-  turnUrl(path: string) {
-    this.$emit('turnUrl',path);
+  turnUrl(name) {
+    let array=name.split('#')
+    console.log('array')
+    console.log(array)
+    console.log(name)
+    this.$emit('turnUrl',array[0],array[1]);
   
   }
   mounted() {

@@ -36,7 +36,7 @@ export default class Setting extends AbpBase {
                     'sub': true,
                     'meta': { 'title': value2.title, 'keepAlive': false },
                     'icon': '&#xe68a;',
-                    'component': _import(value2.component),
+                    'component': ''//_import(value2.component),
                 }
                 if (value2.children.length > 0) {
                     item.children = new Array<Router>()
@@ -50,7 +50,7 @@ export default class Setting extends AbpBase {
                             'sub': true,
                             'meta': { 'title': value3.title, 'keepAlive': false },
                             'icon': '&#xe68a;',
-                            'component': _import(value3.component),
+                            'component': ''//_import(value3.component),
                         }
                         item.children.push(item1)
                     }

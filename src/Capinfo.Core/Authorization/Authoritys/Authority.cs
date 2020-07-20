@@ -13,7 +13,8 @@ namespace Capinfo.Authorization.Authoritys
         public EnumMenuTypes MenuType { get; set; }
         public bool Root { get; set; }
         public string Component { get; set; }
-        
+        public string ComponentName { get; set; }
+
         public string Continer { get; set; }
 
         public DateTime? CreationTime { get; set; }

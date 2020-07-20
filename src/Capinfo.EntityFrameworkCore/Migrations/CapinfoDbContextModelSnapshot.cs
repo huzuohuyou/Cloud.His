@@ -1115,6 +1115,9 @@ namespace Capinfo.Migrations
                     b.Property<string>("Component")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ComponentName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Continer")
                         .HasColumnType("nvarchar(max)");
 
