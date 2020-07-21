@@ -5,39 +5,28 @@
         <FormItem>
           <Row>
             <Col span="3" style="text-align: center">标题 </Col>
-            <i-col span="9">
+            <i-col span="21">
               <Input v-model="entity.title"></Input>
-            </i-col>
-            <Col span="3" style="text-align: center">路径</Col>
-            <i-col span="9">
-              <Input v-model="entity.path"></Input>
             </i-col>
           </Row>
         </FormItem>
-
         <FormItem prop="databaseConnectionString">
           <Row>
             <Col span="3" style="text-align: center">图标</Col>
-            <i-col span="9">
-              <Input v-model="entity.menuIcon"></Input>
+            <i-col span="21">
+              <Input v-model="entity.Icon"></Input>
             </i-col>
+          </Row>
+        </FormItem>
+        <FormItem prop="databaseConnectionString">
+          <Row>
+
             <Col span="3" style="text-align: center">组件名称</Col>
-            <i-col span="9">
+            <i-col span="21">
               <Input v-model="entity.componentName"></Input>
             </i-col>
           </Row>
         </FormItem>
-
-        <FormItem prop="databaseConnectionString" required>
-          <Row>
-            <Col span="3" style="text-align: center">权限</Col>
-            <i-col span="9">
-              <Input v-model="entity.permission"></Input>
-            </i-col>
-
-          </Row>
-        </FormItem>
-
       </Form>
       <div slot="footer">
         <Button @click="cancel">{{L('Cancel')}}</Button>

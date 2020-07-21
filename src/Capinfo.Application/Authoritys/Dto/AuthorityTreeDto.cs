@@ -12,7 +12,7 @@ namespace Capinfo.His
     public class AuthorityTreeDto : AuditedEntityDto<int>
     {
         public string title { get; set; }
-        public string name { get; set; }
+        //public string name { get; set; }
         public Mate mate
         {
             get
@@ -20,16 +20,10 @@ namespace Capinfo.His
                 return new Mate { title = this.title };
             }
         }
-        public bool expand { get; set; }
-        public bool selected { get; set; }
-        public string MoudleName { get; set; }
-        public int Father { get; set; }
-        public string Path { get; set; }
+        public bool? IsActive { get; set; }
+        public int? Father { get; set; }
         public string Icon { get; set; }
-        //public string Title { get; set; }
         public string ComponentName { get; set; }
-        public string Component { get; set; }
-        public string Permission { get; set; }
         public List<AuthorityTreeDto> children = new List<AuthorityTreeDto>();
         
     }

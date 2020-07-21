@@ -6,7 +6,7 @@
           <Row>
             <Col span="6" style="text-align: center">模块组名称</Col>
             <i-col span="18">
-              <Input v-model="moudlegroup.groupname"></Input>
+              <Input v-model="moudlegroup.title"></Input>
             </i-col>
           </Row>
         </FormItem>

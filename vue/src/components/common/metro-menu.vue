@@ -3,9 +3,9 @@
         <metroMenuItem 
         v-for="item in menuList" 
         :key="item.id" 
-        :menuIcon="item.menuIcon" 
+        :menuIcon="item.icon" 
         :title="item.title"
-        :page="item.path" 
+        :page="item.componentName" 
         >
         </metroMenuItem>
 

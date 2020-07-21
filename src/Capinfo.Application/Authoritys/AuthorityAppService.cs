@@ -32,11 +32,11 @@ namespace Capinfo.His
             var temp = list.Where(r => r.Father == tree.Id).ToList();
             if (temp.Count == 0)
             {
-               return tree;
+                return tree;
             }
             else
             {
-                
+
                 temp.ForEach(r =>
                 {
                     var c = MapToEntityDto(r);
@@ -50,7 +50,7 @@ namespace Capinfo.His
         {
             if (node.children.Count == 0)
             {
-                AllNodes.Add( node);
+                AllNodes.Add(node);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Capinfo.His
             return node;
         }
 
-        protected  Authority MapToEntity(AuthorityTreeDto dto)
+        protected Authority MapToEntity(AuthorityTreeDto dto)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
             var mapper = config.CreateMapper();
@@ -71,9 +71,9 @@ namespace Capinfo.His
             return po;
         }
 
-        
 
-        protected  AuthorityTreeDto MapToEntityDto(Authority po)
+
+        protected AuthorityTreeDto MapToEntityDto(Authority po)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityTreeDto>());
             var mapper = config.CreateMapper();
@@ -81,43 +81,42 @@ namespace Capinfo.His
             return dto;
         }
 
-        List<Authority>  authoritys =  new List<Authority> ();
+        List<Authority> authoritys = new List<Authority>();
         //List<Authority> authoritys = null;
         List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
         public async Task<List<AuthorityTreeDto>> GetTree()
         {
-            var mainAuthoritys = await _authorityRepository.GetAllListAsync(r=>r.Root==true);
+            var mainAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == null);
             mainAuthoritys.ForEach(r =>
             {
-                var tree = new AuthorityTreeDto { title = r.Title, Id = r.Id ,Icon=r.Icon};
+                var tree = new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon };
                 globalResult.Add(CreateTree(authoritys, tree));
             });
             return globalResult;
         }
 
-        public async Task<List<AuthorityTreeDto>> GetContinerMenu(string Continer)
+        public async Task<List<AuthorityTreeDto>> GetContinerMenu(long father)
         {
             var continerlResult = new List<AuthorityTreeDto>();
-            var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == Continer );
-            continerAuthoritys.Where(r=>(r.Path
-            ?? "") == "").ToList().ForEach(r =>
+            var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == father);
+            continerAuthoritys.ForEach(r =>
             {
-                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon,Component=r.Component }));
+                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon, ComponentName = r.ComponentName }));
             });
             return continerlResult;
         }
 
-        public async Task<List<AuthorityTreeDto>> GetRouters()
-        {
-            var continerlResult = new List<AuthorityTreeDto>();
-            var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == "SettingContiner");
-            continerAuthoritys.Where(r => (r.Path
-            ?? "") == "").ToList().ForEach(r =>
-            {
-                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon }));
-            });
-            return continerlResult;
-        }
+        //public async Task<List<AuthorityTreeDto>> GetRouters()
+        //{
+        //    var continerlResult = new List<AuthorityTreeDto>();
+        //    var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == "SettingContiner");
+        //    continerAuthoritys.Where(r => (r.Path
+        //    ?? "") == "").ToList().ForEach(r =>
+        //    {
+        //        continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon }));
+        //    });
+        //    return continerlResult;
+        //}
 
         public async Task<List<AuthorityTreeDto>> GetMainMenu(string user)
         { return await GetTree(); }
@@ -126,23 +125,11 @@ namespace Capinfo.His
         {
             globalResult = await GetTree();
             var list = new List<AuthorityDto>();
-            globalResult.ForEach(r=> {
+            globalResult.ForEach(r =>
+            {
                 GetAllNodes(r);
             });
 
-            //var moudlegroups = await _moudleGroupRepository.GetAllListAsync();
-            //moudlegroups.ForEach(r =>
-            //{
-            //    var tree = new AuthorityTreeDto { title = r.GroupName, Id = r.Id };
-            //    globalResult.Add(CreateTree(authoritys, tree));
-            //});
-            //List<AuthorityTreeDto> temp = null;
-            ////return globalResult.Skip(SkipCount).Take(MaxResultCount).ToList();
-            //if ((Keyword??"").Contains("#"))
-            //{
-            //    var father = int.Parse(Keyword.Replace("#", ""));
-            //    temp = globalResult.Where(r => r.Father == father).ToList();
-            //}
             var temp = AllNodes.Where(r => r.title.Contains(Keyword ?? "")).ToList();
             return new PageDto<AuthorityTreeDto>
             {
@@ -165,22 +152,36 @@ namespace Capinfo.His
             return ok;
         }
 
-        [HttpDelete]
-        public async Task DeleteAsync(EntityDto<int> input,int father)
+        [HttpPut]
+        public bool Update(AuthorityTreeDto dto)
         {
-            if (father==0)
-            {
-                //var po1 = await _moudleGroupRepository.GetAsync(input.Id);
-                //await _moudleGroupRepository.DeleteAsync(po1);
-            }
-            else
-            {
-                var po = await _authorityRepository.GetAsync(input.Id);
-                await _authorityRepository.DeleteAsync(po);
-            }
-            
-            
-            
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Authority>(dto);
+            var ok = _authorityRepository.Update(po);
+
+            return ok != null;
+        }
+
+        [HttpPost]
+        public bool CreateRoot(AuthorityTreeDto dto)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
+            var mapper = config.CreateMapper();
+            var po = mapper.Map<Authority>(dto);
+
+            po.CreatorUserId = _userManager.UserId.Value;
+            po.CreationTime = DateTime.Now;
+
+            var ok = _authorityRepository.Insert(po) != null;
+            return ok;
+        }
+
+        [HttpDelete]
+        public async Task DeleteAsync(EntityDto<int> input)
+        {
+            var po = await _authorityRepository.GetAsync(input.Id);
+            await _authorityRepository.DeleteAsync(po);
         }
 
     }

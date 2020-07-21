@@ -4,12 +4,13 @@
       <span :class="['icon',menuIcon]"></span>
     </div>
     <span class="app-label">{{title}}</span>
-    <div  v-if="modal11" >
-      <Modal :styles="{background: '#f3f3f3',padding:'0px',}"  @on-cancel="cancel" v-model="modal11" fullscreen footer-hide>
+    <div v-if="modal11">
+      <Modal :styles="{background: '#f3f3f3',padding:'0px',}" @on-cancel="cancel" v-model="modal11" fullscreen
+        footer-hide>
         <component :is="currentComponent"></component>
       </Modal>
     </div>
-    
+
   </a>
 </template>
 <style scoped src="@/statics/css/bootstrap.css"></style>
@@ -49,13 +50,13 @@
 </style>
 <script>
 
-  
+
   import 'viewerjs/dist/viewer.css'
   import Viewer from "v-viewer/src/component.vue"
   import notImplemented from "@/components/common/not-implemented.vue";
   import SettingContiner from "@/views/setting/setting-continer.vue";
   export default {
-    tempComponentUrl1:'@/components/outpatient/prescription.vue',
+    tempComponentUrl1: '@/components/outpatient/prescription.vue',
     props: {
       page: {
         type: String,
@@ -72,18 +73,18 @@
       componentName: {
         type: String,
       },
-     
-     
+
+
     },
     components: {
       Viewer,
       notImplemented,
-      
+
     },
     data() {
       return {
-        
-        tempComponentUrl:'@/components/outpatient/prescription.vue',
+
+        tempComponentUrl: '@/components/outpatient/prescription.vue',
         currentComponent: '',
         modal11: false,
       };
@@ -91,8 +92,8 @@
     methods: {
       click() {
         if (this.page != undefined) {
-          this.$store.state.app.currentContiner=this.page;
-          this.currentComponent =this.page;
+          this.$store.state.app.currentContiner = this.page;
+          this.currentComponent = this.page;
         } else {
           this.currentComponent = 'notImplemented';
         }
@@ -105,9 +106,8 @@
       show() {
         this.$viewer.show()
       },
-      cancel () {
-       console.log( this.modal11)
-            }
+      cancel() {
+      }
     }
   }
 </script>

@@ -38,18 +38,15 @@ class AuthorityModule extends ListModule<AuthorityState, any, AuthorityTree>{
             await Ajax.put('/api/services/app/Authority/Update', payload.data);
         },
         async delete(context: ActionContext<AuthorityState, any>, payload: any) {
-            console.log(payload.data)
-            await Ajax.delete('/api/services/app/Authority/Delete?Id=' + payload.data.id+'&father='+payload.data.father);
+           
+            await Ajax.delete('/api/services/app/Authority/Delete?Id=' + payload.data.id);
         },
         async getMainMenu(context: ActionContext<AuthorityState, any>, payload: any) {
-            console.log(3)
-            console.log('getMainMenu')
             context.state.loading = true;
             let reponse = await Ajax.get('/api/services/app/Authority/GetMainMenu', { params: payload.data });
             context.state.loading = false;
             let page = reponse.data.result as Array<AuthorityTree>;
             context.state.list = page;
-            console.log(context.state.list)
         },
         async get(context: ActionContext<AuthorityState, any>, payload: any) {
             let reponse = await Ajax.get('/api/services/app/Role/Get?Id=' + payload.id);

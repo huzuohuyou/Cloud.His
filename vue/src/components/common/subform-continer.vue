@@ -9,9 +9,7 @@
           <TabPane v-for="(tab,i) in tabs" :key="tab.title" :label="tab.title" :name="tab.title">
             <component :is="tab.component"></component>
           </TabPane>
-          </TabPane>
         </Tabs>
-        <!-- <router-view :name="continer"></router-view> -->
       </div>
     </div>
   </div>
@@ -39,10 +37,7 @@
     shrink: boolean = false;
     theme1: string = "primary";
     modal1: boolean = false;
-    continer: string = "continer";
-    tab0: boolean = true;
-    tab1: boolean = true;
-    tab2: boolean = true;
+
     tabs: Array<Object> = [];
     currentComponent: string = "Authority";
     get userName() {
@@ -79,7 +74,6 @@
     }
     turnUrl(title: string, component: string) {
       this.currentTab = title;
-      console.log({ title: title, component: component })
       if (this.tabs.filter((item, index, array) => {
         return item['title'] == title;
       }).length == 0) {
@@ -87,7 +81,6 @@
       }
     }
     handleTabRemove(name) {
-      console.log(name)
       this.tabs.forEach((val, idx, array) => {
         if (val['title'] == name) {
           this.tabs.splice(idx, 1)

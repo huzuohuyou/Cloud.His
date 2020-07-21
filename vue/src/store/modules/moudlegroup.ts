@@ -40,7 +40,7 @@ class MoudleGroupModule extends ListModule<MoudleGroupState,any,MoudleGroup>{
         async create(context:ActionContext<MoudleGroupState,any>,payload:any){
             console.log("payload.data");
             console.log(payload.data);
-            await Ajax.post('/api/services/app/MoudleGroup/Create',payload.data);
+            await Ajax.post('/api/services/app/Authority/CreateRoot',payload.data);
         },
         async update(context:ActionContext<MoudleGroupState,any>,payload:any){
             await Ajax.put('/api/services/app/Question/UpdateRecord',payload.data);

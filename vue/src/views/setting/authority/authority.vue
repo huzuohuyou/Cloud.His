@@ -177,25 +177,11 @@
         key: "title"
       },
       {
-        title: this.L("模块"),
-        key: "MoudleName"
+        title: this.L("组件名"),
+        key: "componentName"
       },
-      {
-        title: this.L("父级"),
-        key: "Father"
-      },
-      {
-        title: this.L("路径"),
-        key: "Path"
-      },
-      {
-        title: this.L("模块名"),
-        key: "ComponentName"
-      },
-      {
-        title: this.L("模块"),
-        key: "Component"
-      },
+     
+     
       {
         title: this.L("IsActive"),
         render: (h: any, params: any) => {

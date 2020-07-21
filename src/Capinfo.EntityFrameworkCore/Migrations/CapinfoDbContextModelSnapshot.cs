@@ -1112,13 +1112,7 @@ namespace Capinfo.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Component")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ComponentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Continer")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreationTime")
@@ -1142,6 +1136,9 @@ namespace Capinfo.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1150,18 +1147,6 @@ namespace Capinfo.Migrations
 
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("MenuType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Root")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
