@@ -193,18 +193,30 @@ namespace Capinfo.His
 
         
         [HttpPost]
-        public bool SetRolePermissions(UserAuthorityTreeDto input)
+        public async Task<bool> SetRolePermissions(UserAuthorityTreeDto input)
         {
+            var oldRoleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == input.RoleId);
+            var newRoleAuthoritys = new List<AuthorityRole>();
             bool ok = true;
-            input.Authoritys.ToList().ForEach(dto =>
+            
+            var deleteList = oldRoleAuthoritys.Except(newRoleAuthoritys);
+            var addList = newRoleAuthoritys.Except(oldRoleAuthoritys);
+            //新权限插入
+            addList.ToList().ForEach(po =>
             {
-                var po = new AuthorityRole { AuthorityId = dto.Id, RoleId = input.RoleId };
                 po.CreatorUserId = _userManager.UserId.Value;
                 po.CreationTime = DateTime.Now;
-
+                newRoleAuthoritys.Add(po);
                 ok = ok && _authorityRoleRepository.Insert(po) != null;
             });
-
+            //老权限删除
+            deleteList.ToList().ForEach(po =>
+            {
+                po.CreatorUserId = _userManager.UserId.Value;
+                po.CreationTime = DateTime.Now;
+                newRoleAuthoritys.Add(po);
+                _authorityRoleRepository.Delete(po) ;
+            });
             return ok;
         }
 
