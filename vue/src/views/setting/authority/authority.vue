@@ -264,7 +264,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   /* 让方形复选框变成圆形单选框样式，最好在树组件外套一个父盒子，在样式前加父级选择器，以免影响其他树组件*/
   .ivu-checkbox-inner {
     border-radius: 50%;

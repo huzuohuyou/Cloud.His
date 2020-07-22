@@ -21,6 +21,7 @@ namespace Capinfo.His
             }
         }
         public bool? IsActive { get; set; }
+        public bool? Checked { get; set; }
         public int? Father { get; set; }
         public string Icon { get; set; }
         public string ComponentName { get; set; }

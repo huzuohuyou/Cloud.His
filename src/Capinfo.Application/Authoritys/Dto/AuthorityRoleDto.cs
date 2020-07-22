@@ -1,15 +1,15 @@
-﻿using Abp.Domain.Entities;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using Capinfo.Authorization.Authoritys;
 using System;
 
-namespace Capinfo.Authorization.Authoritys
+namespace Capinfo.His
 {
-    public class Authority : Entity
+    [AutoMapFrom(typeof(AuthorityRole))]
+    public class AuthorityRoleDto : AuditedEntityDto<int>
     {
-        public string Title { get; set; }
-        public long? Father { get; set; }
-        public string Icon { get; set; }
-        public string ComponentName { get; set; }
-        public bool? IsActive { get; set; }
+        public long RoleId { get; set; }
+        public long AuthorityId { get; set; }
         public DateTime? CreationTime { get; set; }
         public long? CreatorUserId { get; set; }
         public long? DeleterUserId { get; set; }
@@ -17,5 +17,7 @@ namespace Capinfo.Authorization.Authoritys
         public bool? IsDeleted { get; set; }
         public DateTime? LastModificationTime { get; set; }
         public long? LastModifierUserId { get; set; }
+
+
     }
 }

@@ -1,13 +1,8 @@
 <template>
     <div>
-        <Modal
-         :title="L('EditRole')"
-         :value="value"
-         @on-ok="save"
-         @on-visible-change="visibleChange"
-        >
-            <Form ref="roleForm"  label-position="top" :rules="roleRule" :model="role">
-                <Tabs value="detail">
+        <Modal :title="L('EditRole')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
+            <Form ref="roleForm" label-position="top" :rules="roleRule" :model="role">
+                <Tabs value="detail" @on-click="changeTab">
                     <TabPane :label="L('RoleDetails')" name="detail">
                         <FormItem :label="L('RoleName')" prop="name">
                             <Input v-model="role.name" :maxlength="32" :minlength="2"></Input>
@@ -18,11 +13,9 @@
                         <FormItem :label="L('Description')" prop="description">
                             <Input v-model="role.description" :maxlength="1024"></Input>
                         </FormItem>
-                      </TabPane>
+                    </TabPane>
                     <TabPane :label="L('RolePermission')" name="permission">
-                        <CheckboxGroup v-model="role.grantedPermissions">
-                            <Checkbox :label="permission.name" v-for="permission in permissions" :key="permission.name"><span>{{permission.displayName}}</span></Checkbox>
-                        </CheckboxGroup>
+                        <Tree ref="tree" :data="tree" show-checkbox></Tree>
                     </TabPane>
                 </Tabs>
             </Form>
@@ -34,45 +27,64 @@
     </div>
 </template>
 <script lang="ts">
-    import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
+    import { Component, Vue, Inject, Prop, Watch } from 'vue-property-decorator';
     import Util from '../../../lib/util'
     import AbpBase from '../../../lib/abpbase'
     import Role from '@/store/entities/role';
+    import AuthorityRole from '@/store/entities/authority-role';
     @Component
-    export default class EditRole extends AbpBase{
-        @Prop({type:Boolean,default:false}) value:boolean;
-        role:Role=new Role();
-        get permissions(){
+    export default class EditRole extends AbpBase {
+        @Prop({ type: Boolean, default: false }) value: boolean;
+        role: Role = new Role();
+
+        get permissions() {
             return this.$store.state.role.permissions
         }
-        save(){
-            (this.$refs.roleForm as any).validate(async (valid:boolean)=>{
-                if(valid){
+        save() {
+            (this.$refs.roleForm as any).validate(async (valid: boolean) => {
+                if (valid) {
+                    console.log((this.$refs.tree as any).getCheckedNodes())
                     await this.$store.dispatch({
-                        type:'role/update',
-                        data:this.role
+                        type: 'role/update',
+                        data: this.role
+                    });
+
+                    await this.$store.dispatch({
+                        type: 'authorityrole/setRolePermissions',
+                        data: { RoleId: this.role.id, Authoritys: (this.$refs.tree as any).getCheckedNodes() }
                     });
                     (this.$refs.roleForm as any).resetFields();
                     this.$emit('save-success');
-                    this.$emit('input',false);
+                    this.$emit('input', false);
                 }
             })
         }
-        cancel(){
+        cancel() {
             (this.$refs.roleForm as any).resetFields();
-            this.$emit('input',false);
+            this.$emit('input', false);
         }
-        visibleChange(value:boolean){
-            if(!value){
-                this.$emit('input',value);
-            }else{
-                this.role=Util.extend(true,{},this.$store.state.role.editRole);
+        get tree() {
+            return this.$store.state.authoritytree.list;
+        }
+        visibleChange(value: boolean) {
+            if (!value) {
+                this.$emit('input', value);
+            } else {
+                this.role = Util.extend(true, {}, this.$store.state.role.editRole);
             }
         }
-        roleRule={
-            name:[{required: true,message:this.L('FieldIsRequired',undefined,this.L('RoleName')),trigger: 'blur'}],
-            displayName:[{required:true,message:this.L('FieldIsRequired',undefined,this.L('DisplayName')),trigger: 'blur'}]
+        async changeTab(value) {
+            if (value == 'permission') {
+                console.log(this.role.id)
+                this.$store.dispatch({
+                    type: "authoritytree/getRolePermissions",
+                    data: this.role.id
+                });
+            }
+        }
+        roleRule = {
+            name: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('RoleName')), trigger: 'blur' }],
+            displayName: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('DisplayName')), trigger: 'blur' }]
         }
     }
 </script>
-

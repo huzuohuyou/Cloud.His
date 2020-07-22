@@ -13,6 +13,7 @@ using Capinfo.Authorization.Roles;
 using Capinfo.Authorization.Users;
 using Capinfo.Roles.Dto;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Capinfo.Roles
@@ -29,7 +30,11 @@ namespace Capinfo.Roles
             _roleManager = roleManager;
             _userManager = userManager;
         }
-
+        [HttpPost]
+        public async Task<RoleDto> BindAuthority(CreateRoleDto input) {
+            var role = ObjectMapper.Map<Role>(input);
+            return MapToEntityDto(role);
+        }
         public override async Task<RoleDto> CreateAsync(CreateRoleDto input)
         {
             CheckCreatePermission();

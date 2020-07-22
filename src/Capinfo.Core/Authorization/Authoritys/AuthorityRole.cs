@@ -3,13 +3,13 @@ using System;
 
 namespace Capinfo.Authorization.Authoritys
 {
-    public class Authority : Entity
+    /// <summary>
+    /// 角色权限关联实体
+    /// </summary>
+    public class AuthorityRole : Entity
     {
-        public string Title { get; set; }
-        public long? Father { get; set; }
-        public string Icon { get; set; }
-        public string ComponentName { get; set; }
-        public bool? IsActive { get; set; }
+        public long RoleId { get; set; }
+        public long AuthorityId { get; set; }
         public DateTime? CreationTime { get; set; }
         public long? CreatorUserId { get; set; }
         public long? DeleterUserId { get; set; }

@@ -31,6 +31,9 @@ class RoleModule extends ListModule<RoleState,any,Role>{
         async create(context:ActionContext<RoleState,any>,payload:any){
             await Ajax.post('/api/services/app/Role/Create',payload.data);
         },
+        async bindAuthority(context:ActionContext<RoleState,any>,payload:any){
+            await Ajax.post('/api/services/app/Role/Create',payload.data);
+        },
         async update(context:ActionContext<RoleState,any>,payload:any){
             await Ajax.put('/api/services/app/Role/Update',payload.data);
         },

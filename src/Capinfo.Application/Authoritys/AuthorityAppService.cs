@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using AutoMapper;
+using Capinfo.Authoritys.Dto;
 using Capinfo.Authorization.Authoritys;
 using Capinfo.Authorization.Users;
 using Capinfo.His.Dto;
@@ -14,19 +15,26 @@ namespace Capinfo.His
 {
     public class AuthorityAppService : IAuthorityAppService
     {
+        List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
+        List<Authority> authoritys = new List<Authority>();
         private readonly UserManager _userManager;
-        //public IAbpSession AbpSession { get; set; }
         ////通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
         public readonly IRepository<Authority> _authorityRepository;
-        //public readonly IRepository<MoudleGroup> _moudleGroupRepository;
+        public readonly IRepository<AuthorityRole> _authorityRoleRepository;
 
-        public AuthorityAppService(IRepository<Authority> repository, UserManager userManager)
+        public AuthorityAppService(
+            IRepository<Authority> repository
+            , IRepository<AuthorityRole> urepository
+            , UserManager userManager)
         {
             _userManager = userManager;
             _authorityRepository = repository;
+            _authorityRoleRepository = urepository;
             authoritys = _authorityRepository.GetAllList();
         }
-        IMapper mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityDto>()).CreateMapper();
+
+       
+
         private AuthorityTreeDto CreateTree(List<Authority> list, AuthorityTreeDto tree)
         {
             var temp = list.Where(r => r.Father == tree.Id).ToList();
@@ -36,7 +44,6 @@ namespace Capinfo.His
             }
             else
             {
-
                 temp.ForEach(r =>
                 {
                     var c = MapToEntityDto(r);
@@ -62,37 +69,83 @@ namespace Capinfo.His
             }
             return node;
         }
+        MapperConfiguration entityConfig = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
 
         protected Authority MapToEntity(AuthorityTreeDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
-            var mapper = config.CreateMapper();
+            var mapper = entityConfig.CreateMapper();
             var po = mapper.Map<Authority>(dto);
             return po;
         }
 
 
+        MapperConfiguration dtoConfig = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityTreeDto>());
 
         protected AuthorityTreeDto MapToEntityDto(Authority po)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Authority, AuthorityTreeDto>());
-            var mapper = config.CreateMapper();
+            var mapper = dtoConfig.CreateMapper();
             var dto = mapper.Map<AuthorityTreeDto>(po);
             return dto;
         }
 
-        List<Authority> authoritys = new List<Authority>();
-        //List<Authority> authoritys = null;
-        List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
+
+
         public async Task<List<AuthorityTreeDto>> GetTree()
         {
-            var mainAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == null);
-            mainAuthoritys.ForEach(r =>
+            var result = new List<AuthorityTreeDto>();
+            var authoritys=await _authorityRepository.GetAllListAsync();
+            var roots = authoritys.Where(r => r.Father == null);
+            roots.ToList().ForEach(r =>
             {
-                var tree = new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon };
-                globalResult.Add(CreateTree(authoritys, tree));
+                var tree = MapToEntityDto(r);
+                result.Add(CreateTree(authoritys, tree));
             });
-            return globalResult;
+            return result;
+        }
+
+        private void SetChecked(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
+        {
+            if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
+            {
+                AuthorityTree.Checked = true;
+            }
+            if (AuthorityTree.children.Count > 0)
+            {
+                AuthorityTree.children.ForEach(r =>
+                {
+                    SetChecked(r, RoleAuthoritys);
+                });
+            }
+        }
+        public async Task<List<AuthorityTreeDto>> GetRolePermissions(int RoleId)
+        {
+            var result = new List<AuthorityTreeDto>();
+            var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
+            var authoritys = await _authorityRepository.GetAllListAsync();
+            var roots = authoritys.Where(r => r.Father == null);
+            roots.ToList().ForEach(r =>
+            {
+                var tree = MapToEntityDto(r);
+                result.Add(CreateTree(authoritys, tree));
+            });
+            result.ForEach(r=> {
+                SetChecked(r, roleAuthoritys);
+            });
+            return result;
+            //var roleResult = new List<AuthorityTreeDto>();
+            //var roleAuthoritys= await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == input.Id);
+            //var mainAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == null);
+
+            //mainAuthoritys.ForEach(r =>
+            //{
+            //    var tree = MapToEntityDto(r);
+            //    if (roleAuthoritys.Count(s=>s.AuthorityId==r.Id)>0)
+            //    {
+            //        tree.expand = true;
+            //    }
+            //    roleResult.Add(CreateTree(authoritys, tree));
+            //});
+            //return roleResult;
         }
 
         public async Task<List<AuthorityTreeDto>> GetContinerMenu(long father)
@@ -101,22 +154,11 @@ namespace Capinfo.His
             var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == father);
             continerAuthoritys.ForEach(r =>
             {
-                continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon, ComponentName = r.ComponentName }));
+                continerlResult.Add(CreateTree(authoritys, MapToEntityDto(r)));
             });
             return continerlResult;
         }
 
-        //public async Task<List<AuthorityTreeDto>> GetRouters()
-        //{
-        //    var continerlResult = new List<AuthorityTreeDto>();
-        //    var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Continer == "SettingContiner");
-        //    continerAuthoritys.Where(r => (r.Path
-        //    ?? "") == "").ToList().ForEach(r =>
-        //    {
-        //        continerlResult.Add(CreateTree(authoritys, new AuthorityTreeDto { title = r.Title, Id = r.Id, Icon = r.Icon }));
-        //    });
-        //    return continerlResult;
-        //}
 
         public async Task<List<AuthorityTreeDto>> GetMainMenu(string user)
         { return await GetTree(); }
@@ -141,10 +183,7 @@ namespace Capinfo.His
         [HttpPost]
         public bool Create(AuthorityTreeDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
-            var mapper = config.CreateMapper();
-            var po = mapper.Map<Authority>(dto);
-
+            var po = MapToEntity(dto);
             po.CreatorUserId = _userManager.UserId.Value;
             po.CreationTime = DateTime.Now;
 
@@ -152,12 +191,28 @@ namespace Capinfo.His
             return ok;
         }
 
+        
+        [HttpPost]
+        public bool SetRolePermissions(UserAuthorityTreeDto input)
+        {
+            bool ok = true;
+            input.Authoritys.ToList().ForEach(dto =>
+            {
+                var po = new AuthorityRole { AuthorityId = dto.Id, RoleId = input.RoleId };
+                po.CreatorUserId = _userManager.UserId.Value;
+                po.CreationTime = DateTime.Now;
+
+                ok = ok && _authorityRoleRepository.Insert(po) != null;
+            });
+
+            return ok;
+        }
+
         [HttpPut]
         public bool Update(AuthorityTreeDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<AuthorityTreeDto, Authority>());
-            var mapper = config.CreateMapper();
-            var po = mapper.Map<Authority>(dto);
+
+            var po = MapToEntity(dto);
             var ok = _authorityRepository.Update(po);
 
             return ok != null;

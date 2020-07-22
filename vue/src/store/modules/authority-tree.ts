@@ -30,6 +30,13 @@ class AuthorityModule extends ListModule<AuthorityState,any,AuthorityTree>{
             context.state.list=page;
             
         },
+        async getRolePermissions(context: ActionContext<AuthorityState, any>, payload: any) {
+            console.log(payload.data)
+            let reponse = await Ajax.get('/api/services/app/Authority/GetRolePermissions?RoleId='+ payload.data);
+            context.state.loading=false;
+            let page=reponse.data.result as Array<AuthorityTree>;
+            context.state.list=page;
+        },
         async getAuthoritys(context:ActionContext<AuthorityState,any>,payload:any){
             context.state.loading=true;
             let reponse=await Ajax.get('/api/services/app/question/GetAllQuestion',{params:payload.data});
