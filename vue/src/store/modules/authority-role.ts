@@ -1,13 +1,11 @@
 import { Store, Module, ActionContext } from 'vuex'
 import ListModule from './list-module'
 import ListState from './list-state'
-import Authority from '../entities/authority'
 import Ajax from '../../lib/ajax'
 import PageResult from '@/store/entities/page-result';
 import AuthorityRole from '../entities/authority-role'
-import AuthorityTree from '../entities/authority-tree'
 
-interface AuthorityState extends ListState<AuthorityTree> {
+interface AuthorityState extends ListState<AuthorityRole> {
     editAuthority: AuthorityRole;
     permissions: Array<string>;
     nodeId: string;

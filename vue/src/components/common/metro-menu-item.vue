@@ -5,7 +5,7 @@
     </div>
     <span class="app-label">{{title}}</span>
     <div v-if="modal11">
-      <Modal :styles="{background: '#f3f3f3',padding:'0px',}" @on-cancel="cancel" v-model="modal11" fullscreen
+      <Modal :styles="{background: '#f3f3f3',padding:'0px',}" z-index:999 @on-cancel="cancel" v-model="modal11" fullscreen
         footer-hide>
         <component :is="currentComponent"></component>
       </Modal>

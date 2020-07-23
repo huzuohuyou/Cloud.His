@@ -1,6 +1,9 @@
 <template>
   <div style="width: 700px;">
-    <Modal :title="L('下载周报')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
+    <!-- 设置最顶层 -->
+    <Modal
+    style="position: fixed;z-index: 999999;"
+     :title="L('下载周报')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
       <a :href="href" download="test">点击下载</a>
     </Modal>
   </div>

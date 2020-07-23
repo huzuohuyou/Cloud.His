@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
 using AutoMapper;
 using Capinfo.Authoritys.Dto;
 using Capinfo.Authorization.Authoritys;
@@ -196,7 +197,11 @@ namespace Capinfo.His
         public async Task<bool> SetRolePermissions(UserAuthorityTreeDto input)
         {
             var oldRoleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == input.RoleId);
-            var newRoleAuthoritys = new List<AuthorityRole>();
+            var newRoleAuthoritys =  input.Authoritys.ToList().Select(s => new AuthorityRole
+            {
+                RoleId = input.RoleId,
+                AuthorityId = s.Id,
+            }).ToList();
             bool ok = true;
             
             var deleteList = oldRoleAuthoritys.Except(newRoleAuthoritys);

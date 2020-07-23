@@ -1,6 +1,7 @@
-<template>
-  <div style="width: 700px;">
+<template  >
+  <div style="width: 700px; ">
     <Modal
+    style="position: fixed;z-index: 999999;"
       title="添加运维记录"
       :value="value"
       @on-ok="save"

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <Modal title="编辑运维记录" :value="value" @on-ok="save" @on-visible-change="visibleChange">
+    <Modal style="position: fixed;z-index: 999999;" title="编辑运维记录" :value="value" @on-ok="save" @on-visible-change="visibleChange">
       <Form ref="questionForm" label-position="top" :rules="tenantRule" :model="question">
         <FormItem>
           <Row>

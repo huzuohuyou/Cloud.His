@@ -36,23 +36,29 @@
     export default class EditRole extends AbpBase {
         @Prop({ type: Boolean, default: false }) value: boolean;
         role: Role = new Role();
-
+        currentTab: string = '';
         get permissions() {
             return this.$store.state.role.permissions
         }
         save() {
             (this.$refs.roleForm as any).validate(async (valid: boolean) => {
                 if (valid) {
-                    console.log((this.$refs.tree as any).getCheckedNodes())
-                    await this.$store.dispatch({
-                        type: 'role/update',
-                        data: this.role
-                    });
+                    if (this.currentTab == 'permission') {
+                        await this.$store.dispatch({
+                            type: 'authorityrole/setRolePermissions',
+                            data: { RoleId: this.role.id, Authoritys: (this.$refs.tree as any).getCheckedNodes() }
+                        });
+                    }
+                    else {
+                        await this.$store.dispatch({
+                            type: 'role/update',
+                            data: this.role
+                        });
 
-                    await this.$store.dispatch({
-                        type: 'authorityrole/setRolePermissions',
-                        data: { RoleId: this.role.id, Authoritys: (this.$refs.tree as any).getCheckedNodes() }
-                    });
+                    }
+
+
+
                     (this.$refs.roleForm as any).resetFields();
                     this.$emit('save-success');
                     this.$emit('input', false);
@@ -74,6 +80,7 @@
             }
         }
         async changeTab(value) {
+            this.currentTab = value;
             if (value == 'permission') {
                 console.log(this.role.id)
                 this.$store.dispatch({
