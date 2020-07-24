@@ -1,9 +1,11 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using AutoMapper;
 using Capinfo.Authoritys.Dto;
 using Capinfo.Authorization.Authoritys;
+using Capinfo.Authorization.Roles;
 using Capinfo.Authorization.Users;
 using Capinfo.His.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,8 @@ namespace Capinfo.His
         List<AuthorityTreeDto> globalResult = new List<AuthorityTreeDto>();
         List<Authority> authoritys = new List<Authority>();
         private readonly UserManager _userManager;
+        private readonly RoleManager _roleManager;
+        public readonly IRepository<UserRole, long> _userRoleRepository;
         ////通过构造函数注入IPersonRepository，也可通过属性注入，详情查看学习资料或官方文档
         public readonly IRepository<Authority> _authorityRepository;
         public readonly IRepository<AuthorityRole> _authorityRoleRepository;
@@ -26,9 +30,13 @@ namespace Capinfo.His
         public AuthorityAppService(
             IRepository<Authority> repository
             , IRepository<AuthorityRole> urepository
-            , UserManager userManager)
+            , IRepository<UserRole, long> userRoleRepository
+            , UserManager userManager
+            , RoleManager roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
+            _userRoleRepository = userRoleRepository;
             _authorityRepository = repository;
             _authorityRoleRepository = urepository;
             authoritys = _authorityRepository.GetAllList();
@@ -104,6 +112,34 @@ namespace Capinfo.His
             return result;
         }
 
+        public async Task<List<AuthorityTreeDto>> GetUserTree(long userId)
+        {
+            var roles = await _userRoleRepository.GetAllListAsync(r => r.UserId == userId);
+            var authorityRoles = await _authorityRoleRepository.GetAllListAsync();
+            var userAuthorityRoles = new List<AuthorityRole>();
+            roles.ForEach(r =>
+            {
+                userAuthorityRoles = userAuthorityRoles.Union(authorityRoles.Where(a => a.RoleId == r.RoleId).ToList()).ToList();
+            });
+            var result = new List<AuthorityTreeDto>();
+            var userAuthoritys = new List<Authority>();
+            var allAuthoritys = await _authorityRepository.GetAllListAsync();
+            allAuthoritys.ForEach(r =>
+            {
+                if (userAuthorityRoles.Count(s => s.AuthorityId == r.Id) > 0)
+                {
+                    userAuthoritys.Add(r);
+                }
+            });
+            var roots = userAuthoritys.Where(r => r.Father == null);
+            roots.ToList().ForEach(r =>
+            {
+                var tree = MapToEntityDto(r);
+                result.Add(CreateTree(userAuthoritys, tree));
+            });
+            return result;
+        }
+
         private void SetChecked(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
         {
             if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
@@ -118,7 +154,7 @@ namespace Capinfo.His
                 });
             }
         }
-        public async Task<List<AuthorityTreeDto>> GetRolePermissions(int RoleId)
+        public async Task<List<AuthorityTreeDto>> GetRolePermissions(long RoleId)
         {
             var result = new List<AuthorityTreeDto>();
             var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
@@ -161,8 +197,65 @@ namespace Capinfo.His
         }
 
 
-        public async Task<List<AuthorityTreeDto>> GetMainMenu(string user)
-        { return await GetTree(); }
+        public async Task<List<AuthorityTreeDto>> GetMainMenu(long userId)
+        {
+            var roles = await _userRoleRepository.GetAllListAsync(r => r.UserId == userId);
+            return await GetRolePermissionsOfMain(roles[0].Id);
+            //return await GetUserTree(userId);
+        }
+
+        public async Task<List<AuthorityTreeDto>> GetRolePermissionsOfMain(long RoleId)
+        {
+           var trees = await GetTree();
+            var result = new List<AuthorityTreeDto>();
+            var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
+            trees.ForEach(r=> {
+                RemoveNode2(r, roleAuthoritys);
+            });
+
+         
+            return trees;
+           
+        }
+
+        private bool RemoveNode2(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
+        {
+            if (!DontRemoveNode(AuthorityTree, RoleAuthoritys))
+            {
+                AuthorityTree = null;
+            }
+           
+            if (AuthorityTree.children.Count > 0)
+            {
+               
+                AuthorityTree.children.ForEach(r =>
+                {
+                    if (!DontRemoveNode(r, RoleAuthoritys))
+                    {
+                        r = null;
+                    }
+                });
+            }
+            return false;
+        }
+
+        private bool DontRemoveNode(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
+        {
+            if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
+            {
+                return true;
+            }
+            if (AuthorityTree.children.Count > 0)
+            {
+                var ok = false;
+                AuthorityTree.children.ForEach(r =>
+                {
+                    ok= ok|| DontRemoveNode(r, RoleAuthoritys);
+                });
+                return ok;
+            }
+            return false;
+        }
 
         public async Task<PageDto<AuthorityTreeDto>> GetTreePage(string Keyword, int SkipCount, int MaxResultCount)
         {

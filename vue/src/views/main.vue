@@ -204,9 +204,10 @@
     }
     async init2() {
       console.log(2)
+      console.log(this.$store.state.session.user)
       await this.$store.dispatch({
         type: "authoritymain/getMainMenu",
-        data: ''
+        data:this.$store.state.session.user ? this.$store.state.session.user.id : '1'
       });
 
     }

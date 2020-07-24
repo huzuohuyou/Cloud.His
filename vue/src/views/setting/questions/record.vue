@@ -157,6 +157,16 @@
       return this.$store.state.question.currentPage;
     }
     columns = [
+    {
+        title: this.L("电话"),
+        key: "phone",
+        width:120
+      },
+      {
+        title: this.L("科室"),
+        key: "dept",
+        width:120
+      },
       {
         title: this.L("问题"),
         key: "question"
@@ -169,10 +179,10 @@
         title: this.L("解决方案"),
         key: "answer"
       },
-      {
-        title: this.L("日期"),
-        key: "date"
-      },
+      // {
+      //   title: this.L("日期"),
+      //   key: "date"
+      // },
       {
         title: this.L("Actions"),
         key: "Actions",
