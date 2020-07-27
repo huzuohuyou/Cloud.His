@@ -41,18 +41,13 @@
       </div>
     </Card>
     <week-record :href="downloadUrl" v-model="downloadWeekShow" z-index=99999></week-record>
-    <create2-role id="createRole" v-model="createModalShow" :class="{createModalShow:my-modal-parent}"  @save-success="getpage"></create2-role>
+    <create2-role id="createRole" v-model="createModalShow"   @save-success="getpage"></create2-role>
     <edit-role v-model="editModalShow" :styles="{background: '#f3f3f3',padding:'0px',}" @save-success="getpage"
       z-index=99999></edit-role>
     <view-role v-model="viewModalShow" @save-success="getpage" z-index=99999></view-role>
   </div>
 </template>
-<style>
-  .my-modal-parent {
-    position: fixed;
-    z-index: 99999;
-  }
-</style>
+
 <script lang="ts">
   import { Component, Vue, Inject, Prop, Watch } from "vue-property-decorator";
   import Util from "@/lib/util";

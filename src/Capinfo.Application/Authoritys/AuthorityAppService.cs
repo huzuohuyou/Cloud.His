@@ -265,60 +265,61 @@ namespace Capinfo.His
         {
            var list = await GetTree();
             var trees = await GetTree();
-            var result = new List<AuthorityTreeDto>();
+            var tempTrees = await GetTree();
             var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
-            trees.ForEach(r=> {
-                RemoveNode2(r, list, roleAuthoritys);
+            trees.ForEach(r => {
+                var ok = false;
+                var tempR = tempTrees.FirstOrDefault(f => f.Id == r.Id);
+                if (roleAuthoritys.Count(o => o.AuthorityId == r.Id) > 0)
+                {
+                    ok = true;
+                }
+                else
+                {
+                    r.children.ForEach(c => {
+
+                        if (roleAuthoritys.Count(o => o.AuthorityId == c.Id) > 0)
+                        {
+                            ok = true;
+                        }
+                        else
+                        {
+                            var item = tempR.children.FirstOrDefault(f => f.Id == c.Id);
+                            tempR.children.Remove(item);
+                        }
+                    });
+                }
+                if (!ok)
+                {
+                    tempTrees.Remove(tempR);
+                }
             });
 
+           
          
-            return list;
+            return tempTrees;
            
         }
 
-        private AuthorityTreeDto RemoveNode2(AuthorityTreeDto AuthorityTree, List<AuthorityTreeDto> list, List<AuthorityRole> RoleAuthoritys)
-        {
-            var tempTree = list.FirstOrDefault(r => r.Id == AuthorityTree.Id);
-            if (!DontRemoveNode(AuthorityTree, RoleAuthoritys))
-            {
-                AuthorityTree = null;
-            }
-           
-            if (AuthorityTree.children.Count > 0)
-            {
-                
-                AuthorityTree.children.ForEach(r =>
-                {
-                    if (!DontRemoveNode(r, RoleAuthoritys))
-                    {
-                        var tempR = tempTree.children.FirstOrDefault(c => c.Id == r.Id);
-                        tempTree.children.Remove(tempR);
-                        //AuthorityTree.children.Remove(r);
-                        //r = null;
-                    }
-                });
-                return tempTree;
-            }
-            return tempTree;
-        }
+        
 
-        private bool DontRemoveNode(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
-        {
-            if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
-            {
-                return true;
-            }
-            if (AuthorityTree.children.Count > 0)
-            {
-                var ok = false;
-                AuthorityTree.children.ForEach(r =>
-                {
-                    ok= ok|| DontRemoveNode(r, RoleAuthoritys);
-                });
-                return ok;
-            }
-            return false;
-        }
+        //private bool DontRemoveNode(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
+        //{
+        //    if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
+        //    {
+        //        return true;
+        //    }
+        //    if (AuthorityTree.children.Count > 0)
+        //    {
+        //        var ok = false;
+        //        AuthorityTree.children.ForEach(r =>
+        //        {
+        //            ok= ok|| DontRemoveNode(r, RoleAuthoritys);
+        //        });
+        //        return ok;
+        //    }
+        //    return false;
+        //}
 
         public async Task<PageDto<AuthorityTreeDto>> GetTreePage(string Keyword, int SkipCount, int MaxResultCount)
         {
