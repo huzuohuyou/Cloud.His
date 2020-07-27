@@ -1,6 +1,7 @@
 <template>
     <div>
         <Modal
+        style="position: fixed;z-index: 999999;"
          :title="L('CreateNewRole')"
          :value="value"
          @on-ok="save"

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Modal :title="L('EditRole')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
+        <Modal style="position: fixed;z-index: 999999;" :title="L('EditRole')" :value="value" @on-ok="save" @on-visible-change="visibleChange">
             <Form ref="roleForm" label-position="top" :rules="roleRule" :model="role">
                 <Tabs value="detail" @on-click="changeTab">
                     <TabPane :label="L('RoleDetails')" name="detail">

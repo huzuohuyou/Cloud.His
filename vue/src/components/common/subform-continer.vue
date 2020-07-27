@@ -23,6 +23,7 @@
   import shrinkableMenu from "@/components/shrinkable-menu/shrinkable-menu.vue";
   import topMenu from "@/components/common/top-menu.vue";
   import AbpBase from "@/lib/abpbase";
+  import axios from "axios";
   @Component({
     components: {
       StationButton,
@@ -31,8 +32,9 @@
     }
   })
   export default class Prescription extends AbpBase {
-    @Prop({ required: true, type: Array }) menuList: Array<Router>;
+    // @Prop({ required: true, type: Array }) menuList: Array<Router>;
     @Prop() defaultView: string;
+    // @Prop() father: string;
     currentTab: string = "";
     shrink: boolean = false;
     theme1: string = "primary";
@@ -50,7 +52,52 @@
     get openedSubmenuArr() {
       return this.$store.state.app.openedSubmenuArr;
     }
-
+    get menuList() {
+      let menuList: Array<Router> = []
+    axios
+      .get("http://capinfo.devops.com:21021/api/services/app/Authority/GetContinerMenu?father="+this.$store.state.app.father+'&userId='+ this.$store.state.session.user.id)
+      .then(function(response) {
+         
+         for (let value2 of response.data.result) {
+             let item: Router = {
+                    'path': value2.path,
+                    'name': value2.componentName,
+                    'componentName': value2.componentName,
+                    'menuIcon': value2.menuIcon,
+                    'permission': '',
+                    'sub': true,
+                    'meta': { 'title': value2.title, 'keepAlive': false },
+                    'icon': '&#xe68a;',
+                    'component': ''
+                }
+                if (value2.children.length > 0) {
+                    item.children = new Array<Router>()
+                    for (let value3 of value2.children) {
+                        let item1: Router = {
+                            'path': value3.path,
+                            'name': value3.componentName,
+                            'componentName': value3.componentName,
+                            'menuIcon': value3.menuIcon,
+                            'permission': '',
+                            'sub': true,
+                            'meta': { 'title': value3.title, 'keepAlive': false },
+                            'icon': '&#xe68a;',
+                            'component': ''
+                        }
+                        item.children.push(item1)
+                    }
+                }
+                
+                menuList.push(item)
+         }
+         
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+     
+     return menuList;
+  }
     get pageTagsList() {
       return this.$store.state.app.pageOpenedList as Array<any>;
     }

@@ -61,6 +61,24 @@ namespace Capinfo.His
             }
             return tree;
         }
+
+        private AuthorityTreeDto CreateTreeOfRole(List<Authority> list,List<AuthorityRole> authorityRoles, AuthorityTreeDto tree)
+        {
+            var temp = list.Where(r => r.Father == tree.Id).ToList();
+            if (temp.Count == 0)
+            {
+                return tree;
+            }
+            else
+            {
+                temp.ForEach(r =>
+                {
+                    var c = MapToEntityDto(r);
+                    tree.children.Add(CreateTreeOfRole(authoritys, authorityRoles, c));
+                });
+            }
+            return tree;
+        }
         List<AuthorityTreeDto> AllNodes = new List<AuthorityTreeDto>();
         private AuthorityTreeDto GetAllNodes(AuthorityTreeDto node)
         {
@@ -185,15 +203,54 @@ namespace Capinfo.His
             //return roleResult;
         }
 
-        public async Task<List<AuthorityTreeDto>> GetContinerMenu(long father)
+        public async Task<List<AuthorityTreeDto>> GetContinerMenu(long father,long userId)
         {
+            var roles = await _userRoleRepository.GetAllListAsync(r => r.UserId == userId);
+            var RoleId = roles[0].Id;
+            var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
+            var authoritys = _authorityRepository.GetAllList();
+
             var continerlResult = new List<AuthorityTreeDto>();
+            var tempContinerlResult = new List<AuthorityTreeDto>();
             var continerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == father);
+            var tempContinerAuthoritys = await _authorityRepository.GetAllListAsync(r => r.Father == father);
+
+           
             continerAuthoritys.ForEach(r =>
             {
-                continerlResult.Add(CreateTree(authoritys, MapToEntityDto(r)));
+                continerlResult.Add(CreateTreeOfRole(authoritys, roleAuthoritys, MapToEntityDto(r)));
+
+                tempContinerlResult.Add(CreateTreeOfRole(authoritys, roleAuthoritys, MapToEntityDto(r)));
             });
-            return continerlResult;
+
+            continerlResult.ForEach(r => {
+                var ok = false;
+                var tempR = tempContinerlResult.FirstOrDefault(f => f.Id == r.Id);
+                if (roleAuthoritys.Count(o=>o.AuthorityId==r.Id)>0)
+                {
+                    ok = true;
+                }
+                else
+                {
+                    r.children.ForEach(c => {
+
+                        if (roleAuthoritys.Count(o => o.AuthorityId == c.Id) > 0)
+                        {
+                            ok = true;
+                        }
+                        else
+                        {
+                            var item = tempR.children.FirstOrDefault(f => f.Id == c.Id);
+                            tempR.children.Remove(item);
+                        }
+                    });
+                }
+                if (!ok)
+                {
+                    tempContinerlResult.Remove(tempR);
+                }
+            });
+            return tempContinerlResult;
         }
 
 
@@ -206,20 +263,22 @@ namespace Capinfo.His
 
         public async Task<List<AuthorityTreeDto>> GetRolePermissionsOfMain(long RoleId)
         {
-           var trees = await GetTree();
+           var list = await GetTree();
+            var trees = await GetTree();
             var result = new List<AuthorityTreeDto>();
             var roleAuthoritys = await _authorityRoleRepository.GetAllListAsync(r => r.RoleId == RoleId);
             trees.ForEach(r=> {
-                RemoveNode2(r, roleAuthoritys);
+                RemoveNode2(r, list, roleAuthoritys);
             });
 
          
-            return trees;
+            return list;
            
         }
 
-        private bool RemoveNode2(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
+        private AuthorityTreeDto RemoveNode2(AuthorityTreeDto AuthorityTree, List<AuthorityTreeDto> list, List<AuthorityRole> RoleAuthoritys)
         {
+            var tempTree = list.FirstOrDefault(r => r.Id == AuthorityTree.Id);
             if (!DontRemoveNode(AuthorityTree, RoleAuthoritys))
             {
                 AuthorityTree = null;
@@ -227,16 +286,20 @@ namespace Capinfo.His
            
             if (AuthorityTree.children.Count > 0)
             {
-               
+                
                 AuthorityTree.children.ForEach(r =>
                 {
                     if (!DontRemoveNode(r, RoleAuthoritys))
                     {
-                        r = null;
+                        var tempR = tempTree.children.FirstOrDefault(c => c.Id == r.Id);
+                        tempTree.children.Remove(tempR);
+                        //AuthorityTree.children.Remove(r);
+                        //r = null;
                     }
                 });
+                return tempTree;
             }
-            return false;
+            return tempTree;
         }
 
         private bool DontRemoveNode(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)

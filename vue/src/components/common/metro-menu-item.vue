@@ -73,7 +73,9 @@
       componentName: {
         type: String,
       },
-
+      father: {
+        type: Number,
+      },
 
     },
     components: {
@@ -92,7 +94,10 @@
     methods: {
       click() {
         if (this.page != undefined) {
+          
           this.$store.state.app.currentContiner = this.page;
+          this.$store.state.app.father=this.father;
+          // alert( this.$store.state.app.father)
           this.currentComponent = this.page;
         } else {
           this.currentComponent = 'notImplemented';

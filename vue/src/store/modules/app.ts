@@ -19,6 +19,7 @@ interface AppState {
     currentPageName: string;
     currentPath: Array<any>;
     currentContiner?: string;
+    father?: string;
     menuList: Array<any>;
     menuGroup: Array<any>;
     routers: Array<any>;

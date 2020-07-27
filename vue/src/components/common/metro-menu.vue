@@ -6,6 +6,7 @@
         :menuIcon="item.icon" 
         :title="item.title"
         :page="item.componentName" 
+        :father="item.id"
         >
         </metroMenuItem>
 
