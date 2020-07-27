@@ -20,11 +20,11 @@
                             <Input v-model="role.description" :maxlength="1024"></Input>
                         </FormItem>
                       </TabPane>
-                    <TabPane :label="L('RolePermission')" name="permission">
+                    <!-- <TabPane :label="L('RolePermission')" name="permission">
                         <CheckboxGroup v-model="role.grantedPermissions">
                             <Checkbox :label="permission.name" v-for="permission in permissions" :key="permission.name"><span>{{permission.displayName}}</span></Checkbox>
                         </CheckboxGroup>
-                    </TabPane>
+                    </TabPane> -->
                 </Tabs>
             </Form>
             <div slot="footer">
