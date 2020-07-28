@@ -54,11 +54,7 @@
                             type: 'role/update',
                             data: this.role
                         });
-
                     }
-
-
-
                     (this.$refs.roleForm as any).resetFields();
                     this.$emit('save-success');
                     this.$emit('input', false);
@@ -73,22 +69,27 @@
             return this.$store.state.authoritytree.list;
         }
         visibleChange(value: boolean) {
+           
             if (!value) {
                 this.$emit('input', value);
             } else {
                 this.role = Util.extend(true, {}, this.$store.state.role.editRole);
-            }
-        }
-        async changeTab(value) {
-            this.currentTab = value;
-            if (value == 'permission') {
-                console.log(this.role.id)
                 this.$store.dispatch({
                     type: "authoritytree/getRolePermissions",
                     data: this.role.id
                 });
             }
         }
+        async changeTab(value) {
+            this.currentTab = value;
+            if (value == 'permission') {
+                this.$store.dispatch({
+                    type: "authoritytree/getRolePermissions",
+                    data: this.role.id
+                });
+            }
+        }
+
         roleRule = {
             name: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('RoleName')), trigger: 'blur' }],
             displayName: [{ required: true, message: this.L('FieldIsRequired', undefined, this.L('DisplayName')), trigger: 'blur' }]

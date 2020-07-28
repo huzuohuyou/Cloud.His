@@ -160,6 +160,7 @@ namespace Capinfo.His
 
         private void SetChecked(AuthorityTreeDto AuthorityTree, List<AuthorityRole> RoleAuthoritys)
         {
+            AuthorityTree.Checked = false;
             if (RoleAuthoritys.Count(s => s.AuthorityId == AuthorityTree.Id) > 0)
             {
                 AuthorityTree.Checked = true;
