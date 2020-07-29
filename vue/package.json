@@ -11,7 +11,7 @@
     "electron_build2": "electron-packager . app --win --out 输出文件夹 --arch=x64 --electron-version 8.0.3 --overwrite --ignore=node_modules"
   },
   "dependencies": {
-    "jquery": "^2.2.1",
+    "jquery": "^3.5.0",
     "@aspnet/signalr": "^1.0.0",
     "abp-web-resources": "^3.8.2",
     "axios": "^0.18.0",
@@ -39,7 +39,7 @@
     "@vue/cli-service": "^3.0.4",
     "electron": "^8.0.3",
     "electron-packager": "^14.2.1",
-    "jquery": "^3.5.1",
+    "jquery": "^3.5.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "node-sass": "^4.14.1",
