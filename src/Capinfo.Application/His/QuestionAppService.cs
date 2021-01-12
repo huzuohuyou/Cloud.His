@@ -95,6 +95,9 @@ namespace Capinfo.His
                 .GetAllList(r => 
                ( r.Question.Contains(Keyword ?? "")
             || r.Reason.Contains(Keyword ?? "")
+            || r.Phone.Contains(Keyword ?? "")
+            || r.Dept.Contains(Keyword ?? "")
+            || r.Date.ToString().Contains(Keyword ?? "")
             || r.Answer.Contains(Keyword ?? ""))
             && r.CreatorUserId.ToString().Contains(userId))
                 .OrderByDescending(r=>r.Date).ToList();

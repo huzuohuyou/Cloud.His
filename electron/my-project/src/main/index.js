@@ -11,9 +11,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:8080`
-  : `file://${__dirname}/index.html`
+const winURL = process.env.NODE_ENV === `http://localhost:8080`
 
 function createWindow () {
   /**
@@ -25,7 +23,7 @@ function createWindow () {
     width: 1000
   })
 
-  mainWindow.loadURL(winURL)
+  mainWindow.loadURL('winURL')
 
   mainWindow.on('closed', () => {
     mainWindow = null

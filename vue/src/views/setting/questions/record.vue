@@ -153,6 +153,11 @@
     }
     columns = [
     {
+        title: this.L("日期"),
+        key: "dateDisplayValue",
+        width:120
+      },
+    {
         title: this.L("电话"),
         key: "phone",
         width:120
@@ -166,10 +171,10 @@
         title: this.L("问题"),
         key: "question"
       },
-      {
-        title: this.L("原因"),
-        key: "reason"
-      },
+      // {
+      //   title: this.L("原因"),
+      //   key: "reason"
+      // },
       {
         title: this.L("解决方案"),
         key: "answer"

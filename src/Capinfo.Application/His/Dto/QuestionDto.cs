@@ -26,6 +26,13 @@ namespace Capinfo.His
                 _date = value;
             }
         }
+        public string DateDisplayValue
+        {
+            get
+            {
+                return Date.ToString("yyyy-MM-dd");
+            }
+        }
 
         public string Phone { get; set; }
 
@@ -35,11 +42,49 @@ namespace Capinfo.His
 
         public string Ptno { get; set; }
 
-        public KINDS Kind { get; set; }
+        public KINDS Kind
+        {
+            get
+            {
+                if (Question.Contains("门诊"))
+                {
+                    return KINDS.Out;
+                }
+                return KINDS.In;
+            }
+        }
 
-        public ROLES Role { get; set; }
+        public ROLES Role
+        {
+            get
+            {
+                if (Question.Contains("医生"))
+                {
+                    return ROLES.Doctor;
+                }
+                return ROLES.Nurse;
+            }
+        }
 
-        public TYPES Type { get; set; }
+        public TYPES Type
+        {
+            get
+            {
+                if (Question.Contains("锁"))
+                {
+                    return TYPES.Unlock;
+                }
+                if (Question.Contains("科") || Question.Contains("病区"))
+                {
+                    return TYPES.Authority;
+                }
+                if (Question.Contains("到"))
+                {
+                    return TYPES.OnSite;
+                }
+                return TYPES.Advisory;
+            }
+        }
 
         public string TypeName
         {

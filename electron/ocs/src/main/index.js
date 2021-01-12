@@ -13,7 +13,7 @@ const electron = require('electron')
 const Menu = electron.Menu
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:8080/#/`
+  ? `http://localhost:8088/#/`
   : `file://${__dirname}/index.html`
 
 function createWindow () {

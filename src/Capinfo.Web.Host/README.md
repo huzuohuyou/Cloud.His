@@ -20,3 +20,7 @@
 #### 启动/调试项目
 - 已管理员方式启动VS
 - 设置网站website参见 my showdoc
+
+#### 发布
+- .host 右键发布
+- vue yar build

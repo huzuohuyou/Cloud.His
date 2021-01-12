@@ -122,6 +122,7 @@ export default class CreateQuestion extends AbpBase {
         this.$emit("input", false);
       }
     });
+    (this.$refs.questionForm as any).resetFields();
   }
   cancel() {
     (this.$refs.questionForm as any).resetFields();
