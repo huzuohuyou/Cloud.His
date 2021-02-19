@@ -22,7 +22,7 @@ export default class Setting extends AbpBase {
   // get menuList() {
   //     let menuList: Array<Router> = []
   //   axios
-  //     .get("http://capinfo.devops.com:21021/api/services/app/Authority/GetContinerMenu?father=1003")
+  //     .get("http://192.168.5.169:21021/api/services/app/Authority/GetContinerMenu?father=1003")
   //     .then(function(response) {
          
   //        for (let value2 of response.data.result) {

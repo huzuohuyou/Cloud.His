@@ -9,7 +9,7 @@
     <header id="nav-bar" class="flex-container">
       <div class="flex-container">
         <div class="flex-item" style="width:85%;">
-          <h2>{{L('AppName')}}</h2>
+          <h2>运维记录</h2>
         </div>
         <div class="flex-item">
           <lock-screen></lock-screen>

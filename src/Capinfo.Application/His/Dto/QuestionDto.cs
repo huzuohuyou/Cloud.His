@@ -4,15 +4,16 @@ using Capinfo.His.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Capinfo.His
 {
     [AutoMapFrom(typeof(Questions))]
     public class QuestionDto : AuditedEntityDto<int>
     {
-        public enum ROLES { Doctor=1, Nurse=2 };
-        public enum KINDS { In=1, Out=2 };
-        public enum TYPES { Advisory=1, Unlock=2, Authority=3, OnSite=4 };
+        public enum ROLES { Doctor = 1, Nurse = 2 };
+        public enum KINDS { In = 1, Out = 2 };
+        public enum TYPES { Advisory = 1, Unlock = 2, Authority = 3, OnSite = 4 };
 
         private DateTime? _date;
         public DateTime Date
@@ -33,14 +34,78 @@ namespace Capinfo.His
                 return Date.ToString("yyyy-MM-dd");
             }
         }
-
-        public string Phone { get; set; }
-
-        public string Dept { get; set; }
-
-        public string User { get; set; }
-
-        public string Ptno { get; set; }
+        private string _phone;
+        public string Phone
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_phone))
+                {
+                    var regex = new Regex(@"\d{4}", RegexOptions.Singleline);
+                    string a = regex.Match(Question).Value;
+                    return string.IsNullOrWhiteSpace(a) ? "" : $@"{a}";
+                }
+                return _phone;
+            }
+            set
+            {
+                _phone = value;
+            }
+        }
+        private string _dept { get; set; }
+        public string Dept
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_dept))
+                {
+                    var regex = new Regex("(?<txt>(?<= ).{1,3}?病区)|(?<txt>(?<= ).{1,3}?科)", RegexOptions.Singleline);
+                    string a = regex.Match(Question).Value;
+                    return string.IsNullOrWhiteSpace(a) ? "" : $@"{a}";
+                }
+                return _dept;
+            }
+            set
+            {
+                _dept = value;
+            }
+        }
+        private string _user;
+        public string User
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_user))
+                {
+                    var regex = new Regex(@"\d{6}", RegexOptions.Singleline);
+                    string a = regex.Match(Question).Value;
+                    return string.IsNullOrWhiteSpace(a) ? "" : $@"{a}";
+                }
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
+        private string _ptno;
+        public string Ptno
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_ptno))
+                {
+                    var regex = new Regex(@"\d{10}", RegexOptions.Singleline);
+                    string a = regex.Match(Question).Value;
+                    return string.IsNullOrWhiteSpace(a) ? "" : $@"{a}";
+                }
+                return _ptno;
+            }
+            set
+            {
+                _ptno = value;
+            }
+        }
 
         public KINDS Kind
         {
@@ -50,6 +115,10 @@ namespace Capinfo.His
                 {
                     return KINDS.Out;
                 }
+                if (Question.Contains("病区"))
+                {
+                    return KINDS.In;
+                }
                 return KINDS.In;
             }
         }
@@ -58,7 +127,7 @@ namespace Capinfo.His
         {
             get
             {
-                if (Question.Contains("医生"))
+                if (Question.Contains("医生")|Question.Contains("科"))
                 {
                     return ROLES.Doctor;
                 }
@@ -74,7 +143,7 @@ namespace Capinfo.His
                 {
                     return TYPES.Unlock;
                 }
-                if (Question.Contains("科") || Question.Contains("病区"))
+                if (Question.Contains("科") || Question.Contains("病区") || Question.Contains("权限"))
                 {
                     return TYPES.Authority;
                 }

@@ -168,17 +168,17 @@
         width:120
       },
       {
-        title: this.L("问题"),
+        title: this.L("服务内容"),
         key: "question"
       },
       // {
       //   title: this.L("原因"),
       //   key: "reason"
       // },
-      {
-        title: this.L("解决方案"),
-        key: "answer"
-      },
+      // {
+      //   title: this.L("解决方案"),
+      //   key: "answer"
+      // },
       // {
       //   title: this.L("日期"),
       //   key: "date"

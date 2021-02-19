@@ -55,7 +55,7 @@
     get menuList() {
       let menuList: Array<Router> = []
     axios
-      .get("http://capinfo.devops.com:21021/api/services/app/Authority/GetContinerMenu?father="+this.$store.state.app.father+'&userId='+ this.$store.state.session.user.id)
+      .get("http://192.168.5.169:21021/api/services/app/Authority/GetContinerMenu?father="+this.$store.state.app.father+'&userId='+ this.$store.state.session.user.id)
       .then(function(response) {
          
          for (let value2 of response.data.result) {
