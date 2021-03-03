@@ -27,7 +27,8 @@ namespace Capinfo.His
         public KINDS Kind { get; set; }
    
         public ROLES Role { get; set; }
-       
+
+        private TYPES _type;
         public TYPES Type
         {
             get
@@ -47,8 +48,12 @@ namespace Capinfo.His
 
                 return TYPES.Advisory;
             }
+            set
+            {
+                _type = value;
+            }
         }
- 
+
         public string Question { get; set; }
       
         public string Reason { get; set; }

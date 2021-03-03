@@ -21,7 +21,7 @@ namespace Capinfo.EntityFrameworkCore
             if (!SkipDbContextRegistration)
             {
                 Configuration.Modules.AbpEfCore().AddDbContext<CapinfoDbContext>(options =>
-                {
+                 {
                     if (options.ExistingConnection != null)
                     {
                         CapinfoDbContextConfigurer.Configure(options.DbContextOptions, options.ExistingConnection);

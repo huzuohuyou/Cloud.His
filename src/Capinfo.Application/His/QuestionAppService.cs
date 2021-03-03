@@ -32,15 +32,24 @@ namespace Capinfo.His
         [HttpPost]
         public bool AddRecord(QuestionDto dto)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
-            var mapper = config.CreateMapper();
-            var po = mapper.Map<Questions>(dto);
+            try
+            {
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDto, Questions>());
+                var mapper = config.CreateMapper();
+                var po = mapper.Map<Questions>(dto);
 
-            po.CreatorUserId = _userManager.UserId.Value;
-            po.CreationTime = DateTime.Now;
+                po.CreatorUserId = _userManager.UserId.Value;
+                po.CreationTime = DateTime.Now;
 
-            var ok = _personRepository.Insert(po) != null;
-            return ok;
+                var ok = _personRepository.Insert(po) != null;
+                return ok;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+         
         }
 
         [HttpGet]
