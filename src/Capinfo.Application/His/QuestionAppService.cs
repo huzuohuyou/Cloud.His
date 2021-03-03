@@ -58,13 +58,13 @@ namespace Capinfo.His
                     var worksheet = package.Workbook.Worksheets[0];
                     //添加值
                     worksheet.Cells["B2"].Value = u.Name;//姓名
-                    worksheet.Cells["F2"].Value = week?question.Date:"全部";//日期
-                    worksheet.Cells["F4"].Value = question.Unlock?.Trim();//解锁
-                    worksheet.Cells["F5"].Value = question.Authority?.Trim();//权限
-                    worksheet.Cells["F6"].Value = question.OnSite?.Trim();//现场
-                    worksheet.Cells["F7"].Value = question.Advisory?.Trim();//咨询
-                    worksheet.Cells["F8"].Value = question.Dev?.Trim();//开发
-                    worksheet.Cells["F9"].Value = question.Query?.Trim();//查询
+                    worksheet.Cells["G2"].Value = week?question.Date:"全部";//日期
+                    worksheet.Cells["C6"].Value = question.Unlock?.Trim();//解锁
+                    worksheet.Cells["C7"].Value = question.Authority?.Trim();//权限
+                    worksheet.Cells["C8"].Value = question.OnSite?.Trim();//现场
+                    worksheet.Cells["C5"].Value = question.Advisory?.Trim();//咨询
+                    //worksheet.Cells["F8"].Value = question.Dev?.Trim();//开发
+                    //worksheet.Cells["C9"].Value = question.Query?.Trim();//查询
                     package.Save();
                 }
                 var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\bin\Debug\netcoreapp3.0\publish\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}.xlsx";
@@ -166,22 +166,22 @@ namespace Capinfo.His
                 if (item.Type.Equals(TYPES.Advisory))
                 {
                     result.Advisory += $@"
-{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+{item.DateValue} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
                 else if (item.Type.Equals(TYPES.Authority))
                 {
                     result.Authority += $@"
-{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+{item.DateValue} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
                 else if (item.Type.Equals(TYPES.OnSite))
                 {
                     result.OnSite += $@"
-{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+{item.DateValue} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
                 else if (item.Type.Equals(TYPES.Unlock))
                 {
                     result.Unlock += $@"
-{item.Date} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
+{item.DateValue} {item.Phone} {item.Dept}{item.Question}{item.Reason}{item.Answer}";
                 }
             }
             return result;

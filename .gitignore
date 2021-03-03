@@ -263,3 +263,4 @@ paket-files/
 .idea/
 *.sln.iml
 >>>>>>> 79e374d01b7a866289516d7d9a097064d1367bcb
+/electron/ocs/输出文件夹/app-win32-x64

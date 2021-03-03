@@ -15,7 +15,7 @@ namespace Capinfo.His
         public enum KINDS { In = 1, Out = 2 };
         public enum TYPES { Advisory = 1, Unlock = 2, Authority = 3, OnSite = 4 };
         public DateTime Date { get; set; }
-    
+        public string DateValue { get { return Date.ToString("yyyy-MM-dd"); } }
         public string Phone { get; set; }
      
         public string Dept { get; set; }
@@ -28,7 +28,26 @@ namespace Capinfo.His
    
         public ROLES Role { get; set; }
        
-        public TYPES Type { get; set; }
+        public TYPES Type
+        {
+            get
+            {
+                if (Question.Contains("锁"))
+                {
+                    return TYPES.Unlock;
+                }
+                if (Question.Contains("到") || Question.Contains("现场") || Question.Contains("上线") || Question.Contains("培训"))
+                {
+                    return TYPES.OnSite;
+                }
+                if (Question.Contains("增加") || Question.Contains("权限"))
+                {
+                    return TYPES.Authority;
+                }
+
+                return TYPES.Advisory;
+            }
+        }
  
         public string Question { get; set; }
       

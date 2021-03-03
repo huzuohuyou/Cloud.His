@@ -143,14 +143,15 @@ namespace Capinfo.His
                 {
                     return TYPES.Unlock;
                 }
-                if (Question.Contains("科") || Question.Contains("病区") || Question.Contains("权限"))
-                {
-                    return TYPES.Authority;
-                }
-                if (Question.Contains("到"))
+                if (Question.Contains("到") || Question.Contains("现场") || Question.Contains("上线") || Question.Contains("培训"))
                 {
                     return TYPES.OnSite;
                 }
+                if (Question.Contains("增加") || Question.Contains("权限"))
+                {
+                    return TYPES.Authority;
+                }
+               
                 return TYPES.Advisory;
             }
         }
