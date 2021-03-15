@@ -57,6 +57,7 @@ namespace Capinfo.His
         {
             try
             {
+                var hardQuestion = GetHardQuestion();
                 var u = _userManager.GetUserById(_userManager.UserId.Value);
                 var question = GetThisWeekQuestion(week);
                 string sWebRootFolder = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\wwwroot"; //_hostingEnvironment.WebRootPath;
@@ -72,11 +73,12 @@ namespace Capinfo.His
                     worksheet.Cells["C7"].Value = question.Authority?.Trim();//权限
                     worksheet.Cells["C8"].Value = question.OnSite?.Trim();//现场
                     worksheet.Cells["C5"].Value = question.Advisory?.Trim();//咨询
+                    worksheet.Cells["C22"].Value = hardQuestion;//困难问题
                     //worksheet.Cells["F8"].Value = question.Dev?.Trim();//开发
                     //worksheet.Cells["C9"].Value = question.Query?.Trim();//查询
                     package.Save();
                 }
-                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\bin\Debug\netcoreapp3.0\publish\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}.xlsx";
+                var str = $@"D:\GitHub\Cloud.His\src\Capinfo.Web.Host\bin\Debug\netcoreapp3.0\publish\wwwroot\{DateTime.Now.ToString("yyyy-MM-dd") }_{ u.Name}_周报.xlsx";
                 var fi = new FileInfo(str);
                 fi.Delete();
                 file.CopyTo(str);
@@ -141,6 +143,24 @@ namespace Capinfo.His
             var po = await _personRepository.GetAsync(input.Id);
             await _personRepository.DeleteAsync(po);
         }
+
+        public string GetHardQuestion()
+        {
+            var u = _userManager.GetUserById(_userManager.UserId.Value);
+            List<Questions> questions = new List<Questions>();
+            var begin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59).AddDays(-(int)DateTime.Now.DayOfWeek == 0 ? -7 : -(int)DateTime.Now.DayOfWeek);
+            var end = begin.AddDays(7); //new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59).AddDays(6 - (int)DateTime.Now.DayOfWeek == 0 ? -7 : -(int)DateTime.Now.DayOfWeek);
+
+            questions = _personRepository
+            .GetAllList(r =>
+            r.CreatorUserId == u.Id
+            && r.Date > begin
+            && r.Date < end)
+            .ToList();
+            var s = string.Join("\n●", questions.Where(r => r.Question.Contains("反馈")).Select(r => r.Question));
+            return s;
+        }
+
         public WeekRecordDto GetThisWeekQuestion(bool week)
         {
             var result = new WeekRecordDto();
