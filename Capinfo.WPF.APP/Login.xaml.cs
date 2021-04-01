@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,28 +14,13 @@ using System.Windows.Shapes;
 namespace Capinfo.WPF.APP
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Login.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Login : UserControl
     {
-        public MainWindow()
+        public Login()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
