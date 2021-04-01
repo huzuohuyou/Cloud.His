@@ -17,7 +17,7 @@ export default class LockScreen extends AbpBase {
     lockScreenSize:number=0;
     showUnlock:boolean=false;
     @Prop({type:Boolean,default:false}) value:boolean;
-
+    
     lock() {
         let lockScreenBack = document.getElementById('lock_screen_back') as HTMLElement;
         if(lockScreenBack){
@@ -56,6 +56,11 @@ export default class LockScreen extends AbpBase {
             lockScreenBack.style.width = lockScreenBack.style.height = size + 'px';
         });
         lockScreenBack.style.width = lockScreenBack.style.height = size + 'px';
+
+        setInterval(() => {
+            this.lock();
+
+        }, 1000 * 60 * 60);
     }
 }
 </script>

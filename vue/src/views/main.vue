@@ -183,6 +183,7 @@
     get mesCount() {
       return this.$store.state.app.messageCount;
     }
+  
     async init2() {
       console.log(2)
       console.log(this.$store.state.session.user)
@@ -193,7 +194,7 @@
 
     }
     init() {
-
+      
       let pathArr = util.setCurrentPath(this, this.$route.name as string);
       this.$store.commit('app/updateMenulist');
       if (pathArr.length >= 2) {

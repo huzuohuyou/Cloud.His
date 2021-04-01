@@ -10,6 +10,7 @@
 import unlock from './unlock.vue';
 import Cookies from 'js-cookie';
 export default {
+    
     components: {
         unlock
     },
@@ -39,6 +40,8 @@ export default {
         }
         let lockScreenBack = document.getElementById('lock_screen_back');
         lockScreenBack.style.zIndex = -1;
+
+ 
     }
 };
 </script>
