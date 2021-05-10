@@ -58,7 +58,9 @@ export default class LockScreen extends AbpBase {
         lockScreenBack.style.width = lockScreenBack.style.height = size + 'px';
 
         setInterval(() => {
-            this.lock();
+            this.$router.push({
+                name: 'locking'
+            });
 
         }, 1000 * 60 * 60);
     }
